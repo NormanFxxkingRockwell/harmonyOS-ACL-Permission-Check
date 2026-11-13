@@ -145,4 +145,3 @@
 | ohos.permission.ENTERPRISE_REQUEST_PUBLISH_FORM | system_basic | 26.0.1 |
 | ohos.permission.ENTERPRISE_EXTERNAL_READ | system_basic | 26.0.1 |
 | ohos.permission.ENTERPRISE_ENCRYPT_BLOCK_DEVICE | system_basic | 26.0.1 |
-

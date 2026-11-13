@@ -318,4 +318,3 @@
 | ohos.permission.ENTERPRISE_REQUEST_PUBLISH_FORM | 允许设备管理应用在桌面添加卡片。 | system_basic | 系统授权（system_grant） | Phone  /  PC/2in1  /  Tablet | 26.0.1 | 原文未注明 |
 | ohos.permission.ENTERPRISE_EXTERNAL_READ | 允许设备管理应用在OOBE阶段拷贝U盘大文件。 | system_basic | 系统授权（system_grant） | PC/2in1 | 26.0.1 | 原文未注明 |
 | ohos.permission.ENTERPRISE_ENCRYPT_BLOCK_DEVICE | 允许MDM应用挂载和卸载加密U盘加密区与交换区。 | system_basic | 系统授权（system_grant） | PC/2in1 | 26.0.1 | 原文未注明 |
-

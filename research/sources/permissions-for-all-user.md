@@ -260,4 +260,3 @@
 **替代方案**：
 
 请参考[文件权限组废弃替代方案](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-permission-group-list#文件deprecated)。
-
