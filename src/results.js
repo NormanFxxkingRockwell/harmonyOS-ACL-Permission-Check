@@ -47,7 +47,7 @@ export function renderResultsPanel(result, context) {
   }).join('');
 
   return `<div class="result-toolbar">
-    <div><h2>${escape(state.name || '当前应用')}</h2><p>${deviceNames[state.device]} · 最低 API ${escape(state.api)} · ${state.selected.length} 个常见场景 · ${(state.extraPermissions||[]).length} 项补充能力</p></div>
+    <div><h2>当前方案</h2><p>${deviceNames[state.device]} · 最低 API ${escape(state.api)} · ${state.selected.length} 个常见场景 · ${(state.extraPermissions||[]).length} 项补充能力</p></div>
     <div class="result-toolbar-actions"><button class="button secondary" data-step="1">修改场景</button><button class="button primary" data-action="download">导出清单 ↓</button></div>
   </div>
   <div class="result-overview"><span>涉及权限 <b>${result.permissions.length}</b></span><span>可直接声明 <b>${direct}</b></span><span>需官网申请 <b>${apply}</b></span><span class="${blocked ? 'has-blocks' : ''}">条件待满足 <b>${blocked}</b></span></div>
