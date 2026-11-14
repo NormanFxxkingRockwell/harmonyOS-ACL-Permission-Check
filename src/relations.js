@@ -39,16 +39,16 @@ export function normalAuthorization(permission, state) {
   if (name==='APP_TRACKING_CONSENT') return '是否弹窗取决于系统关联开关';
   if (permission.grant.includes('user_grant')) return '使用前获取用户授权';
   if (name==='SHORT_TERM_WRITE_IMAGEVIDEO') return '安装授予；保存另有短时确认';
-  if (name==='PUBLISH_AGENT_REMINDER') return '安装授予；另需通知使能';
+  if (name==='PUBLISH_AGENT_REMINDER') return '安装时授予；还需用户允许通知';
   if (name==='USE_FLOAT_BALL') return '安装授予；用户需开启功能';
   if (name==='KEEP_BACKGROUND_RUNNING_SPECIAL_SCENARIO') return '安装授予；另需后台运行开关';
-  if (['kernel.NET_RAW','kernel.USB_CAPTURE','REQUEST_LOCAL_ACCOUNT_AUTHORIZATION','ACCESS_BIOMETRIC'].includes(name)) return '安装授予；操作另需认证交互';
+  if (['kernel.NET_RAW','kernel.USB_CAPTURE','REQUEST_LOCAL_ACCOUNT_AUTHORIZATION','ACCESS_BIOMETRIC'].includes(name)) return '安装时授予；实际使用还需身份验证';
   return '系统安装时授予';
 }
 
 function groupFor(permission, api, compareVersions) {
   const group=permissionGroups.find(group=>group.permissions.includes(permission.name));
-  if (!group) return {id:`unmapped:${permission.name}`,title:'权限组待官方确认',source:mdmSource,mappingConfirmed:false};
+  if (!group) return {id:`unmapped:${permission.name}`,title:'暂未确认能否统一设置',source:mdmSource,mappingConfirmed:false};
   if (group.since&&compareVersions(api,group.since)<0) return {...group,mappingConfirmed:false};
   return {...group,mappingConfirmed:true};
 }
@@ -81,12 +81,12 @@ export function applyRelationships(state, permissions, compareVersions) {
       groups.push(group);
     }
     group.permissions.push(permission.name);
-    if (!permission.eligible) group.problems.push('组内存在声明条件尚未满足的权限。');
+    if (!permission.eligible) group.problems.push('这组中有权限还不符合申请条件，请先处理下方提示。');
   }
   for (const group of groups) {
-    if (!group.mappingConfirmed) group.problems.push('当前官方权限组资料未明确覆盖此权限或目标API，不推测分组。');
+    if (!group.mappingConfirmed) group.problems.push('官方资料尚未明确：这个权限在当前版本能否这样统一设置。请先按正常流程向用户申请。');
     if (group.permissions.includes(full('LOCATION_IN_BACKGROUND'))&&group.requestedState!=='DEFAULT') {
-      group.problems.push('后台定位另有前台与设置流程；尚无明确条文保证此策略替代全部特殊步骤，需目标设备核实。');
+      group.problems.push('后台定位通常还需先获得前台定位授权、再到系统设置开启。目前无法确认企业配置能否替代这些步骤，请在目标设备验证。');
     }
     group.problems=[...new Set([...contextProblems,...group.problems])];
     group.ready=enabled&&group.problems.length===0;
@@ -117,10 +117,10 @@ export function applyRelationships(state, permissions, compareVersions) {
   const authorizationPlan={enabled,planningOnly:true,controllerPermission:mdmControllerPermission,
     source:mdmSource,contextProblems,groups,
     requirements:[
-      '由有资格且已激活的Stage模型MDM管控端调用，业务App无需为了被管理而声明管理权限。',
-      '目标应用仍需完成自己的权限声明、受限审批及Profile；按应用标识、本地账号和分身确定实例。',
-      '仅管理user_grant，按目标应用已声明的同组全部项下发；不适用于manual_settings。',
-      'DEFAULT表示用户授权，GRANTED/DENIED均是待管理员实际下发并检查返回值的部署计划。'
+      '需要企业管理员使用有资格、已激活的设备管理应用操作（Stage模型）。业务应用不用为此添加管理权限。',
+      '业务应用仍要声明自己需要的权限；需官网申请的，仍要完成审批和授权文件（Profile）配置。管理员还需指定应用、设备账号及分身。',
+      '只能统一设置通常需要用户同意的权限（user_grant）。同一组中，本应用声明的权限要一起设置；必须去系统设置开启的权限不适用。',
+      '“让用户自己决定”对应DEFAULT，“静默允许”对应GRANTED，“统一拒绝”对应DENIED。选择后还需管理员实际配置并检查结果。'
     ],
     policies:groups.filter(group=>group.ready&&group.requestedState!=='DEFAULT').map(group=>({
       group:group.id,permissions:group.permissions,managedState:group.requestedState,

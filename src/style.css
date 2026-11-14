@@ -456,3 +456,10 @@ dialog h2 { font: 600 16px/1.8 Consolas,monospace; overflow-wrap: anywhere; }
 @media(max-width:640px) { .deployment-context { padding:12px; } .deployment-context .follow-check { font-size:11px; } .deployment-context p { font-size:10px; } .relationship-groups { padding:0 14px; } .relationship-fact h3 { font-size:11px; } .relation-confidence { display:none; } .relationship-fact p { font-size:10px; } .mdm-plan .region-header { align-items:start; gap:8px; } .mdm-plan .region-header h2 { flex-wrap:wrap; } .mdm-plan .region-header .tag { font-size:9px; } .mdm-plan-content { padding:14px; } .mdm-group { grid-template-columns:1fr; gap:8px; } .mdm-group label>span { display:none; } .mdm-group select { font-size:10px; } .relation-permissions a { flex-basis:100%; margin-left:0; margin-top:4px; } }
 
 .row-relation-link { padding:0; margin-top:6px; background:none; border:0; font-size:10px; color:#aa7d87; }
+
+/* Put the functional question before its smallest example and permission identifier. */
+.capability-choice strong { color:#34343d; font-weight:600; line-height:1.65; }
+.capability-example { display:block; color:#7d7d89; font-size:11px; line-height:1.65; margin-top:4px; }
+
+.mdm-controller-note summary { cursor:pointer; font-weight:600; color:#50505c; }
+.mdm-controller-note[open] code { margin-top:10px; }

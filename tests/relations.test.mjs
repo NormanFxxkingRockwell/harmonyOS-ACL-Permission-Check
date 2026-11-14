@@ -126,7 +126,7 @@ test('三项未有官方组映射的新权限不推测组，也不生成静默�
     assert.equal(selectedGroup.ready, false);
     assert.equal(permission(result, shortName).authorization.policy, 'DEFAULT');
     assert.deepEqual(result.authorizationPlan.policies, []);
-    assert.match(selectedGroup.problems.join(' '), /不推测分组/);
+    assert.match(selectedGroup.problems.join(' '), /官方资料尚未明确/);
   }
 });
 
@@ -136,7 +136,7 @@ test('后台定位保留前台位置声明及特殊设置流程，不直接生�
   });
   assert.deepEqual(new Set(declared(result)), new Set([full('APPROXIMATELY_LOCATION'), full('LOCATION_IN_BACKGROUND')]));
   assert.equal(group(result, 'location').ready, false);
-  assert.match(group(result, 'location').problems.join(' '), /前台与设置流程/);
+  assert.match(group(result, 'location').problems.join(' '), /前台定位授权、再到系统设置/);
   assert.equal(permission(result, 'LOCATION_IN_BACKGROUND').authorization.policy, 'DEFAULT');
   assert.match(permission(result, 'LOCATION_IN_BACKGROUND').authorization.display, /先前台授权，再到设置开启/);
   assert.deepEqual(result.authorizationPlan.policies, []);

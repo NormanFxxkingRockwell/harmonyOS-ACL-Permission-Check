@@ -7,7 +7,7 @@ export const domains = [
   { id: 'media', title: '相机、音视频与屏幕采集', description: '拍摄、录音、图库音频访问、屏幕采集和媒体控制。', icon: '◉' },
   { id: 'location-health', title: '位置、运动与健康', description: '前后台定位、导航、运动状态、传感器和健康数据。', icon: '◎' },
   { id: 'personal-data', title: '联系人、日历与剪贴板', description: '通讯录、日历、剪贴板与数据分享范围。', icon: '▤' },
-  { id: 'files', title: '文件、存储与打印', description: '公共目录、文件 URI、云盘同步、存储卷和文档打印。', icon: '▱' },
+  { id: 'files', title: '文件、存储与打印', description: '读写公共文件夹、持续访问已选文件、云盘同步、查看存储设备和打印文档。', icon: '▱' },
   { id: 'windows-input', title: '窗口、输入与界面', description: '悬浮窗、窗口样式、输入事件、手写笔和界面扩展。', icon: '▧' },
   { id: 'app-runtime', title: '应用运行与智能体', description: '应用信息、进程与后台运行、组件调用、沙箱和智能体能力。', icon: '▦' },
   { id: 'development', title: '开发、调试与外设驱动', description: '调试工具、动态代码、原生库、内存策略和外设驱动。', icon: '⌘' },

@@ -1,3 +1,4 @@
+import { permissionCopy } from './scenario-copy.js';
 import { makeConfig } from './rules.js';
 import { renderRelationships, renderMdmPlan } from './relations-view.js';
 
@@ -9,7 +10,7 @@ const groupDescriptions = {
   '开放权限（系统授权）': '在配置文件中声明，安装时由系统授予。',
   '开放权限（用户授权）': '声明后，在对应业务使用前获取用户授权。',
   '受限开放权限': '先核对申请条件，再到官网申请；用户授权要求单独完成。',
-  '企业类应用可用权限': '需要企业应用资格、对应 Profile 和手动签名。',
+  '企业类应用可用权限': '仅符合条件的企业应用可申请；申请通过后，还要下载授权文件（Profile）并完成签名。',
   '仅MDM应用可用权限': '仅企业 MDM 应用可申请，需符合设备管理场景。'
 };
 
@@ -22,10 +23,10 @@ function permissionRow(permission, context) {
   return `<tr class="permission-row ${permission.eligible ? '' : 'blocked'}">
     <td class="permission-info">
       <button class="permission-name" data-detail="${permission.name}">${escape(permission.name)}</button>
-      <p>${escape(permission.description)}</p>
-      ${permission.autoAdded?`<div class="inferred-permission">自动补齐 · ${permission.requiredBy.map(name=>escape(name.replace('ohos.permission.',''))).join('、')} 的前置权限</div>`:''}
+      <p>${escape(permissionCopy(permission).question.replace(/^是否需要/,'用于').replace(/？$/,''))}</p>
+      ${permission.autoAdded?`<div class="inferred-permission">自动补齐 · ${permission.requiredBy.map(name=>escape(name.replace('ohos.permission.',''))).join('、')} 的必需权限</div>`:''}
       ${permission.relationIds?.length?`<button class="row-relation-link" data-detail="${permission.name}">关联 ${permission.relationIds.length} 条 ↗</button>`:''}
-      ${permission.blocks.length ? `<div class="block-reason">条件待满足：${escape(permission.blocks.join(' '))}</div>` : ''}
+      ${permission.blocks.length ? `<div class="block-reason">暂不能加入配置：${escape(permission.blocks.join(' '))}</div>` : ''}
       ${notes.length ? `<details class="row-notes"><summary>限制与说明 <span>${notes.length}</span></summary><ul>${notes.map(note => `<li>${escape(note)}</li>`).join('')}</ul></details>` : ''}
     </td>
     <td data-label="申请与授权"><span class="tag ${permission.route === 'direct' ? 'neutral' : 'red'}">${routeNames[permission.route]}</span><span class="grant-line">${grantLabel(permission)}</span></td>
@@ -44,7 +45,7 @@ export function renderResultsPanel(result, context) {
     const rows = result.permissions.filter(p => p.category === category);
     if (!rows.length) return '';
     return `<section class="result-region">
-      <div class="region-header"><div><h2><span class="region-index">0${index + 1}</span>${title}<span class="region-count">${rows.length}</span></h2><p>${category==='开放权限（用户授权）'&&result.authorizationPlan?.enabled?'常规流程需要用户授权；受管部署另看MDM计划，实际以策略执行结果为准。':groupDescriptions[category]}</p></div></div>
+      <div class="region-header"><div><h2><span class="region-index">0${index + 1}</span>${title}<span class="region-count">${rows.length}</span></h2><p>${category==='开放权限（用户授权）'&&result.authorizationPlan?.enabled?'通常需要用户同意。如果交给企业管理员统一授权，请查看上方的免弹窗授权方案。':groupDescriptions[category]}</p></div></div>
       <table class="permission-table"><thead><tr><th scope="col">权限 / 用途</th><th scope="col">申请与授权</th><th scope="col">触发场景</th><th scope="col">等级 / 版本</th></tr></thead><tbody>${rows.map(p => permissionRow(p, context)).join('')}</tbody></table>
     </section>`;
   }).join('');
