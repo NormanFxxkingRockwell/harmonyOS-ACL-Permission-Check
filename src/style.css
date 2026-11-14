@@ -405,3 +405,54 @@ dialog h2 { font: 600 16px/1.8 Consolas,monospace; overflow-wrap: anywhere; }
 @media(max-width:1150px) { .coverage-layout { grid-template-columns:180px minmax(0,1fr); gap:12px; } .domain-button { padding:10px 6px; gap:6px; } .domain-button strong { font-size:10px; } .capabilities-panel { padding:16px; } }
 @media(max-width:900px) { .coverage-layout { grid-template-columns:1fr; } .domain-nav { position:static; display:flex; overflow-x:auto; gap:5px; } .domain-button { width:auto; flex-shrink:0; padding:9px 10px; } .domain-button strong { white-space:nowrap; } .domain-button>span { display:none; } .coverage-intro>span { display:none; } .capabilities-count>span { display:none; } }
 @media(max-width:640px) { .coverage-intro { padding:14px; } .coverage-intro strong { font-size:12px; } .capabilities-panel { padding:15px 12px; } .capabilities-heading h2 { font-size:14px; } .capability-filters { flex-wrap:wrap; } .capability-filters>input { flex-basis:100%; } .capability-filters>select { width:100%; } .capability-row { align-items:start; padding:12px 9px; gap:8px; } .capability-choice { align-items:start; gap:7px; } .capability-choice input { margin:3px 0 0; } .capability-choice strong { font-size:11px; } .capability-choice code { font-size:9px; } .capability-status .tag { font-size:9px; } .capability-status .text-button { font-size:9px; } .qualification-row { flex-wrap:wrap; } .qualifications-panel { padding:16px 13px; } .qualification-row>.text-button { margin-left:26px; } }
+
+/* Reviewed permission relationships and optional MDM deployment planning. */
+.deployment-context { margin-top:20px; padding:14px; border:1px solid #e0e0e7; border-radius:5px; background:#fafafb; }
+.deployment-context .follow-check { font-size:12px; color:#666674; line-height:1.8; }
+.deployment-context p { color:#9898a5; font-size:10px; line-height:1.9; margin:7px 0 0 24px; }
+.inferred-permission { font-size:10px; color:#a24f59; margin-top:7px; line-height:1.8; }
+.relationship-groups { padding:0 18px; }
+.relationship-type { border-bottom:1px solid #e8e8ee; }
+.relationship-type:last-child { border-bottom:0; }
+.relationship-type>summary { padding:13px 0; font-size:12px; color:#676677; cursor:pointer; }
+.relationship-type>summary>span { margin-left:8px; color:#aaaab6; font-size:10px; }
+.relationship-fact { padding:14px 0; border-top:1px dashed #e5e5ec; }
+.relationship-fact>div:first-child { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.relationship-fact h3 { font-size:12px; font-weight:600; color:#606071; }
+.relation-confidence { color:#aaaab5; font-size:9px; white-space:nowrap; }
+.relationship-fact p { color:#9696a4; font-size:11px; line-height:1.9; margin-top:7px; }
+.relation-permissions { display:flex; gap:6px; flex-wrap:wrap; align-items:center; margin-top:10px; }
+.relation-permissions button { background:#f2f2f7; border:0; color:#9291a2; padding:3px 6px; border-radius:3px; font:9px/1.8 Consolas,monospace; overflow-wrap:anywhere; max-width:100%; }
+.relation-permissions a { font-size:10px; color:#a48187; margin-left:auto; }
+.mdm-plan-content { padding:16px 18px; }
+.mdm-controller-note { padding:12px; background:#f7f7fa; border-radius:5px; }
+.mdm-controller-note>strong { font-size:10px; font-weight:500; color:#9292a0; display:block; }
+.mdm-controller-note>code { color:#626175; font-size:11px; line-height:1.9; overflow-wrap:anywhere; display:block; margin-top:4px; }
+.mdm-controller-note p { color:#a0a0ad; font-size:10px; line-height:1.9; margin-top:5px; }
+.mdm-groups { margin-top:10px; }
+.mdm-group { display:grid; grid-template-columns:minmax(0,1fr) 245px; gap:18px; align-items:start; padding:14px 0; border-bottom:1px solid #e9e9ef; }
+.mdm-group h3 { font-size:12px; color:#676679; font-weight:600; }
+.mdm-group p { color:#9998a8; font:10px/1.9 Consolas,monospace; margin-top:6px; overflow-wrap:anywhere; }
+.mdm-group small { color:#b08c64; font-size:10px; line-height:1.9; display:block; margin-top:6px; }
+.mdm-group label>span { color:#aaa9b7; font-size:9px; display:block; margin-bottom:5px; }
+.mdm-group select { font-size:11px; min-height:36px; }
+.mdm-group select:disabled { color:#aaa9b7; background:#f6f6f9; }
+.mdm-requirements { margin-top:14px; }
+.mdm-requirements summary { cursor:pointer; font-size:11px; color:#9190a1; }
+.mdm-requirements ul { font-size:10px; color:#aaa9b7; line-height:1.9; padding-left:18px; }
+.mdm-plan-footer { margin-top:14px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+.mdm-plan-footer>span { color:#aaa9b8; font-size:10px; line-height:1.9; flex:1; }
+.mdm-plan-footer>a { font-size:10px; color:#a78289; }
+.mdm-empty { font-size:11px; line-height:1.9; color:#9695a6; padding:15px 0 0; }
+.detail-relations { margin:16px 0; padding:15px; background:#f7f7fa; border-radius:5px; }
+.detail-relations>h3 { color:#737286; font-size:12px; font-weight:600; }
+.detail-relations>p { color:#9998a9; font-size:11px; line-height:1.9; margin-top:8px; }
+.detail-relations details { padding:11px 0; border-top:1px solid #e6e6ee; margin-top:9px; }
+.detail-relations summary { cursor:pointer; font-size:11px; color:#848296; line-height:1.9; }
+.detail-relations summary small { font-size:9px; color:#aaa8b9; margin-left:6px; }
+.detail-relations details p { font-size:11px; color:#9997aa; line-height:1.9; margin:8px 0; }
+.detail-relations details a { font-size:10px; color:#a7838a; }
+@media(max-width:900px) { .mdm-group { grid-template-columns:minmax(0,1fr) 210px; gap:12px; } .mdm-plan-footer>span { flex-basis:100%; } }
+@media(max-width:640px) { .deployment-context { padding:12px; } .deployment-context .follow-check { font-size:11px; } .deployment-context p { font-size:10px; } .relationship-groups { padding:0 14px; } .relationship-fact h3 { font-size:11px; } .relation-confidence { display:none; } .relationship-fact p { font-size:10px; } .mdm-plan .region-header { align-items:start; gap:8px; } .mdm-plan .region-header h2 { flex-wrap:wrap; } .mdm-plan .region-header .tag { font-size:9px; } .mdm-plan-content { padding:14px; } .mdm-group { grid-template-columns:1fr; gap:8px; } .mdm-group label>span { display:none; } .mdm-group select { font-size:10px; } .relation-permissions a { flex-basis:100%; margin-left:0; margin-top:4px; } }
+
+.row-relation-link { padding:0; margin-top:6px; background:none; border:0; font-size:10px; color:#aa7d87; }

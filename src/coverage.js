@@ -23,9 +23,10 @@ export function renderCoverage(state, catalog, ui) {
   <div class="capabilities-list">${matches.map(permission=>{
     const entry=byName.get(permission.name);
     const fromScene=entry?.sceneIds.some(id=>!id.startsWith('permission:'));
-    const checked=fromScene||selected.has(permission.name);
+    const fromRequirement=entry?.autoAdded===true;
+    const checked=Boolean(entry);
     const route=routeFor(permission);
-    return `<article class="capability-row ${checked?'is-selected':''}"><label class="capability-choice"><input type="checkbox" data-permission="${permission.name}" ${checked?'checked':''} ${fromScene?'disabled':''}/><span><strong>${escape(permission.description.replace(/^允许(?:应用|企业应用|设备管理应用)?/,''))}</strong><code>${permission.name}</code></span></label><div class="capability-status"><span class="tag ${route==='direct'?'neutral':'red'}">${fromScene?'已由场景加入':route==='direct'?'直接声明':route==='acl'?'官网申请':route==='mdm'?'仅 MDM':'企业权限'}</span><button class="text-button" data-detail="${permission.name}">查看条件 ↗</button></div></article>`;
+    return `<article class="capability-row ${checked?'is-selected':''}"><label class="capability-choice"><input type="checkbox" data-permission="${permission.name}" ${checked?'checked':''} ${fromScene||fromRequirement?'disabled':''}/><span><strong>${escape(permission.description.replace(/^允许(?:应用|企业应用|设备管理应用)?/,''))}</strong><code>${permission.name}</code></span></label><div class="capability-status"><span class="tag ${route==='direct'?'neutral':'red'}">${fromRequirement?'由前置关系补齐':fromScene?'已由场景加入':route==='direct'?'直接声明':route==='acl'?'官网申请':route==='mdm'?'仅 MDM':'企业权限'}</span><button class="text-button" data-detail="${permission.name}">查看条件 ↗</button></div></article>`;
   }).join('')||'<div class="no-results">此领域没有匹配项，试试其他关键词或切换领域。</div>'}</div>
   </section></div>
   ${needsConfirmation.length?`<section class="qualifications-panel"><div class="section-title"><div><h2>补充能力 · 申请条件确认</h2><p>阅读官方条件后逐项确认；未确认或不符合应用类型、设备、版本的条目不会进入配置。</p></div></div>${needsConfirmation.map(permission=>`<div class="qualification-row"><label><input type="checkbox" data-qualification="${permission.name}" ${confirmed.has(permission.name)?'checked':''}/><span>我已阅读官方条件，确认应用符合此权限的主体及业务场景要求。<code>${permission.name}</code></span></label><button class="text-button" data-detail="${permission.name}">阅读官方条件 ↗</button></div>`).join('')}</section>`:''}

@@ -1,0 +1,1119 @@
+{
+  "reviewedOn": "2026-11-14",
+  "scope": "windows-input/app-runtime/development/notifications-calls 全106项；standalone仅指列表未明示共同权限，不是所有API均无依赖",
+  "reviewed": [
+    {
+      "name": "ohos.permission.GET_BUNDLE_INFO",
+      "domain": "app-runtime",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.PREPARE_APP_TERMINATE",
+      "domain": "app-runtime",
+      "disposition": "api-dependent",
+      "note": "权限条目未指定共同申请关系；具体接口、组件配置及设备支持另行核对。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.ACCESS_NOTIFICATION_POLICY",
+      "domain": "notifications-calls",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.KEEP_BACKGROUND_RUNNING",
+      "domain": "app-runtime",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.PRIVACY_WINDOW",
+      "domain": "windows-input",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.PUBLISH_AGENT_REMINDER",
+      "domain": "notifications-calls",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.VIBRATE",
+      "domain": "notifications-calls",
+      "disposition": "standalone",
+      "note": "已核对列表用途与限制，未发现明确的其他权限必选前置；不表示所有API无附加条件。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.CLEAN_BACKGROUND_PROCESSES",
+      "domain": "app-runtime",
+      "disposition": "api-dependent",
+      "note": "清理自身相关后台任务与企业结束其他应用进程能力不同。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.COMMONEVENT_STICKY",
+      "domain": "app-runtime",
+      "disposition": "api-dependent",
+      "note": "权限条目未指定共同申请关系；具体接口、组件配置及设备支持另行核对。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.RUNNING_LOCK",
+      "domain": "app-runtime",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.RUN_DYN_CODE",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "普通应用不可申请，仅特定系统应用；不与其他动态代码权限互为替代。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.WINDOW_TOPMOST",
+      "domain": "windows-input",
+      "disposition": "standalone",
+      "note": "应用置顶窗口本身不等于系统悬浮窗或闪控窗，无明确共同申请条款。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.INPUT_KEYBOARD_CONTROLLER",
+      "domain": "windows-input",
+      "disposition": "standalone",
+      "note": "仅输入法应用设置功能键，不等于输入监听、拦截或事件注入。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.SET_ABILITY_INSTANCE_INFO",
+      "domain": "windows-input",
+      "disposition": "standalone",
+      "note": "已核对列表用途与限制，未发现明确的其他权限必选前置；不表示所有API无附加条件。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.NDK_START_SELF_UI_ABILITY",
+      "domain": "app-runtime",
+      "disposition": "api-dependent",
+      "note": "权限条目未指定共同申请关系；具体接口、组件配置及设备支持另行核对。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.DETECT_GESTURE",
+      "domain": "windows-input",
+      "disposition": "standalone",
+      "note": "已核对列表用途与限制，未发现明确的其他权限必选前置；不表示所有API无附加条件。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.kernel.DEBUGGER",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.kernel.ALLOW_DEBUG",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.BACKGROUND_MANAGER_POWER_SAVE_MODE",
+      "domain": "app-runtime",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.SET_WINDOW_TRANSPARENT",
+      "domain": "windows-input",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.START_WINDOW_BELOW_LOCK_SCREEN",
+      "domain": "windows-input",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.kernel.IGNORE_LIBRARY_VALIDATION",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.TIMEOUT_SCREENOFF_DISABLE_LOCK",
+      "domain": "windows-input",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.LOCK_WINDOW_CURSOR",
+      "domain": "windows-input",
+      "disposition": "standalone",
+      "note": "已核对列表用途与限制，未发现明确的其他权限必选前置；不表示所有API无附加条件。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.kernel.EXEMPT_ANONYMOUS_EXECUTABLE_MEMORY",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.INHERIT_PARENT_PERMISSION",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.GET_DONOTDISTURB_STATE",
+      "domain": "notifications-calls",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.ALLOW_COREDUMP",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.CONNECT_OBJECTEDITOR_EXTENSION",
+      "domain": "windows-input",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.STYLUS_FRAME_BOOST",
+      "domain": "windows-input",
+      "disposition": "standalone",
+      "note": "已核对列表用途与限制，未发现明确的其他权限必选前置；不表示所有API无附加条件。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.QUERY_PUBLIC_CLI_TOOL",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.EXEC_PUBLIC_CLI_TOOL",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.DCAS_RUN_MODEL",
+      "domain": "app-runtime",
+      "disposition": "api-dependent",
+      "note": "权限条目未指定共同申请关系；具体接口、组件配置及设备支持另行核对。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.kernel.USB_CAPTURE",
+      "domain": "development",
+      "disposition": "api-dependent",
+      "note": "权限条目未指定共同申请关系；具体接口、组件配置及设备支持另行核对。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.UPDATE_SCOPE_FONT",
+      "domain": "windows-input",
+      "disposition": "standalone",
+      "note": "已核对列表用途与限制，未发现明确的其他权限必选前置；不表示所有API无附加条件。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.SYSTEM_FLOAT_WINDOW",
+      "domain": "windows-input",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.ACCESS_DDK_USB",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.ACCESS_DDK_HID",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.INTERCEPT_INPUT_EVENT",
+      "domain": "windows-input",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.INPUT_MONITORING",
+      "domain": "windows-input",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.READ_WRITE_USB_DEV",
+      "domain": "development",
+      "disposition": "api-dependent",
+      "note": "权限条目未指定共同申请关系；具体接口、组件配置及设备支持另行核对。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN",
+      "domain": "notifications-calls",
+      "disposition": "standalone",
+      "note": "限运营商添加eSIM配置场景，未发现与其他电话权限共同申请条款。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.kernel.DISABLE_CODE_MEMORY_PROTECTION",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.kernel.ALLOW_WRITABLE_CODE_MEMORY",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.USE_FRAUD_CALL_LOG_PICKER",
+      "domain": "notifications-calls",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.USE_FRAUD_MESSAGES_PICKER",
+      "domain": "notifications-calls",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.ACCESS_VIRTUAL_SCREEN",
+      "domain": "windows-input",
+      "disposition": "standalone",
+      "note": "已核对列表用途与限制，未发现明确的其他权限必选前置；不表示所有API无附加条件。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.kernel.ALLOW_USE_JITFORT_INTERFACE",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.kernel.DISABLE_GOTPLT_RO_PROTECTION",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.USE_FRAUD_APP_PICKER",
+      "domain": "notifications-calls",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.ACCESS_DDK_DRIVERS",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.ACCESS_DDK_USB_SERIAL",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.CUSTOM_SANDBOX",
+      "domain": "app-runtime",
+      "disposition": "api-dependent",
+      "note": "PC开发调测工具动态沙箱资格独立，不自动推导外部native或系统级权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.MANAGE_SCREEN_TIME_GUARD",
+      "domain": "app-runtime",
+      "disposition": "api-dependent",
+      "note": "权限条目未指定共同申请关系；具体接口、组件配置及设备支持另行核对。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.GET_ABILITY_INFO",
+      "domain": "app-runtime",
+      "disposition": "api-dependent",
+      "note": "限PC浏览器按URI或FileType查询Ability，与获取全量应用列表不同。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.USE_FLOAT_BALL",
+      "domain": "windows-input",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.AUTO_RESTORE_MAIN_WINDOW",
+      "domain": "windows-input",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.KEEP_BACKGROUND_RUNNING_SYSTEM",
+      "domain": "app-runtime",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.HOOK_KEY_EVENT",
+      "domain": "windows-input",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.WEB_NATIVE_MESSAGING",
+      "domain": "development",
+      "disposition": "api-dependent",
+      "note": "权限条目未指定共同申请关系；具体接口、组件配置及设备支持另行核对。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.SUBSCRIBE_NOTIFICATION",
+      "domain": "notifications-calls",
+      "disposition": "relation",
+      "note": "企业主体的第三方手表官方管理App才能申请；读取权限与蓝牙等转发能力分别核对。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.ALLOW_EXTERNAL_NATIVE_CODE",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.atomicService.MANAGE_AGING",
+      "domain": "app-runtime",
+      "disposition": "api-dependent",
+      "note": "元服务小游戏老化策略，不是长时后台执行权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.kernel.LOAD_INDEPENDENT_LIBRARY",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.MANAGE_RECENT_SNAPSHOT",
+      "domain": "windows-input",
+      "disposition": "standalone",
+      "note": "已核对列表用途与限制，未发现明确的其他权限必选前置；不表示所有API无附加条件。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.SET_WINDOW_ALPHA",
+      "domain": "windows-input",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.MANAGE_CALL_FOR_DEVICES",
+      "domain": "notifications-calls",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.SET_WINDOW_TOUCH_AREAS",
+      "domain": "windows-input",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.INPUT_DEVICE_CONFIGURATOR",
+      "domain": "windows-input",
+      "disposition": "standalone",
+      "note": "输入设备和屏幕绑定属于外设驱动的具体操作，不推定与事件监听权限共同必选。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.REGISTER_OBJECTEDITOR_EXTENSION",
+      "domain": "windows-input",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.CHECK_CALL_LOG",
+      "domain": "notifications-calls",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.CONTROL_DEVICE",
+      "domain": "windows-input",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.KEEP_BACKGROUND_RUNNING_SPECIAL_SCENARIO",
+      "domain": "app-runtime",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.FLOAT_VIEW",
+      "domain": "windows-input",
+      "disposition": "standalone",
+      "note": "已核对列表用途与限制，未发现明确的其他权限必选前置；不表示所有API无附加条件。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.GET_CALL_TRANSFER_INFO",
+      "domain": "notifications-calls",
+      "disposition": "relation",
+      "note": "限手机银行且有转账风险评估业务，不能将其当成通话控制前置。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.MANAGE_SKILL",
+      "domain": "app-runtime",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.kernel.AS_LDK_DRIVER",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.PRINTER_DRIVER",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.kernel.SUPPORT_LOCAL_PLUGIN",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.ALLOW_USE_BM",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.CAPTURE_PLAYBACK_DOWNLINK",
+      "domain": "notifications-calls",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.MANAGE_SANDBOX_BUNDLE",
+      "domain": "app-runtime",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.DETECT_DEVICE",
+      "domain": "development",
+      "disposition": "api-dependent",
+      "note": "二手设备回收资质及DSA前置，不推定需要ACCESS_BOARD_INFO。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.LOCAL_DEBUG_OTHER_APPS",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.DEFAULT_WEB_BROWSER",
+      "domain": "app-runtime",
+      "disposition": "api-dependent",
+      "note": "需浏览器品类及三项审核，默认浏览器身份不自动附赠其他浏览器专用权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.kernel.LOAD_CERTSIGN_LIBRARY",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.kernel.ALLOW_PTRACE_READ",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.GET_ALL_BUNDLE_INFO",
+      "domain": "app-runtime",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.DIRECT_CALL",
+      "domain": "notifications-calls",
+      "disposition": "relation",
+      "note": "直接拨号还受默认SIM卡条件限制；不因此自动添加读取联系人权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.ACCESS_BOARD_INFO",
+      "domain": "development",
+      "disposition": "api-dependent",
+      "note": "MDM政企合规审计资格独立，不因硬件检测场景就能申请。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.GET_RUNNING_INFO",
+      "domain": "app-runtime",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.RUNNING_STATE_OBSERVER",
+      "domain": "app-runtime",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
+      "domain": "app-runtime",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.KILL_APP_PROCESSES",
+      "domain": "app-runtime",
+      "disposition": "api-dependent",
+      "note": "企业场景结束其他应用进程与CLEAN_BACKGROUND_PROCESSES的关联后台任务不同。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.VISIBLE_WINDOW_INFO",
+      "domain": "windows-input",
+      "disposition": "standalone",
+      "note": "已核对列表用途与限制，未发现明确的其他权限必选前置；不表示所有API无附加条件。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.SUPPORT_APP_SERVICE_EXTENSION",
+      "domain": "app-runtime",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.SUPPORT_INSTALL_ON_U1",
+      "domain": "app-runtime",
+      "disposition": "api-dependent",
+      "note": "权限条目未指定共同申请关系；具体接口、组件配置及设备支持另行核对。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.QUERY_LOCAL_WORKSPACES",
+      "domain": "app-runtime",
+      "disposition": "api-dependent",
+      "note": "权限条目未指定共同申请关系；具体接口、组件配置及设备支持另行核对。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_WORKSPACES_EVENT_SUBSCRIBE",
+      "domain": "app-runtime",
+      "disposition": "api-dependent",
+      "note": "权限条目未指定共同申请关系；具体接口、组件配置及设备支持另行核对。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.SUPPORT_CROSS_APP_EMBED_FOR_OA",
+      "domain": "windows-input",
+      "disposition": "standalone",
+      "note": "跨应用嵌入办公内容有浏览器NPAPI或流版签应用限定，不等于任意组件拉起。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.SUPPORT_NP_PLUGIN_FOR_WEB",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.kernel.LOAD_CERTSIGN_LIBRARY_FOR_WEB",
+      "domain": "development",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_GET_INSTALLED_BUNDLE_LIST",
+      "domain": "app-runtime",
+      "disposition": "relation",
+      "note": "已核对独立能力边界或条件性组合，见关系条目；不按名称相近自动增加权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    }
+  ],
+  "relations": [
+    {
+      "id": "float-ball-restore-requires-ball",
+      "type": "requires",
+      "permissions": [
+        "ohos.permission.AUTO_RESTORE_MAIN_WINDOW",
+        "ohos.permission.USE_FLOAT_BALL"
+      ],
+      "title": "自动恢复主窗口须共同申请闪控球",
+      "description": "AUTO_RESTORE_MAIN_WINDOW 的申请条件明确要求同时申请 USE_FLOAT_BALL；两项仍各自受设备、版本及职业抢单场景限制。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions#ohospermissionauto_restore_main_window",
+      "confidence": "documented"
+    },
+    {
+      "id": "float-ball-user-switch",
+      "type": "authorization",
+      "permissions": [
+        "ohos.permission.USE_FLOAT_BALL",
+        "ohos.permission.AUTO_RESTORE_MAIN_WINDOW"
+      ],
+      "title": "系统授权不代表可以自行开启闪控球",
+      "description": "USE_FLOAT_BALL 要求应用提供默认关闭的独立开关，由用户主动开启；自动恢复主窗口不能免除这一接入要求。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions#ohospermissionuse_float_ball",
+      "confidence": "documented"
+    },
+    {
+      "id": "floating-window-pip-alternative",
+      "type": "alternative",
+      "permissions": [
+        "ohos.permission.SYSTEM_FLOAT_WINDOW"
+      ],
+      "title": "悬浮窗范围外可改用画中画",
+      "description": "SYSTEM_FLOAT_WINDOW 当前限PC/2in1的允许场景；其他设备或场景应评估画中画，不为画中画自动追加该权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions#ohospermissionsystem_float_window",
+      "confidence": "documented"
+    },
+    {
+      "id": "privacy-window-capture-boundary",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.PRIVACY_WINDOW",
+        "ohos.permission.CUSTOM_SCREEN_CAPTURE",
+        "ohos.permission.CUSTOM_SCREEN_RECORDING"
+      ],
+      "title": "截图或录屏权限不覆盖隐私窗口保护",
+      "description": "对同一个窗口启用隐私模式后，截图、录屏和投屏无法获得其正常画面。两类功能可用于不同窗口，不能把权限同时声明当作绕过隐私保护。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/HarmonyOS-Guides/screenshot-and-privacy-mode/",
+      "confidence": "documented"
+    },
+    {
+      "id": "screen-input-separate-capabilities",
+      "type": "conditional",
+      "permissions": [
+        "ohos.permission.INPUT_MONITORING",
+        "ohos.permission.INTERCEPT_INPUT_EVENT",
+        "ohos.permission.HOOK_KEY_EVENT",
+        "ohos.permission.CONTROL_DEVICE",
+        "ohos.permission.CUSTOM_SCREEN_RECORDING"
+      ],
+      "title": "录屏、监听、拦截和注入分别判断",
+      "description": "录屏中展示按键、指针或触摸效果时才评估输入监听；远程客户端拦截、金融键盘钩子、远端被控端或智能体注入分别受各自场景限制。不是录屏的通用必选组合。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions",
+      "confidence": "documented"
+    },
+    {
+      "id": "manual-settings-not-system-grant",
+      "type": "authorization",
+      "permissions": [
+        "ohos.permission.HOOK_KEY_EVENT",
+        "ohos.permission.CONTROL_DEVICE",
+        "ohos.permission.CUSTOM_SCREEN_RECORDING"
+      ],
+      "title": "设置授权不能被普通授权弹窗替代",
+      "description": "这些权限属于 manual_settings，先满足受限申请条件，再由用户到系统设置授予；仅声明权限、ACL审批或调用普通user_grant弹窗不能替代设置授权。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-permission-mgmt-overview/",
+      "confidence": "documented"
+    },
+    {
+      "id": "window-transparency-api-scope",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.SET_WINDOW_TRANSPARENT",
+        "ohos.permission.SET_WINDOW_ALPHA",
+        "ohos.permission.SET_WINDOW_TOUCH_AREAS"
+      ],
+      "title": "窗口样式相似不等于同一授权",
+      "description": "普通窗口透明、虚拟机场景容器透明、事件热区透传是不同能力。按所用窗口接口选择，不因为窗口透明就自动索取虚拟机专用权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions",
+      "confidence": "documented"
+    },
+    {
+      "id": "object-editor-client-provider",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.CONNECT_OBJECTEDITOR_EXTENSION",
+        "ohos.permission.REGISTER_OBJECTEDITOR_EXTENSION"
+      ],
+      "title": "内容编辑调用端和提供端分开",
+      "description": "CONNECT用于查询和拉起内容编辑组件；REGISTER用于注册并向其他应用提供内容编辑服务。是否需要两项取决于应用是否同时承担两端角色。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions",
+      "confidence": "documented"
+    },
+    {
+      "id": "lockscreen-capabilities-separate",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.START_WINDOW_BELOW_LOCK_SCREEN",
+        "ohos.permission.TIMEOUT_SCREENOFF_DISABLE_LOCK"
+      ],
+      "title": "锁屏启动与超时不锁屏不是相互替代",
+      "description": "锁屏状态下被启动、超时息屏后不进入锁屏界面分别是独立能力；不自动互相追加，也不据此推断可解锁设备或跳过身份认证。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all",
+      "confidence": "documented"
+    },
+    {
+      "id": "background-task-permission-by-mode",
+      "type": "conditional",
+      "permissions": [
+        "ohos.permission.KEEP_BACKGROUND_RUNNING",
+        "ohos.permission.KEEP_BACKGROUND_RUNNING_SYSTEM",
+        "ohos.permission.KEEP_BACKGROUND_RUNNING_SPECIAL_SCENARIO"
+      ],
+      "title": "按后台任务类型申请基础和附加权限",
+      "description": "长时任务接口要求 KEEP_BACKGROUND_RUNNING；计算任务和特殊场景按具体模式、设备、API版本补充各自受限权限。普通媒体、定位等长时任务不应统一追加全部受限后台权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-resourceschedule-backgroundtaskmanager/",
+      "confidence": "api-specific"
+    },
+    {
+      "id": "special-background-user-authorization",
+      "type": "authorization",
+      "permissions": [
+        "ohos.permission.KEEP_BACKGROUND_RUNNING_SPECIAL_SCENARIO",
+        "ohos.permission.KEEP_BACKGROUND_RUNNING_SYSTEM"
+      ],
+      "title": "特殊后台场景仍有接入和用户开关要求",
+      "description": "计算任务、特殊场景任务分别按官方任务类型办理；特殊场景后台运行开关需用户授权，相关任务需按业务主动申请并在结束后取消。受限权限获批不是任意持续保活许可。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/bgtask-design-formula/",
+      "confidence": "documented"
+    },
+    {
+      "id": "running-lock-not-background-task",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.RUNNING_LOCK",
+        "ohos.permission.KEEP_BACKGROUND_RUNNING",
+        "ohos.permission.BACKGROUND_MANAGER_POWER_SAVE_MODE"
+      ],
+      "title": "运行锁、省电模式与长时任务职责不同",
+      "description": "运行锁控制系统休眠，长时任务控制规范内后台执行，省电模式权限用于特定PC计算场景。不要因选后台运行而一并申请这三项；具体锁类型另有设备和系统应用限制。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-runninglock/",
+      "confidence": "api-specific"
+    },
+    {
+      "id": "app-query-scope-and-qualification",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.GET_BUNDLE_INFO",
+        "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
+        "ohos.permission.GET_ALL_BUNDLE_INFO",
+        "ohos.permission.ENTERPRISE_GET_INSTALLED_BUNDLE_LIST",
+        "ohos.permission.GET_RUNNING_INFO",
+        "ohos.permission.RUNNING_STATE_OBSERVER"
+      ],
+      "title": "应用基本信息、全量列表和运行态分开",
+      "description": "查询指定应用基本信息、查询敏感信息、AI智能体获取应用列表、企业全量列表、运行态查询和状态监听有不同开放范围；不能自动把高权限查询作为普通查询前置。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps",
+      "confidence": "documented"
+    },
+    {
+      "id": "app-service-allowlist",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.SUPPORT_APP_SERVICE_EXTENSION"
+      ],
+      "title": "后台服务仍需组件和调用方名单配置",
+      "description": "该权限不替代AppServiceExtension组件及appidentifierAllowList配置；应用作为服务提供方被同应用或名单内应用拉起，与任意后台常驻或跨应用调用授权不同。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps#ohospermissionsupport_app_service_extension",
+      "confidence": "documented"
+    },
+    {
+      "id": "agent-capabilities-separate",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.MANAGE_SKILL",
+        "ohos.permission.MANAGE_SANDBOX_BUNDLE",
+        "ohos.permission.GET_ALL_BUNDLE_INFO",
+        "ohos.permission.QUERY_PUBLIC_CLI_TOOL",
+        "ohos.permission.EXEC_PUBLIC_CLI_TOOL"
+      ],
+      "title": "智能体各项能力按操作选择",
+      "description": "Skill访问、沙箱应用管理、应用列表、CLI查询和CLI执行分别对应不同操作；智能体身份本身不会自动授予这些能力，且不能把所有智能体权限设为固定组合。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions",
+      "confidence": "documented"
+    },
+    {
+      "id": "native-binary-permissions-not-hap",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.kernel.IGNORE_LIBRARY_VALIDATION",
+        "ohos.permission.kernel.EXEMPT_ANONYMOUS_EXECUTABLE_MEMORY",
+        "ohos.permission.INHERIT_PARENT_PERMISSION"
+      ],
+      "title": "独立二进制权限不写入通用HAP配置",
+      "description": "这些条目针对独立二进制程序，分别影响库owner校验、可执行内存或子进程继承；INHERIT_PARENT_PERMISSION不表示可获得父进程原本没有的权限，也不等于MDM用户权限管理。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all",
+      "confidence": "documented"
+    },
+    {
+      "id": "dynamic-code-system-only",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.RUN_DYN_CODE",
+        "ohos.permission.kernel.SUPPORT_LOCAL_PLUGIN"
+      ],
+      "title": "动态下发系统字节码与自分发插件不同",
+      "description": "RUN_DYN_CODE仍限特定系统应用；普通应用有ArkTS扩展插件需求时应核对自分发插件接口和申请条件，不能用插件权限推断可调用系统动态字节码接口。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions",
+      "confidence": "documented"
+    },
+    {
+      "id": "jit-permission-by-engine",
+      "type": "conditional",
+      "permissions": [
+        "ohos.permission.kernel.ALLOW_WRITABLE_CODE_MEMORY",
+        "ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY",
+        "ohos.permission.kernel.ALLOW_USE_JITFORT_INTERFACE",
+        "ohos.permission.kernel.DISABLE_CODE_MEMORY_PROTECTION",
+        "ohos.permission.kernel.DISABLE_GOTPLT_RO_PROTECTION"
+      ],
+      "title": "JIT和代码保护权限按引擎及操作核对",
+      "description": "自带引擎可写可执行内存、系统JS引擎MAP_FORT、JITFort更新、代码完整性和GOT/PLT保护涉及不同操作。列表未规定统一捆绑；需按引擎、二进制进程和目标接口确认，坚盾模式也可能禁止相关能力。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions",
+      "confidence": "api-specific"
+    },
+    {
+      "id": "native-library-signing-scope",
+      "type": "conditional",
+      "permissions": [
+        "ohos.permission.ALLOW_EXTERNAL_NATIVE_CODE",
+        "ohos.permission.kernel.LOAD_INDEPENDENT_LIBRARY",
+        "ohos.permission.kernel.LOAD_CERTSIGN_LIBRARY",
+        "ohos.permission.kernel.LOAD_CERTSIGN_LIBRARY_FOR_WEB",
+        "ohos.permission.SUPPORT_NP_PLUGIN_FOR_WEB"
+      ],
+      "title": "外部native和共享库按代码来源与签名处理",
+      "description": "外部native调用、独立库加载、证书签名库和浏览器插件库的应用资格、签名与接口不同；只在实际加载链路要求时组合，不自动向所有含native代码应用添加全部权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions",
+      "confidence": "api-specific"
+    },
+    {
+      "id": "debugger-subject-target-capability",
+      "type": "conditional",
+      "permissions": [
+        "ohos.permission.kernel.DEBUGGER",
+        "ohos.permission.kernel.ALLOW_DEBUG",
+        "ohos.permission.kernel.ALLOW_PTRACE_READ",
+        "ohos.permission.ALLOW_COREDUMP",
+        "ohos.permission.LOCAL_DEBUG_OTHER_APPS",
+        "ohos.permission.ALLOW_USE_BM"
+      ],
+      "title": "调试主体、被调试程序与崩溃采集分开",
+      "description": "PTRACE调试、允许C/C++被调试、读取应用内进程崩溃信息、沙箱内存转储、aa和bm调测属于不同链路；应核对目标程序、开发者模式和具体接口，不能把这些权限一并作为调试通用前置。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions",
+      "confidence": "api-specific"
+    },
+    {
+      "id": "crash-events-ptrace-alternative",
+      "type": "alternative",
+      "permissions": [
+        "ohos.permission.kernel.ALLOW_PTRACE_READ"
+      ],
+      "title": "崩溃事件订阅优先于直接ptrace读取",
+      "description": "仅当无法适配系统崩溃事件且强依赖crashpad等直接ptrace机制时考虑此受限权限；其他场景使用HiAppEvent订阅崩溃事件。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions#ohospermissionkernelallow_ptrace_read",
+      "confidence": "documented"
+    },
+    {
+      "id": "ddk-client-and-driver-roles",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER",
+        "ohos.permission.ACCESS_DDK_DRIVERS",
+        "ohos.permission.ACCESS_DDK_USB",
+        "ohos.permission.ACCESS_DDK_HID",
+        "ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL",
+        "ohos.permission.ACCESS_DDK_USB_SERIAL",
+        "ohos.permission.kernel.AS_LDK_DRIVER",
+        "ohos.permission.PRINTER_DRIVER"
+      ],
+      "title": "外设客户端与总线驱动权限分别申请",
+      "description": "客户端绑定驱动需目标服务端和value数据；USB、HID、SCSI、串口、PCIe与打印驱动按硬件类型和提供方角色选择，不能自动给每个外设客户端追加全套驱动开发权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions",
+      "confidence": "documented"
+    },
+    {
+      "id": "notification-sending-vs-reading",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.ACCESS_NOTIFICATION_POLICY",
+        "ohos.permission.SUBSCRIBE_NOTIFICATION",
+        "ohos.permission.GET_DONOTDISTURB_STATE",
+        "ohos.permission.PUBLISH_AGENT_REMINDER"
+      ],
+      "title": "发送通知、订阅他人通知与通知策略分开",
+      "description": "自身通知通过通知使能流程；SUBSCRIBE_NOTIFICATION是符合资格的手表官方管理App读取通知，ACCESS_NOTIFICATION_POLICY仅静音转非静音，免打扰状态查询和代理提醒也是独立能力。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-notificationmanager/",
+      "confidence": "documented"
+    },
+    {
+      "id": "agent-reminder-notification-enable",
+      "type": "authorization",
+      "permissions": [
+        "ohos.permission.PUBLISH_AGENT_REMINDER"
+      ],
+      "title": "代理提醒仍需通知使能",
+      "description": "publishReminder在声明PUBLISH_AGENT_REMINDER之外，还要求调用通知授权流程；system_grant只描述该权限自身的授予方式，不代表整个提醒业务无需用户交互。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-references/api/js-apis-reminderagentmanager/",
+      "confidence": "api-specific"
+    },
+    {
+      "id": "watch-notification-transport",
+      "type": "conditional",
+      "permissions": [
+        "ohos.permission.SUBSCRIBE_NOTIFICATION",
+        "ohos.permission.ACCESS_BLUETOOTH"
+      ],
+      "title": "转发手表通知按实际传输方式补能力",
+      "description": "订阅权限只保护读取通知；如果应用直接使用蓝牙扫描、连接或传输接口，还要核对其蓝牙权限。短距离传输不固定只有蓝牙，不能把二者设为无条件必选。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions#ohospermissionsubscribe_notification",
+      "confidence": "documented"
+    },
+    {
+      "id": "call-capabilities-scope",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.MANAGE_CALL_FOR_DEVICES",
+        "ohos.permission.CHECK_CALL_LOG",
+        "ohos.permission.GET_CALL_TRANSFER_INFO",
+        "ohos.permission.DIRECT_CALL"
+      ],
+      "title": "通话控制、记录匹配、转移状态与拨号不同",
+      "description": "穿戴配套通话控制、职业应用通话匹配、银行转账风险评估和职业场景一键拨号有不同用途及资格；选其中一项不代表自动获得或需要其余通话权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions",
+      "confidence": "documented"
+    },
+    {
+      "id": "call-downlink-not-microphone",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.CAPTURE_PLAYBACK_DOWNLINK",
+        "ohos.permission.MICROPHONE"
+      ],
+      "title": "蜂窝下行录音不等于麦克风采集",
+      "description": "CAPTURE_PLAYBACK_DOWNLINK仅描述蜂窝通话下行数据，MICROPHONE保护本地麦克风采集；二者不互相替代，是否组合取决于具体录音接口和合规业务需求。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions#ohospermissioncapture_playback_downlink",
+      "confidence": "documented"
+    },
+    {
+      "id": "fraud-pickers-scoped",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.USE_FRAUD_CALL_LOG_PICKER",
+        "ohos.permission.USE_FRAUD_MESSAGES_PICKER",
+        "ohos.permission.USE_FRAUD_APP_PICKER"
+      ],
+      "title": "反诈选择器不是全量数据读取许可",
+      "description": "三个权限分别面向反诈通话记录、短信和应用选择器，只在对应反诈功能中选择；不因存在通话或短信业务就自动添加，也不能解释为任意后台批量读取。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions",
+      "confidence": "documented"
+    }
+  ]
+}

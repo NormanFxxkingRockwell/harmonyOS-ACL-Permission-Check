@@ -1,3 +1,4 @@
+import { expandRequirements, applyRelationships, requirementEdges } from './relations.js';
 import { extraConstraints } from './constraints.js';
 const s = (id, step, title, description, permissions, extra = {}) => ({ id, step, title, description, permissions, ...extra });
 export const steps = [
@@ -51,7 +52,7 @@ export const scenes = [
   s('mdm-apps',4,'管理设备上的应用','设备管理应用安装、卸载应用包。',['ENTERPRISE_INSTALL_BUNDLE'],{icon:'▦',tag:'MDM'}),
   s('mdm-usb',4,'管理设备 USB','通过设备管理能力配置 USB 管控策略。',['ENTERPRISE_MANAGE_USB'],{icon:'⇄',tag:'MDM'})
 ];
-export const initialState = () => ({ step:0, type:'normal', developerType:'unknown', form:'app', device:'Phone', api:'26.0.0', selected:[], extraPermissions:[], confirmedQualifications:[], videoAudio:false, accuracy:'approximate', background:'none', contactsWrite:false });
+export const initialState = () => ({ step:0, type:'normal', developerType:'unknown', form:'app', device:'Phone', api:'26.0.0', selected:[], extraPermissions:[], confirmedQualifications:[], managedByMdm:false, mdmGroupPolicies:{}, videoAudio:false, accuracy:'approximate', background:'none', contactsWrite:false });
 export function compareVersions(a,b) { const x=String(a).split('.').map(Number),y=String(b).split('.').map(Number); for(let i=0;i<Math.max(x.length,y.length);i++){const d=(x[i]||0)-(y[i]||0);if(d)return Math.sign(d);}return 0; }
 export function routeFor(p) {
   if(p.category==='仅MDM应用可用权限')return 'mdm';
@@ -75,10 +76,7 @@ export function evaluate(state, catalog) {
       if(state.background==='task'){add('KEEP_BACKGROUND_RUNNING',scene);alternatives.push({id:'location-task',title:'后台定位：长时任务路径',note:'前台位置权限 + LOCATION 类型长时任务。还需配置后台模式并符合长时任务场景；不自动添加后台位置权限。'});}
     }
   }
-  if(wanted.has('ohos.permission.LOCATION')||wanted.has('ohos.permission.LOCATION_IN_BACKGROUND')) {
-    const locationScene=activeScenes.find(s=>s.permissions.includes('LOCATION')||s.permissions.includes('LOCATION_IN_BACKGROUND'));
-    if(locationScene)add('APPROXIMATELY_LOCATION',locationScene);
-  }
+  expandRequirements(wanted);
   const permissions=[...wanted].map(([name,why])=>{
     const p=catalog.find(p=>p.name===name);if(!p)throw new Error('Missing permission: '+name);
     const route=routeFor(p),blocks=[],warnings=[];
@@ -100,13 +98,29 @@ export function evaluate(state, catalog) {
     const sceneNotes=[...new Set(why.sceneIds.map(id=>scenes.find(s=>s.id===id)?.note).filter(Boolean))];
     return {...p,...why,route,blocks:[...new Set(blocks)],warnings,sceneNotes,eligible:blocks.length===0};
   });
-  return {permissions,alternatives};
+  // A derived prerequisite should not leak into configuration when every
+  // requesting capability is currently blocked. Explicit selections remain.
+  for (let pass=0; pass<permissions.length; pass++) {
+    let changed=false;
+    for(const edge of requirementEdges){
+      const parent=permissions.find(p=>p.name===edge.from),child=permissions.find(p=>p.name===edge.to);
+      if(parent?.eligible&&child&&!child.eligible){parent.blocks.push(`必须配套的${edge.to.replace('ohos.permission.','')}尚未满足声明条件。`);parent.eligible=false;changed=true;}
+    }
+    for (const permission of permissions) {
+      if (permission.autoAdded&&permission.eligible&&(permission.requiredBy||[]).every(name=>!permissions.find(p=>p.name===name)?.eligible)) {
+        permission.blocks.push('关联来源权限尚未满足条件，本项暂不生成配置。');permission.eligible=false;changed=true;
+      }
+    }
+    if(!changed)break;
+  }
+  const relationshipResult=applyRelationships(state,permissions,compareVersions);
+  return {permissions,alternatives,...relationshipResult};
 }
 export function makeConfig(result) {
   const strings=[];
   const requestPermissions=result.permissions.filter(p=>p.eligible).map((p,i)=>{
     const item={name:p.name};
-    if(p.grant.includes('user_grant')){const key=`permission_reason_${i+1}`;item.reason=`$string:${key}`;item.usedScene={abilities:['EntryAbility'],when:p.name.endsWith('.LOCATION_IN_BACKGROUND')?'always':'inuse'};strings.push({name:key,value:`用于${p.reasons.join('、')}`});}
+    if(p.grant.includes('user_grant')){const key=`permission_reason_${i+1}`;item.reason=`$string:${key}`;item.usedScene={abilities:['EntryAbility'],when:p.name.endsWith('.LOCATION_IN_BACKGROUND')?'always':'inuse'};const mediaLocation=result.permissions.some(item=>item.eligible&&item.name==='ohos.permission.MEDIA_LOCATION');const reason=`用于${p.reasons.join('、')}`+(p.name==='ohos.permission.READ_IMAGEVIDEO'&&mediaLocation?'，并访问所选媒体中的地理位置信息':'');strings.push({name:key,value:reason});}
     return item;
   });
   return { moduleFragment:{module:{requestPermissions}}, stringFragment:{string:strings} };

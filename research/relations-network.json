@@ -1,0 +1,499 @@
+{
+  "checkedOn": "2026-11-14",
+  "scope": "逐项复核网络及互联41项，关键AND/OR和授权行为追加核对当前官方API；不声称穷尽所有接口组合。",
+  "reviewed": [
+    {
+      "name": "ohos.permission.USE_BLUETOOTH",
+      "domain": "connectivity",
+      "disposition": "relation",
+      "note": "当前扫描、连接和开关等接口按ACCESS_BLUETOOTH要求处理；getState从API13起不再要求此前权限，stateChange从API18起不再校验。不能把旧条目名称一并当新接口前置。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.DISCOVER_BLUETOOTH",
+      "domain": "connectivity",
+      "disposition": "relation",
+      "note": "当前扫描、连接和开关等接口按ACCESS_BLUETOOTH要求处理；getState从API13起不再要求此前权限，stateChange从API18起不再校验。不能把旧条目名称一并当新接口前置。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.GET_NETWORK_INFO",
+      "domain": "network",
+      "disposition": "relation",
+      "note": "普通业务联网不自动要求Wi-Fi控制或定位权限；网络状态、Wi-Fi信息和配置能力依各自接口申请，不因名称相近全部联选。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.SET_NETWORK_INFO",
+      "domain": "network",
+      "disposition": "relation",
+      "note": "普通业务联网不自动要求Wi-Fi控制或定位权限；网络状态、Wi-Fi信息和配置能力依各自接口申请，不因名称相近全部联选。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.GET_WIFI_INFO",
+      "domain": "network",
+      "disposition": "relation",
+      "note": "普通连接信息、包含PSK等敏感配置、企业连接管控是不同开放能力；GET_WIFI_INFO并不授予读取密码或企业Wi-Fi管理资格。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.INTERNET",
+      "domain": "network",
+      "disposition": "relation",
+      "note": "普通业务联网不自动要求Wi-Fi控制或定位权限；网络状态、Wi-Fi信息和配置能力依各自接口申请，不因名称相近全部联选。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.NFC_CARD_EMULATION",
+      "domain": "connectivity",
+      "disposition": "relation",
+      "note": "标签读写和卡模拟服务是两种能力；选择一种不意味着必须申请另一种。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.NFC_TAG",
+      "domain": "connectivity",
+      "disposition": "relation",
+      "note": "标签读写和卡模拟服务是两种能力；选择一种不意味着必须申请另一种。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.SET_WIFI_INFO",
+      "domain": "network",
+      "disposition": "relation",
+      "note": "普通连接信息、包含PSK等敏感配置、企业连接管控是不同开放能力；GET_WIFI_INFO并不授予读取密码或企业Wi-Fi管理资格。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.ACCESS_CAR_DISTRIBUTED_ENGINE",
+      "domain": "connectivity",
+      "disposition": "relation",
+      "note": "跨设备数据交换、蓝牙/星闪、配件授信、车联和碰一碰分别保护各自服务。业务实际调用多个服务时分别核对接口，不把所有传输权限设为固定组合。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.MANAGE_INPUT_INFRARED_EMITTER",
+      "domain": "connectivity",
+      "disposition": "standalone",
+      "note": "逐项核对条目，未见通用的其他权限共同声明要求；具体接口及场景仍需单独判断。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.kernel.NET_RAW",
+      "domain": "network",
+      "disposition": "relation",
+      "note": "NET_RAW属于系统授权，但实际网络抓包仍需用户认证。是否联用本地账号授权接口取决于实际API，不自动把账号授权入口当所有网络能力前置。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.ACCESS_CAR_AUDIO",
+      "domain": "connectivity",
+      "disposition": "relation",
+      "note": "HIMA云读取与写入、车载音频、车载隐私服务分别对应不同操作，不把读权限当作写权限，也不由云数据名称自动推导整个网络或账号权限组合。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.vehicle.ACCESS_CAR_SECURITY_PRIVACY",
+      "domain": "connectivity",
+      "disposition": "relation",
+      "note": "HIMA云读取与写入、车载音频、车载隐私服务分别对应不同操作，不把读权限当作写权限，也不由云数据名称自动推导整个网络或账号权限组合。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.vehicle.HIMA_DATA_READ",
+      "domain": "connectivity",
+      "disposition": "relation",
+      "note": "HIMA云读取与写入、车载音频、车载隐私服务分别对应不同操作，不把读权限当作写权限，也不由云数据名称自动推导整个网络或账号权限组合。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.vehicle.HIMA_DATA_WRITE",
+      "domain": "connectivity",
+      "disposition": "relation",
+      "note": "HIMA云读取与写入、车载音频、车载隐私服务分别对应不同操作，不把读权限当作写权限，也不由云数据名称自动推导整个网络或账号权限组合。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.ACCESS_BLUETOOTH",
+      "domain": "connectivity",
+      "disposition": "relation",
+      "note": "跨设备数据交换、蓝牙/星闪、配件授信、车联和碰一碰分别保护各自服务。业务实际调用多个服务时分别核对接口，不把所有传输权限设为固定组合。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all-user"
+    },
+    {
+      "name": "ohos.permission.DISTRIBUTED_DATASYNC",
+      "domain": "connectivity",
+      "disposition": "relation",
+      "note": "跨设备数据交换、蓝牙/星闪、配件授信、车联和碰一碰分别保护各自服务。业务实际调用多个服务时分别核对接口，不把所有传输权限设为固定组合。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all-user"
+    },
+    {
+      "name": "ohos.permission.ACCESS_NEARLINK",
+      "domain": "connectivity",
+      "disposition": "relation",
+      "note": "跨设备数据交换、蓝牙/星闪、配件授信、车联和碰一碰分别保护各自服务。业务实际调用多个服务时分别核对接口，不把所有传输权限设为固定组合。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all-user"
+    },
+    {
+      "name": "ohos.permission.GET_WIFI_PEERS_MAC",
+      "domain": "network",
+      "disposition": "relation",
+      "note": "本机Wi-Fi、以太网、对端设备和网络IP/MAC权限不互相替代。两种本机MAC权限的TV场景与变更段存在差异，需按目标设备向官方确认。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.SET_PAC_URL",
+      "domain": "network",
+      "disposition": "relation",
+      "note": "代理设置、APN办公专网、网络加速、链路诊断和其他应用流量统计不是普通联网的通用前置；GET_NETWORK_STATS还受MDM场景限制。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.PERSISTENT_BLUETOOTH_PEERS_MAC",
+      "domain": "connectivity",
+      "disposition": "relation",
+      "note": "addPersistentDeviceId、deletePersistentDeviceId、getPersistentDeviceIds均同时要求ACCESS_BLUETOOTH和PERSISTENT_BLUETOOTH_PEERS_MAC；固化本身不是已连接或已配对。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.MANAGE_APN_SETTING",
+      "domain": "network",
+      "disposition": "relation",
+      "note": "代理设置、APN办公专网、网络加速、链路诊断和其他应用流量统计不是普通联网的通用前置；GET_NETWORK_STATS还受MDM场景限制。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.GET_WIFI_LOCAL_MAC",
+      "domain": "network",
+      "disposition": "relation",
+      "note": "本机Wi-Fi、以太网、对端设备和网络IP/MAC权限不互相替代。两种本机MAC权限的TV场景与变更段存在差异，需按目标设备向官方确认。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.GET_ETHERNET_LOCAL_MAC",
+      "domain": "network",
+      "disposition": "relation",
+      "note": "本机Wi-Fi、以太网、对端设备和网络IP/MAC权限不互相替代。两种本机MAC权限的TV场景与变更段存在差异，需按目标设备向官方确认。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.READ_LOCAL_DEVICE_NAME",
+      "domain": "connectivity",
+      "disposition": "standalone",
+      "note": "逐项核对条目，未见通用的其他权限共同声明要求；具体接口及场景仍需单独判断。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.LINKTURBO",
+      "domain": "network",
+      "disposition": "relation",
+      "note": "代理设置、APN办公专网、网络加速、链路诊断和其他应用流量统计不是普通联网的通用前置；GET_NETWORK_STATS还受MDM场景限制。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.ACCESS_NET_TRACE_INFO",
+      "domain": "network",
+      "disposition": "relation",
+      "note": "代理设置、APN办公专网、网络加速、链路诊断和其他应用流量统计不是普通联网的通用前置；GET_NETWORK_STATS还受MDM场景限制。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.GET_IP_MAC_INFO",
+      "domain": "network",
+      "disposition": "relation",
+      "note": "代理设置、APN办公专网、网络加速、链路诊断和其他应用流量统计不是普通联网的通用前置；GET_NETWORK_STATS还受MDM场景限制。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.MANAGE_BLUETOOTH_ADVERTISER_NAME",
+      "domain": "connectivity",
+      "disposition": "relation",
+      "note": "蓝牙接入与自定义BLE广播名称是不同能力。只有发送自定义广播名称的业务才考虑名称管理权限，不为所有蓝牙连接自动追加。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.ALLOW_ACCESSORY_ACCESS",
+      "domain": "connectivity",
+      "disposition": "relation",
+      "note": "跨设备数据交换、蓝牙/星闪、配件授信、车联和碰一碰分别保护各自服务。业务实际调用多个服务时分别核对接口，不把所有传输权限设为固定组合。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.GET_NETWORK_STATS",
+      "domain": "network",
+      "disposition": "relation",
+      "note": "代理设置、APN办公专网、网络加速、链路诊断和其他应用流量统计不是普通联网的通用前置；GET_NETWORK_STATS还受MDM场景限制。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.KNOCK_COLLABORATION",
+      "domain": "connectivity",
+      "disposition": "relation",
+      "note": "跨设备数据交换、蓝牙/星闪、配件授信、车联和碰一碰分别保护各自服务。业务实际调用多个服务时分别核对接口，不把所有传输权限设为固定组合。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.GET_WIFI_CONFIG",
+      "domain": "network",
+      "disposition": "relation",
+      "note": "普通连接信息、包含PSK等敏感配置、企业连接管控是不同开放能力；GET_WIFI_INFO并不授予读取密码或企业Wi-Fi管理资格。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.SET_WIFI_CONFIG",
+      "domain": "network",
+      "disposition": "relation",
+      "note": "普通连接信息、包含PSK等敏感配置、企业连接管控是不同开放能力；GET_WIFI_INFO并不授予读取密码或企业Wi-Fi管理资格。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION",
+      "domain": "network",
+      "disposition": "relation",
+      "note": "普通连接信息、包含PSK等敏感配置、企业连接管控是不同开放能力；GET_WIFI_INFO并不授予读取密码或企业Wi-Fi管理资格。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.MANAGE_NET_FIREWALL",
+      "domain": "network",
+      "disposition": "relation",
+      "note": "防火墙配置、查询、流量路径处理、内外网属性和EAP私有信息分别按具体操作和接口选择，不能按企业网络功能将全部权限联选。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.GET_NET_FIREWALL",
+      "domain": "network",
+      "disposition": "relation",
+      "note": "防火墙配置、查询、流量路径处理、内外网属性和EAP私有信息分别按具体操作和接口选择，不能按企业网络功能将全部权限联选。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_MANAGE_EAP",
+      "domain": "network",
+      "disposition": "relation",
+      "note": "防火墙配置、查询、流量路径处理、内外网属性和EAP私有信息分别按具体操作和接口选择，不能按企业网络功能将全部权限联选。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.SET_NET_EXT_ATTRIBUTE",
+      "domain": "network",
+      "disposition": "relation",
+      "note": "防火墙配置、查询、流量路径处理、内外网属性和EAP私有信息分别按具体操作和接口选择，不能按企业网络功能将全部权限联选。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.kernel.TRAFFIC_FILTER",
+      "domain": "network",
+      "disposition": "relation",
+      "note": "防火墙配置、查询、流量路径处理、内外网属性和EAP私有信息分别按具体操作和接口选择，不能按企业网络功能将全部权限联选。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    }
+  ],
+  "relations": [
+    {
+      "id": "network-capabilities-independent",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.INTERNET",
+        "ohos.permission.GET_NETWORK_INFO",
+        "ohos.permission.SET_NETWORK_INFO",
+        "ohos.permission.GET_WIFI_INFO",
+        "ohos.permission.SET_WIFI_INFO"
+      ],
+      "title": "联网、网络状态与Wi-Fi配置分别判断",
+      "description": "普通业务联网不自动要求Wi-Fi控制或定位权限；网络状态、Wi-Fi信息和配置能力依各自接口申请，不因名称相近全部联选。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all",
+      "confidence": "documented"
+    },
+    {
+      "id": "wifi-current-scan-no-location",
+      "type": "conditional",
+      "permissions": [
+        "ohos.permission.GET_WIFI_INFO",
+        "ohos.permission.GET_WIFI_PEERS_MAC",
+        "ohos.permission.GET_WIFI_LOCAL_MAC",
+        "ohos.permission.LOCATION",
+        "ohos.permission.APPROXIMATELY_LOCATION"
+      ],
+      "title": "扫描结果、真实地址与旧接口权限不同",
+      "description": "getScanInfoList只要求GET_WIFI_INFO；需要真实BSSID再评估GET_WIFI_PEERS_MAC，读取本机真实MAC另看GET_WIFI_LOCAL_MAC。旧getScanResults的AND/OR组合不能套用到所有新Wi-Fi接口。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-wifimanager/",
+      "confidence": "api-specific"
+    },
+    {
+      "id": "wifi-enterprise-switch-permissions",
+      "type": "conditional",
+      "permissions": [
+        "ohos.permission.SET_WIFI_INFO",
+        "ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION"
+      ],
+      "title": "Wi-Fi开关接口另需管理资格",
+      "description": "API20+的disableWifi要求SET_WIFI_INFO，并需要系统连接管理权限或企业MANAGE_ENTERPRISE_WIFI_CONNECTION。该接口组合不能反推普通Wi-Fi查询也需企业权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-wifimanager/",
+      "confidence": "api-specific"
+    },
+    {
+      "id": "wifi-query-versus-sensitive-config",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.GET_WIFI_INFO",
+        "ohos.permission.GET_WIFI_CONFIG",
+        "ohos.permission.SET_WIFI_INFO",
+        "ohos.permission.SET_WIFI_CONFIG",
+        "ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION"
+      ],
+      "title": "普通Wi-Fi信息与企业敏感配置不同",
+      "description": "普通连接信息、包含PSK等敏感配置、企业连接管控是不同开放能力；GET_WIFI_INFO并不授予读取密码或企业Wi-Fi管理资格。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps",
+      "confidence": "documented"
+    },
+    {
+      "id": "wifi-mac-device-ambiguity",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.GET_WIFI_LOCAL_MAC",
+        "ohos.permission.GET_ETHERNET_LOCAL_MAC",
+        "ohos.permission.GET_IP_MAC_INFO",
+        "ohos.permission.GET_WIFI_PEERS_MAC"
+      ],
+      "title": "本机、对端和网络设备地址分开",
+      "description": "本机Wi-Fi、以太网、对端设备和网络IP/MAC权限不互相替代。两种本机MAC权限的TV场景与变更段存在差异，需按目标设备向官方确认。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions",
+      "confidence": "documented"
+    },
+    {
+      "id": "bluetooth-persistent-requires-access",
+      "type": "requires",
+      "permissions": [
+        "ohos.permission.PERSISTENT_BLUETOOTH_PEERS_MAC",
+        "ohos.permission.ACCESS_BLUETOOTH"
+      ],
+      "title": "蓝牙地址持久化还需要蓝牙访问",
+      "description": "addPersistentDeviceId、deletePersistentDeviceId、getPersistentDeviceIds均同时要求ACCESS_BLUETOOTH和PERSISTENT_BLUETOOTH_PEERS_MAC；固化本身不是已连接或已配对。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-references/api/js-apis-bluetooth-access",
+      "confidence": "api-specific"
+    },
+    {
+      "id": "bluetooth-api-version-permission",
+      "type": "conditional",
+      "permissions": [
+        "ohos.permission.USE_BLUETOOTH",
+        "ohos.permission.DISCOVER_BLUETOOTH",
+        "ohos.permission.ACCESS_BLUETOOTH"
+      ],
+      "title": "旧蓝牙权限不等价于新接口授权",
+      "description": "当前扫描、连接和开关等接口按ACCESS_BLUETOOTH要求处理；getState从API13起不再要求此前权限，stateChange从API18起不再校验。不能把旧条目名称一并当新接口前置。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-references/api/js-apis-bluetooth-access",
+      "confidence": "api-specific"
+    },
+    {
+      "id": "bluetooth-power-user-confirmation",
+      "type": "authorization",
+      "permissions": [
+        "ohos.permission.ACCESS_BLUETOOTH"
+      ],
+      "title": "蓝牙权限不替代开关确认",
+      "description": "enableBluetooth等接口另有用户确认蓝牙开关的交互。已有蓝牙权限或MDM用户权限策略不等于可跳过接口自身的开关确认。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-references/api/js-apis-bluetooth-access",
+      "confidence": "api-specific"
+    },
+    {
+      "id": "bluetooth-advertising-name-scope",
+      "type": "conditional",
+      "permissions": [
+        "ohos.permission.ACCESS_BLUETOOTH",
+        "ohos.permission.MANAGE_BLUETOOTH_ADVERTISER_NAME"
+      ],
+      "title": "自定义广播名称只在相应广播业务增加",
+      "description": "蓝牙接入与自定义BLE广播名称是不同能力。只有发送自定义广播名称的业务才考虑名称管理权限，不为所有蓝牙连接自动追加。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions",
+      "confidence": "documented"
+    },
+    {
+      "id": "distributed-and-transport-independent",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.DISTRIBUTED_DATASYNC",
+        "ohos.permission.ACCESS_BLUETOOTH",
+        "ohos.permission.ACCESS_NEARLINK",
+        "ohos.permission.ALLOW_ACCESSORY_ACCESS",
+        "ohos.permission.ACCESS_CAR_DISTRIBUTED_ENGINE",
+        "ohos.permission.KNOCK_COLLABORATION"
+      ],
+      "title": "分布式授权不替代具体互联服务",
+      "description": "跨设备数据交换、蓝牙/星闪、配件授信、车联和碰一碰分别保护各自服务。业务实际调用多个服务时分别核对接口，不把所有传输权限设为固定组合。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all-user",
+      "confidence": "documented"
+    },
+    {
+      "id": "nfc-tags-versus-emulation",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.NFC_TAG",
+        "ohos.permission.NFC_CARD_EMULATION"
+      ],
+      "title": "NFC标签读写与卡模拟分开",
+      "description": "标签读写和卡模拟服务是两种能力；选择一种不意味着必须申请另一种。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all",
+      "confidence": "documented"
+    },
+    {
+      "id": "vehicle-cloud-read-write",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.vehicle.HIMA_DATA_READ",
+        "ohos.permission.vehicle.HIMA_DATA_WRITE",
+        "ohos.permission.ACCESS_CAR_AUDIO",
+        "ohos.permission.vehicle.ACCESS_CAR_SECURITY_PRIVACY"
+      ],
+      "title": "车载音频、隐私和HIMA数据按操作分工",
+      "description": "HIMA云读取与写入、车载音频、车载隐私服务分别对应不同操作，不把读权限当作写权限，也不由云数据名称自动推导整个网络或账号权限组合。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all",
+      "confidence": "documented"
+    },
+    {
+      "id": "network-policy-diagnostics-independent",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.SET_PAC_URL",
+        "ohos.permission.MANAGE_APN_SETTING",
+        "ohos.permission.LINKTURBO",
+        "ohos.permission.ACCESS_NET_TRACE_INFO",
+        "ohos.permission.GET_NETWORK_STATS",
+        "ohos.permission.GET_IP_MAC_INFO"
+      ],
+      "title": "代理、专网、加速与诊断各有独立范围",
+      "description": "代理设置、APN办公专网、网络加速、链路诊断和其他应用流量统计不是普通联网的通用前置；GET_NETWORK_STATS还受MDM场景限制。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions",
+      "confidence": "documented"
+    },
+    {
+      "id": "firewall-query-write-separate",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.MANAGE_NET_FIREWALL",
+        "ohos.permission.GET_NET_FIREWALL",
+        "ohos.permission.kernel.TRAFFIC_FILTER",
+        "ohos.permission.SET_NET_EXT_ATTRIBUTE",
+        "ohos.permission.ENTERPRISE_MANAGE_EAP"
+      ],
+      "title": "企业网络防护能力不等于一个总权限",
+      "description": "防火墙配置、查询、流量路径处理、内外网属性和EAP私有信息分别按具体操作和接口选择，不能按企业网络功能将全部权限联选。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps",
+      "confidence": "documented"
+    },
+    {
+      "id": "network-capture-authentication",
+      "type": "authorization",
+      "permissions": [
+        "ohos.permission.kernel.NET_RAW",
+        "ohos.permission.REQUEST_LOCAL_ACCOUNT_AUTHORIZATION"
+      ],
+      "title": "抓包权限之外仍需用户认证",
+      "description": "NET_RAW属于系统授权，但实际网络抓包仍需用户认证。是否联用本地账号授权接口取决于实际API，不自动把账号授权入口当所有网络能力前置。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all",
+      "confidence": "documented"
+    }
+  ]
+}

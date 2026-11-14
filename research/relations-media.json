@@ -1,0 +1,686 @@
+{
+  "checkedOn": "2026-11-14",
+  "scope": "media/location-health/personal-data/files四领域52项；只记录有依据的权限关系，standalone不是保证所有API均无额外要求。",
+  "reviewed": [
+    {
+      "name": "ohos.permission.PRINT",
+      "domain": "files",
+      "disposition": "relation",
+      "note": "普通打印框架使用与企业打印管理的权限用途不同，不自动互相包含。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.ACCELEROMETER",
+      "domain": "location-health",
+      "disposition": "standalone",
+      "note": "读取加速度类传感器；条目没有与陀螺仪、运动状态或定位的共同声明要求。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.GYROSCOPE",
+      "domain": "location-health",
+      "disposition": "standalone",
+      "note": "读取陀螺仪类传感器；不因同属传感器自动添加加速度、运动状态或定位权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.READ_CLOUD_SYNC_CONFIG",
+      "domain": "files",
+      "disposition": "standalone",
+      "note": "只查询接入云空间应用的云同步配置，不从名称推导图库/音频/用户文件读写权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.STORE_PERSISTENT_DATA",
+      "domain": "files",
+      "disposition": "standalone",
+      "note": "持久存储应用数据，与持久化文件URI授权是不同概念，不应自动添加FILE_ACCESS_PERSIST。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.ACCESS_SERVICE_NAVIGATION_INFO",
+      "domain": "location-health",
+      "disposition": "api-dependent",
+      "note": "导航信息服务数据接口不等同于实时定位；若业务另调定位API，按定位权限独立申请。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.GET_FILE_ICON",
+      "domain": "files",
+      "disposition": "standalone",
+      "note": "获取指定类型文件图标，未发现条目级其他权限依赖；不等于文件内容访问授权。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.CUSTOMIZE_MENU_ICON",
+      "domain": "files",
+      "disposition": "standalone",
+      "note": "配置文件管理器右键菜单图标，未发现条目级其他权限依赖。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.HDR_BRIGHTNESS",
+      "domain": "media",
+      "disposition": "standalone",
+      "note": "HDR组件提亮；官方条目未要求相机、麦克风或媒体库读写权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.QUERY_VOLUME_ENCRYPTION_STATUS",
+      "domain": "files",
+      "disposition": "standalone",
+      "note": "查询卷加解密状态及订阅事件，不等于管理加解密策略或读取卷内文件内容。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.GET_STORAGE_VOLUME_INFO",
+      "domain": "files",
+      "disposition": "api-dependent",
+      "note": "查询存储设备基础属性，与ACCESS_DISK_PHY_INFO的硬盘硬件信息业务资格和接口范围不同，不能按名称认定替代。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.MEDIA_LOCATION",
+      "domain": "media",
+      "disposition": "relation",
+      "note": "访问媒体文件内的地理位置，与实时设备定位不同；和READ_IMAGEVIDEO同申请时应合并后者reason用途文案，不自动要求批量图库读取。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all-user"
+    },
+    {
+      "name": "ohos.permission.ACTIVITY_MOTION",
+      "domain": "location-health",
+      "disposition": "relation",
+      "note": "权限组指南说明2in1无相关传感器不可申请，与目录设备元数据口径冲突；应提示核对设备/接口，而非保证全设备可用。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-permission-group-list/"
+    },
+    {
+      "name": "ohos.permission.CAMERA",
+      "domain": "media",
+      "disposition": "relation",
+      "note": "相机拍照或静音录像不自动要求麦克风；录制声音才另需MICROPHONE。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all-user"
+    },
+    {
+      "name": "ohos.permission.LOCATION_IN_BACKGROUND",
+      "domain": "location-health",
+      "disposition": "relation",
+      "note": "必须先有前台定位；可选模糊前台或模糊+精确前台。用户先同意前台，再到设置授权后台；LOCATION长时任务可替代部分后台定位场景。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all-user"
+    },
+    {
+      "name": "ohos.permission.LOCATION",
+      "domain": "location-health",
+      "disposition": "relation",
+      "note": "必须与APPROXIMATELY_LOCATION共同申请；这是明确依赖，不是同组全部权限均要申请。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all-user"
+    },
+    {
+      "name": "ohos.permission.APPROXIMATELY_LOCATION",
+      "domain": "location-health",
+      "disposition": "relation",
+      "note": "可独立申请；精确定位和后台定位会依赖或以它作前台路径，不因申请它自动需要精确或后台权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all-user"
+    },
+    {
+      "name": "ohos.permission.MICROPHONE",
+      "domain": "media",
+      "disposition": "relation",
+      "note": "采集麦克风音频才需要；播放音视频不自动需要，亦不自动要求相机。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all-user"
+    },
+    {
+      "name": "ohos.permission.READ_CALENDAR",
+      "domain": "personal-data",
+      "disposition": "relation",
+      "note": "普通读权限限默认/本应用相关账户与本应用创建日程；API21+部分读接口接受它或READ_WHOLE_CALENDAR，不能无条件一起申请。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all-user"
+    },
+    {
+      "name": "ohos.permission.WRITE_CALENDAR",
+      "domain": "personal-data",
+      "disposition": "relation",
+      "note": "普通写权限限本应用相关日历与日程；API21+写接口接受它或WRITE_WHOLE_CALENDAR，按操作范围选择。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all-user"
+    },
+    {
+      "name": "ohos.permission.READ_HEALTH_DATA",
+      "domain": "location-health",
+      "disposition": "relation",
+      "note": "权限组指南仅允许穿戴设备申请，与列表支持设备元数据冲突；应保守展示并核对目标设备API。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-permission-group-list/"
+    },
+    {
+      "name": "ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY",
+      "domain": "files",
+      "disposition": "relation",
+      "note": "Download范围独立于Documents/Desktop；normal仍按受限流程。权限组指南设备范围与列表Tablet支持有口径差异。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all-user"
+    },
+    {
+      "name": "ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY",
+      "domain": "files",
+      "disposition": "relation",
+      "note": "Documents范围独立于Download/Desktop；normal仍按受限流程。目录预授权与Picker临时URI授权需区分。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all-user"
+    },
+    {
+      "name": "ohos.permission.CUSTOM_SCREEN_CAPTURE",
+      "domain": "media",
+      "disposition": "relation",
+      "note": "截屏用户授权，与CUSTOM_SCREEN_RECORDING手动设置的录屏路径不同；不能按同为屏幕采集自动互相添加。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all-user"
+    },
+    {
+      "name": "ohos.permission.READ_CONTACTS",
+      "domain": "personal-data",
+      "disposition": "relation",
+      "note": "仅克隆/备份/同步等批量读取场景；用户选择联系人用Picker，不因读取而自动添加写入权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.WRITE_CONTACTS",
+      "domain": "personal-data",
+      "disposition": "relation",
+      "note": "仅克隆/备份/同步写回联系人场景；读写独立，普通修改应引导联系人应用。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.READ_AUDIO",
+      "domain": "media",
+      "disposition": "relation",
+      "note": "批量克隆/备份/同步音频的读取权限；用户选音频优先AudioPicker，读取不自动要求写入。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.WRITE_AUDIO",
+      "domain": "media",
+      "disposition": "relation",
+      "note": "批量克隆/备份/同步音频的写入权限；保存用户选音频可用AudioPicker，写入不自动要求读取。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.READ_IMAGEVIDEO",
+      "domain": "media",
+      "disposition": "relation",
+      "note": "批量/自动图库场景可申请；用户手选素材或读取自身写入资源不默认需要；与MEDIA_LOCATION同申请须整合reason。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.WRITE_IMAGEVIDEO",
+      "domain": "media",
+      "disposition": "relation",
+      "note": "媒体库修改权限；安全保存控件或系统授权弹窗可替代常见保存场景；不等于读取权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.READ_WRITE_DESKTOP_DIRECTORY",
+      "domain": "files",
+      "disposition": "relation",
+      "note": "Desktop范围独立于Download/Documents；受限+用户授权，不能把同组各目录都作为强制依赖。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.READ_PASTEBOARD",
+      "domain": "personal-data",
+      "disposition": "relation",
+      "note": "粘贴控件替代直接读取；PC首次申请不弹窗默认允许但用户可撤销，其他设备有场景限制；分享范围管理并不替代读取授权。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.FILE_ACCESS_PERSIST",
+      "domain": "files",
+      "disposition": "relation",
+      "note": "先取得可持久化的临时URI授权，再persist，重启后按需activate；不是全盘/全目录授权。API12+本地调试与上架申请流程不同。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.SHORT_TERM_WRITE_IMAGEVIDEO",
+      "domain": "media",
+      "disposition": "relation",
+      "note": "不能使用保存控件/确认弹窗的连续保存场景；system_grant仍有最长30分钟短期确认周期。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.READ_WRITE_USER_FILE",
+      "domain": "files",
+      "disposition": "api-dependent",
+      "note": "仅PC开发调试工具访问用户目录，不能据名称认定与ACCESS_USER_FULL_DISK互相替代或共同必需。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.MANAGE_PASTEBOARD_APP_SHARE_OPTION",
+      "domain": "personal-data",
+      "disposition": "api-dependent",
+      "note": "设置/移除可粘贴范围，与读取剪贴板是不同能力；条目未声明READ_PASTEBOARD为必需前置。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION",
+      "domain": "personal-data",
+      "disposition": "api-dependent",
+      "note": "控制应用UDMF数据分享范围，不等于剪贴板读取或其他应用数据访问；未发现明确权限名级依赖。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.ACCESS_DISK_PHY_INFO",
+      "domain": "files",
+      "disposition": "api-dependent",
+      "note": "金融证券场景硬盘硬件信息；与GET_STORAGE_VOLUME_INFO基础属性不是通用替代关系。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.PRELOAD_FILE",
+      "domain": "files",
+      "disposition": "api-dependent",
+      "note": "文档编辑应用预加载文件；预加载能力不自动代表已获得目标文件URI访问授权。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.atomicService.MANAGE_STORAGE",
+      "domain": "files",
+      "disposition": "standalone",
+      "note": "仅元服务小游戏调节存储空间；与用户文件授权或普通应用持久存储未发现明确共同声明关系。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.CUSTOMIZE_SAVE_BUTTON",
+      "domain": "files",
+      "disposition": "relation",
+      "note": "仅自定义保存控件样式，不替代控件自身由用户触发的安全授权流程，也不自动要求WRITE_IMAGEVIDEO。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.READ_WHOLE_CALENDAR",
+      "domain": "personal-data",
+      "disposition": "relation",
+      "note": "读取所有日历/所有应用日程，区别普通READ范围；API21+部分接口为二选一，不据名称强制补普通读权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.WRITE_WHOLE_CALENDAR",
+      "domain": "personal-data",
+      "disposition": "relation",
+      "note": "修改所有日历/日程，区别普通WRITE范围；API21+部分接口为二选一，不自动推导必须补普通写权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.SET_SYSTEMSHARE_APPLAUNCHTRUSTLIST",
+      "domain": "personal-data",
+      "disposition": "api-dependent",
+      "note": "配置企业系统分享目标应用名单；名单过滤和文件URI授权不是同一机制，条目未列其他权限为必需前置。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.CUSTOM_SCREEN_RECORDING",
+      "domain": "media",
+      "disposition": "relation",
+      "note": "需用户先到系统设置授权，之后不再每次弹出录屏隐私告警；不是声明后自动静默，也不由MDM user_grant策略直接覆盖。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.ACCESS_USER_FULL_DISK",
+      "domain": "files",
+      "disposition": "relation",
+      "note": "远程登录/杀毒场景经用户手动设置授权后访问公共路径不再逐次确认；不能当system_grant或默认授权。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.MANAGE_MEDIA_RESOURCES_FOR_PUBLIC",
+      "domain": "media",
+      "disposition": "api-dependent",
+      "note": "外部设备配套应用管理正在播放媒体资源；不据此推导READ_AUDIO、相机或麦克风的依赖或授予。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.ACCESS_GAME_BUDDY_SERVICE",
+      "domain": "media",
+      "disposition": "api-dependent",
+      "note": "游戏AI陪玩获取游戏截图与运行态；与通用截屏权限的替代或依赖需按实际游戏伴随API核对，条目未写强制共同申请。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.MANAGE_AUDIO_ACCESSORY",
+      "domain": "media",
+      "disposition": "relation",
+      "note": "管理并注册音频配件；可考虑智慧生活插件方案，不因配件注册自动添加麦克风录制权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.SYNC_ROOT_MANAGER",
+      "domain": "files",
+      "disposition": "api-dependent",
+      "note": "管理云盘同步根在文件管理器中的展示，限定大陆实名认证企业主体；不推定获取任意文件内容授权。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_MANAGE_PRINT",
+      "domain": "files",
+      "disposition": "relation",
+      "note": "企业打印状态/打印机管理，与普通PRINT框架能力不同；未发现相互必需的统一权限名级关系。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_MANAGE_BACKUP",
+      "domain": "files",
+      "disposition": "api-dependent",
+      "note": "企业备份恢复用户及沙箱数据；条目未明确其与各类READ/WRITE权限的授予替代关系，应按具体备份API核对。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    }
+  ],
+  "relations": [
+    {
+      "id": "camera-audio-conditional",
+      "type": "conditional",
+      "permissions": [
+        "ohos.permission.CAMERA",
+        "ohos.permission.MICROPHONE"
+      ],
+      "title": "有声录像才增加麦克风",
+      "description": "相机拍照或静音录像不因使用相机而自动需要MICROPHONE；调用AVRecorder且涉及录音时，才另申请麦克风权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-references/arkts-apis-media-avrecorder/",
+      "confidence": "api-specific"
+    },
+    {
+      "id": "location-precise-requires-approximate",
+      "type": "requires",
+      "permissions": [
+        "ohos.permission.LOCATION",
+        "ohos.permission.APPROXIMATELY_LOCATION"
+      ],
+      "title": "精确定位需要同时申请模糊定位",
+      "description": "LOCATION必须与APPROXIMATELY_LOCATION共同申请；模糊定位可独立申请，不反向要求精确定位。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all-user",
+      "confidence": "documented"
+    },
+    {
+      "id": "location-background-prerequisite",
+      "type": "requires",
+      "permissions": [
+        "ohos.permission.LOCATION_IN_BACKGROUND",
+        "ohos.permission.APPROXIMATELY_LOCATION",
+        "ohos.permission.LOCATION"
+      ],
+      "title": "后台定位先取得前台授权",
+      "description": "前台可选择模糊定位，或模糊+精确定位；先向用户申请并获得前台权限，再引导到系统设置授予后台位置权限。并非后台定位一定要精确定位。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all-user",
+      "confidence": "documented"
+    },
+    {
+      "id": "location-continuous-task-alternative",
+      "type": "alternative",
+      "permissions": [
+        "ohos.permission.LOCATION_IN_BACKGROUND",
+        "ohos.permission.KEEP_BACKGROUND_RUNNING",
+        "ohos.permission.APPROXIMATELY_LOCATION",
+        "ohos.permission.LOCATION"
+      ],
+      "title": "符合长时任务场景时可不申请后台位置",
+      "description": "按业务需要使用LOCATION类型长时任务加前台位置权限，可在后台获取位置；仍需配置与启动长时任务，不是仅声明KEEP_BACKGROUND_RUNNING就替代。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all-user",
+      "confidence": "documented"
+    },
+    {
+      "id": "imagevideo-location-reason",
+      "type": "authorization",
+      "permissions": [
+        "ohos.permission.READ_IMAGEVIDEO",
+        "ohos.permission.MEDIA_LOCATION"
+      ],
+      "title": "图库位置用途合并到读取权限文案",
+      "description": "同时申请READ_IMAGEVIDEO和MEDIA_LOCATION时，仅展示READ_IMAGEVIDEO的reason，后者文案应同时说明媒体位置信息用途。该关系不表示申请MEDIA_LOCATION必需批量读取图库。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-permission-group-list/",
+      "confidence": "documented"
+    },
+    {
+      "id": "media-location-vs-device-location",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.MEDIA_LOCATION",
+        "ohos.permission.LOCATION",
+        "ohos.permission.APPROXIMATELY_LOCATION"
+      ],
+      "title": "媒体位置不等于实时定位",
+      "description": "MEDIA_LOCATION是媒体文件内被隐私处理的地理位置信息；LOCATION/APPROXIMATELY_LOCATION是设备当前位置，不应互相自动添加。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-faqs/faqs-image-61/",
+      "confidence": "api-specific"
+    },
+    {
+      "id": "media-picker-read-alternative",
+      "type": "alternative",
+      "permissions": [
+        "ohos.permission.READ_IMAGEVIDEO"
+      ],
+      "title": "手选素材优先系统图库选择器",
+      "description": "用户手动选择、处理或分享素材优先PhotoViewPicker；读取本应用自身写入图库的资源也不默认需要批量读取权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions",
+      "confidence": "documented"
+    },
+    {
+      "id": "media-save-control-alternative",
+      "type": "alternative",
+      "permissions": [
+        "ohos.permission.WRITE_IMAGEVIDEO",
+        "ohos.permission.SHORT_TERM_WRITE_IMAGEVIDEO",
+        "ohos.permission.CUSTOMIZE_SAVE_BUTTON"
+      ],
+      "title": "保存控件与写入权限是不同接入路径",
+      "description": "用户指定保存优先安全保存控件或授权弹窗；自定义控件样式权限不等于替代用户触发授权，不自动追加WRITE_IMAGEVIDEO。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions",
+      "confidence": "documented"
+    },
+    {
+      "id": "media-write-short-term",
+      "type": "authorization",
+      "permissions": [
+        "ohos.permission.SHORT_TERM_WRITE_IMAGEVIDEO"
+      ],
+      "title": "系统授权字段不代表全程不弹窗",
+      "description": "此权限标记system_grant，但实际保存为最长30分钟的短时授权，超时需再次确认。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions",
+      "confidence": "documented"
+    },
+    {
+      "id": "audio-picker-alternative",
+      "type": "alternative",
+      "permissions": [
+        "ohos.permission.READ_AUDIO",
+        "ohos.permission.WRITE_AUDIO"
+      ],
+      "title": "用户选音频可用文件选择器",
+      "description": "批量音频读写限克隆、备份、同步等允许场景；手选读取或保存音频优先AudioPicker。读写是独立操作，不自动一起添加。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions",
+      "confidence": "documented"
+    },
+    {
+      "id": "contacts-picker-alternative",
+      "type": "alternative",
+      "permissions": [
+        "ohos.permission.READ_CONTACTS",
+        "ohos.permission.WRITE_CONTACTS"
+      ],
+      "title": "联系人读写与Picker按场景选择",
+      "description": "批量读写限定克隆、备份、同步；手选联系人使用联系人Picker，普通修改引导联系人应用；读取不自动要求写入。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions",
+      "confidence": "documented"
+    },
+    {
+      "id": "calendar-scope-alternatives",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.READ_CALENDAR",
+        "ohos.permission.WRITE_CALENDAR",
+        "ohos.permission.READ_WHOLE_CALENDAR",
+        "ohos.permission.WRITE_WHOLE_CALENDAR"
+      ],
+      "title": "普通日历与全部日历按范围选择",
+      "description": "普通权限主要覆盖本应用相关账户和本应用创建的日程；WHOLE权限覆盖全部账户/日程。API21+所列读接口接受READ_CALENDAR或READ_WHOLE_CALENDAR，写接口接受WRITE_CALENDAR或WRITE_WHOLE_CALENDAR；不是普遍AND依赖，旧API需单独核对。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-calendarmanager/",
+      "confidence": "api-specific"
+    },
+    {
+      "id": "permission-groups-not-dependencies",
+      "type": "authorization",
+      "permissions": [
+        "ohos.permission.READ_AUDIO",
+        "ohos.permission.WRITE_AUDIO",
+        "ohos.permission.READ_IMAGEVIDEO",
+        "ohos.permission.WRITE_IMAGEVIDEO",
+        "ohos.permission.MEDIA_LOCATION",
+        "ohos.permission.READ_CONTACTS",
+        "ohos.permission.WRITE_CONTACTS",
+        "ohos.permission.READ_CALENDAR",
+        "ohos.permission.WRITE_CALENDAR",
+        "ohos.permission.READ_WHOLE_CALENDAR",
+        "ohos.permission.WRITE_WHOLE_CALENDAR",
+        "ohos.permission.LOCATION",
+        "ohos.permission.APPROXIMATELY_LOCATION",
+        "ohos.permission.LOCATION_IN_BACKGROUND"
+      ],
+      "title": "同组授权不代表要申请全部组内权限",
+      "description": "同组通常合并弹窗和授权，但位置、通讯录、日历组有例外。只声明业务需要的权限，不能为减少弹窗就把组内权限全选。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-permission-group-list/",
+      "confidence": "documented"
+    },
+    {
+      "id": "clipboard-paste-alternative",
+      "type": "alternative",
+      "permissions": [
+        "ohos.permission.READ_PASTEBOARD"
+      ],
+      "title": "用户触发粘贴可不用直接读取权限",
+      "description": "采用系统粘贴控件处理用户指定数据，替代主动读取剪贴板的受限路径。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions",
+      "confidence": "documented"
+    },
+    {
+      "id": "clipboard-pc-default-grant",
+      "type": "authorization",
+      "permissions": [
+        "ohos.permission.READ_PASTEBOARD"
+      ],
+      "title": "PC首次默认允许仍可撤销",
+      "description": "PC/2in1首次申请剪贴板时不弹窗、默认允许，但用户仍可在设置中修改；其他设备的允许选项与场景限制不同。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions",
+      "confidence": "documented"
+    },
+    {
+      "id": "clipboard-sharing-scope",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.READ_PASTEBOARD",
+        "ohos.permission.MANAGE_PASTEBOARD_APP_SHARE_OPTION",
+        "ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION"
+      ],
+      "title": "读取数据与管控分享范围分别处理",
+      "description": "READ_PASTEBOARD访问剪贴板；后两项管理应用剪贴板或UDMF数据的分享范围，不能由名称推导互相必需或自动授予。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions",
+      "confidence": "documented"
+    },
+    {
+      "id": "file-picker-uri-persist",
+      "type": "conditional",
+      "permissions": [
+        "ohos.permission.FILE_ACCESS_PERSIST"
+      ],
+      "title": "文件URI先临时授权，再持久化和激活",
+      "description": "先通过Picker等取得可持久化的临时URI权限，再persistPermission保存；应用或设备重启后按需activatePermission。只能持久化已取得的权限，不获得任意目录访问。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/file-persistpermission/",
+      "confidence": "documented"
+    },
+    {
+      "id": "file-persist-release-path",
+      "type": "authorization",
+      "permissions": [
+        "ohos.permission.FILE_ACCESS_PERSIST"
+      ],
+      "title": "本地调试与上架流程不同",
+      "description": "API12及以后仅本地调试可直接声明；上架仍须受限申请流程。权限等级normal不能单独决定申请路径。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions",
+      "confidence": "documented"
+    },
+    {
+      "id": "directory-permission-scope",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY",
+        "ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY",
+        "ohos.permission.READ_WRITE_DESKTOP_DIRECTORY"
+      ],
+      "title": "公共目录权限按目标目录申请",
+      "description": "三项各自覆盖Download/Documents/Desktop及子目录；同组不表示需要一起声明。Download/Documents虽normal，官网仍要求受限申请。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all-user",
+      "confidence": "documented"
+    },
+    {
+      "id": "directory-device-source-conflict",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY",
+        "ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY",
+        "ohos.permission.READ_WRITE_DESKTOP_DIRECTORY"
+      ],
+      "title": "文件夹设备范围存在来源差异",
+      "description": "权限组指南写仅2in1，权限列表或正文又包含Tablet；平板场景需继续核对目标API和版本，不应据单个来源保证可用。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-permission-group-list/",
+      "confidence": "documented"
+    },
+    {
+      "id": "health-device-source-conflict",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.ACTIVITY_MOTION",
+        "ohos.permission.READ_HEALTH_DATA"
+      ],
+      "title": "健康与运动设备支持存在来源差异",
+      "description": "权限组指南说明ACTIVITY_MOTION不支持2in1、READ_HEALTH_DATA仅穿戴；与权限列表的更广设备元数据不一致，应明确提示或保守处理。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-permission-group-list/",
+      "confidence": "documented"
+    },
+    {
+      "id": "screen-capture-vs-recording",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.CUSTOM_SCREEN_CAPTURE",
+        "ohos.permission.CUSTOM_SCREEN_RECORDING"
+      ],
+      "title": "截图和录屏授权路径不同",
+      "description": "CUSTOM_SCREEN_CAPTURE为用户授权类；CUSTOM_SCREEN_RECORDING为手动设置类，用户开启后录屏不再逐次确认。不能仅按同属屏幕采集自动相互添加。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions",
+      "confidence": "documented"
+    },
+    {
+      "id": "full-disk-manual-settings",
+      "type": "authorization",
+      "permissions": [
+        "ohos.permission.ACCESS_USER_FULL_DISK"
+      ],
+      "title": "访问公共路径前仍需手动设置授权",
+      "description": "只有用户先在系统设置授权，访问公共路径时才不再额外逐次弹窗；不等于普通应用可默认无授权访问全部文件。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions",
+      "confidence": "documented"
+    },
+    {
+      "id": "print-capability-vs-enterprise-control",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.PRINT",
+        "ohos.permission.ENTERPRISE_MANAGE_PRINT"
+      ],
+      "title": "打印使用与企业打印管理是不同能力",
+      "description": "PRINT用于打印框架能力，ENTERPRISE_MANAGE_PRINT用于企业打印状态及打印机信息管理；条目没有说明一方自动授予或必需包含另一方。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps",
+      "confidence": "documented"
+    },
+    {
+      "id": "audio-accessory-alternative",
+      "type": "alternative",
+      "permissions": [
+        "ohos.permission.MANAGE_AUDIO_ACCESSORY"
+      ],
+      "title": "音频配件可考虑智慧生活插件接入",
+      "description": "音频配件注册管理可按官网建议以插件接入智慧生活；注册管理本身不自动表示采集麦克风音频。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions",
+      "confidence": "documented"
+    }
+  ]
+}

@@ -1,0 +1,1267 @@
+{
+  "checkedOn": "2026-11-14",
+  "scope": "逐项复核91项企业MDM、企业防护、身份安全权限的官方条目；关键关系追加核对当前官方API。未声称穷尽所有接口的权限AND/OR组合。",
+  "reviewed": [
+    {
+      "name": "ohos.permission.ACCESS_BIOMETRIC",
+      "domain": "identity-security",
+      "disposition": "relation",
+      "note": "使用系统认证能力不自动需要CAMERA或MICROPHONE。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.ACCESS_CERT_MANAGER",
+      "domain": "identity-security",
+      "disposition": "relation",
+      "note": "能力边界已核对，相关名称不代表权限继承或强制联选，按实际接口选择。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.READ_ACCOUNT_LOGIN_STATE",
+      "domain": "identity-security",
+      "disposition": "api-dependent",
+      "note": "条目未定义其他权限的必选依赖；不能仅按功能相近推导关联。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.PROTECT_SCREEN_LOCK_DATA",
+      "domain": "identity-security",
+      "disposition": "api-dependent",
+      "note": "条目未定义其他权限的必选依赖；不能仅按功能相近推导关联。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.GET_ENTERPRISE_CONFIG",
+      "domain": "enterprise-protection",
+      "disposition": "api-dependent",
+      "note": "条目未定义其他权限的必选依赖；不能仅按功能相近推导关联。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.REQUEST_LOCAL_ACCOUNT_AUTHORIZATION",
+      "domain": "identity-security",
+      "disposition": "relation",
+      "note": "system_grant只允许调用入口，目标特权仍需系统身份认证。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.ACCESS_USER_PASSIVE_RECOGNITION",
+      "domain": "identity-security",
+      "disposition": "api-dependent",
+      "note": "条目未定义其他权限的必选依赖；不能仅按功能相近推导关联。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all"
+    },
+    {
+      "name": "ohos.permission.APP_TRACKING_CONSENT",
+      "domain": "identity-security",
+      "disposition": "relation",
+      "note": "系统关联开关决定请求是否弹窗，不改变user_grant分类。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all-user"
+    },
+    {
+      "name": "ohos.permission.PERSONAL_MANAGE_RESTRICTIONS",
+      "domain": "enterprise-protection",
+      "disposition": "relation",
+      "note": "UAD个人设备策略与企业MDM策略不同；激活流程与实际限制能力分开。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.START_PROVISIONING_MESSAGE",
+      "domain": "enterprise-protection",
+      "disposition": "relation",
+      "note": "用于UAD/BYOD部署激活流程，不能据此推定所有企业设备管理能力。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.ACCESS_FIDO2_ONLINEAUTH",
+      "domain": "identity-security",
+      "disposition": "relation",
+      "note": "能力边界已核对，相关名称不代表权限继承或强制联选，按实际接口选择。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.DLP_GET_HIDE_STATUS",
+      "domain": "enterprise-protection",
+      "disposition": "relation",
+      "note": "屏幕窥视隐藏状态，不是DLP文件操作或策略管理。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.CRYPTO_EXTENSION_REGISTER",
+      "domain": "identity-security",
+      "disposition": "relation",
+      "note": "能力边界已核对，相关名称不代表权限继承或强制联选，按实际接口选择。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.ACCESS_DLP_SERVICE",
+      "domain": "enterprise-protection",
+      "disposition": "relation",
+      "note": "连云插件注册/解注册，不自动需要DLP策略或DLP文件权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.ACCESS_DIGITAL_IDENTITY",
+      "domain": "identity-security",
+      "disposition": "relation",
+      "note": "能力边界已核对，相关名称不代表权限继承或强制联选，按实际接口选择。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.ACCESS_SE_KEY",
+      "domain": "identity-security",
+      "disposition": "relation",
+      "note": "能力边界已核对，相关名称不代表权限继承或强制联选，按实际接口选择。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions"
+    },
+    {
+      "name": "ohos.permission.SET_FILE_GUARD_POLICY",
+      "domain": "enterprise-protection",
+      "disposition": "relation",
+      "note": "能力边界已核对，相关名称不代表权限继承或强制联选，按实际接口选择。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.FILE_GUARD_MANAGER",
+      "domain": "enterprise-protection",
+      "disposition": "relation",
+      "note": "能力边界已核对，相关名称不代表权限继承或强制联选，按实际接口选择。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.FILE_GUARD_FILE_WRITE",
+      "domain": "enterprise-protection",
+      "disposition": "relation",
+      "note": "能力边界已核对，相关名称不代表权限继承或强制联选，按实际接口选择。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS",
+      "domain": "identity-security",
+      "disposition": "relation",
+      "note": "能力边界已核对，相关名称不代表权限继承或强制联选，按实际接口选择。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.GET_LOCAL_ACCOUNT_IDENTIFIERS",
+      "domain": "identity-security",
+      "disposition": "relation",
+      "note": "能力边界已核对，相关名称不代表权限继承或强制联选，按实际接口选择。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.GET_DOMAIN_ACCOUNTS",
+      "domain": "identity-security",
+      "disposition": "relation",
+      "note": "能力边界已核对，相关名称不代表权限继承或强制联选，按实际接口选择。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.QUERY_AUDIT_EVENT",
+      "domain": "enterprise-protection",
+      "disposition": "relation",
+      "note": "能力边界已核对，相关名称不代表权限继承或强制联选，按实际接口选择。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.ACCESS_ENTERPRISE_USER_TRUSTED_CERT",
+      "domain": "identity-security",
+      "disposition": "relation",
+      "note": "能力边界已核对，相关名称不代表权限继承或强制联选，按实际接口选择。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.GET_DOMAIN_ACCOUNT_SERVER_CONFIGS",
+      "domain": "identity-security",
+      "disposition": "relation",
+      "note": "能力边界已核对，相关名称不代表权限继承或强制联选，按实际接口选择。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.MANAGE_DOMAIN_ACCOUNT_SERVER_CONFIGS",
+      "domain": "identity-security",
+      "disposition": "relation",
+      "note": "能力边界已核对，相关名称不代表权限继承或强制联选，按实际接口选择。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.MANAGE_DOMAIN_ACCOUNTS",
+      "domain": "identity-security",
+      "disposition": "relation",
+      "note": "能力边界已核对，相关名称不代表权限继承或强制联选，按实际接口选择。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.GET_SIGNATURE_INFO",
+      "domain": "identity-security",
+      "disposition": "relation",
+      "note": "能力边界已核对，相关名称不代表权限继承或强制联选，按实际接口选择。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.kernel.AUTH_AUDIT_EVENT",
+      "domain": "enterprise-protection",
+      "disposition": "relation",
+      "note": "能力边界已核对，相关名称不代表权限继承或强制联选，按实际接口选择。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.MANAGE_ANTIVIRUS",
+      "domain": "enterprise-protection",
+      "disposition": "relation",
+      "note": "能力边界已核对，相关名称不代表权限继承或强制联选，按实际接口选择。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.REGISTER_ANTIVIRUS",
+      "domain": "enterprise-protection",
+      "disposition": "relation",
+      "note": "能力边界已核对，相关名称不代表权限继承或强制联选，按实际接口选择。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.CALL_TPM_CMD",
+      "domain": "identity-security",
+      "disposition": "relation",
+      "note": "能力边界已核对，相关名称不代表权限继承或强制联选，按实际接口选择。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.SCAN_REMEDIATE_VIRUS",
+      "domain": "enterprise-protection",
+      "disposition": "relation",
+      "note": "能力边界已核对，相关名称不代表权限继承或强制联选，按实际接口选择。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.sec.ACCESS_UDID",
+      "domain": "identity-security",
+      "disposition": "relation",
+      "note": "能力边界已核对，相关名称不代表权限继承或强制联选，按实际接口选择。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.DLP_POLICY_MANAGER",
+      "domain": "enterprise-protection",
+      "disposition": "relation",
+      "note": "透明加解密策略管理与DLP文件读写、识别及连云插件不同。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_GET_DEVICE_INFO",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_GET_NETWORK_INFO",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_INSTALL_BUNDLE",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_RESET_DEVICE",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_SET_DATETIME",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_SET_NETWORK",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_SET_WIFI",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_RESTRICT_POLICY",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_SET_SCREENOFF_TIME",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_MANAGE_USB",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_MANAGE_NETWORK",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_GET_SETTINGS",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_SET_BROWSER_POLICY",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.SET_ENTERPRISE_INFO",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_MANAGE_SECURITY",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "权限禁用和禁用例外名单不等于静默授予；不同策略接口不可互换。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_MANAGE_SYSTEM",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_MANAGE_WIFI",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_MANAGE_APPLICATION",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_MANAGE_LOCATION",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_REBOOT",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_LOCK_DEVICE",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_MANAGE_SETTINGS",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_OPERATE_DEVICE",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_ADMIN_MANAGE",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "管理员管理权限不是管理员已激活状态；按具体激活路线核对。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_RECOVERY_KEY",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_MANAGE_DELEGATED_POLICY",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "管控端委托其他企业应用；受托端仍需对应策略接口权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_GET_ALL_BUNDLE_INFO",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_SET_USER_RESTRICTION",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_MANAGE_APN",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_MANAGE_TELEPHONY",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_SET_KIOSK",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_MANAGE_LOCAL_PUBLICSPACES",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_FILE_TRANSFER_AUDIT_POLICY_MANAGEMENT",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_SET_WALLPAPER",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.MANAGE_PREINSTALLED_ANTIVIRUS",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_MANAGE_USER_GRANT_PERMISSION",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "管理目标App的user_grant策略；声明/获批不等于GRANTED已下发，DEFAULT仍由用户。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_DATA_IDENTIFY_FILE",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "敏感内容识别是MDM能力，不等于DLP文件解密或标签扫描。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_ACCESS_DLP_FILE",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "DLP文件生成解密是MDM能力，非透明加解密策略或连云插件注册。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_MANAGE_DEVICE_ADMIN",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "SDA管理其他DA与自激活不同，不能作为所有MDM权限的自动依赖。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_START_ABILITIES",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_READ_LOG",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_DEACTIVATE_DEVICE_ADMIN",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "只保护已激活管理员解除自身激活的能力，不是静默用户授权开关。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_ACTIVATE_DEVICE_ADMIN",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "自激活需HEM部署和激活凭证；当前enableSelfDeviceAdmin为API26、PC接口。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_MANAGE_LOCAL_ACCOUNTS",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_INTERACT_ACROSS_LOCAL_ACCOUNTS",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_VPN",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "仅MDM VPN接入的默认确认例外，不是任意user_grant静默能力。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_REQUEST_PUBLISH_FORM",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_EXTERNAL_READ",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    },
+    {
+      "name": "ohos.permission.ENTERPRISE_ENCRYPT_BLOCK_DEVICE",
+      "domain": "mdm",
+      "disposition": "relation",
+      "note": "需要对应MDM资格及实际接口要求；没有依据从此名称自动追加其他MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-mdm-apps"
+    }
+  ],
+  "relations": [
+    {
+      "id": "mdm-policy-user-grant",
+      "type": "authorization",
+      "permissions": [
+        "ohos.permission.ENTERPRISE_MANAGE_USER_GRANT_PERMISSION",
+        "ohos.permission.ACCESS_BLUETOOTH",
+        "ohos.permission.MEDIA_LOCATION",
+        "ohos.permission.APP_TRACKING_CONSENT",
+        "ohos.permission.ACTIVITY_MOTION",
+        "ohos.permission.CAMERA",
+        "ohos.permission.DISTRIBUTED_DATASYNC",
+        "ohos.permission.LOCATION_IN_BACKGROUND",
+        "ohos.permission.LOCATION",
+        "ohos.permission.APPROXIMATELY_LOCATION",
+        "ohos.permission.MICROPHONE",
+        "ohos.permission.READ_CALENDAR",
+        "ohos.permission.WRITE_CALENDAR",
+        "ohos.permission.READ_HEALTH_DATA",
+        "ohos.permission.ACCESS_NEARLINK",
+        "ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY",
+        "ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY",
+        "ohos.permission.CUSTOM_SCREEN_CAPTURE",
+        "ohos.permission.READ_CONTACTS",
+        "ohos.permission.WRITE_CONTACTS",
+        "ohos.permission.READ_AUDIO",
+        "ohos.permission.WRITE_AUDIO",
+        "ohos.permission.READ_IMAGEVIDEO",
+        "ohos.permission.WRITE_IMAGEVIDEO",
+        "ohos.permission.READ_WRITE_DESKTOP_DIRECTORY",
+        "ohos.permission.READ_PASTEBOARD",
+        "ohos.permission.READ_WHOLE_CALENDAR",
+        "ohos.permission.WRITE_WHOLE_CALENDAR",
+        "ohos.permission.FLOAT_VIEW",
+        "ohos.permission.GET_ALL_BUNDLE_INFO",
+        "ohos.permission.DIRECT_CALL"
+      ],
+      "title": "MDM可管理被管应用的用户授权策略",
+      "description": "API20+的设备管理接口可对指定应用实例已声明的user_grant权限下发GRANTED或DENIED。管控端持有管理权限不等于业务App自动获权；业务App也无需为了被管理而自行声明此MDM权限。这里只表达可规划的管理路径，不保证所有版本和设备对每项权限实际执行成功。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-enterprise-securitymanager/",
+      "confidence": "documented"
+    },
+    {
+      "id": "mdm-policy-default",
+      "type": "authorization",
+      "permissions": [
+        "ohos.permission.ENTERPRISE_MANAGE_USER_GRANT_PERMISSION"
+      ],
+      "title": "DEFAULT不是静默授予",
+      "description": "PermissionManagedState.DEFAULT=1表示默认由用户授予，GRANTED=0表示静默授予，DENIED=-1表示静默拒绝。用户选择或声明此管理权限本身不等于已下发GRANTED策略。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-enterprise-securitymanager/",
+      "confidence": "documented"
+    },
+    {
+      "id": "mdm-policy-group-boundary",
+      "type": "conditional",
+      "permissions": [
+        "ohos.permission.ENTERPRISE_MANAGE_USER_GRANT_PERMISSION",
+        "ohos.permission.ACCESS_BLUETOOTH",
+        "ohos.permission.MEDIA_LOCATION",
+        "ohos.permission.APP_TRACKING_CONSENT",
+        "ohos.permission.ACTIVITY_MOTION",
+        "ohos.permission.CAMERA",
+        "ohos.permission.DISTRIBUTED_DATASYNC",
+        "ohos.permission.LOCATION_IN_BACKGROUND",
+        "ohos.permission.LOCATION",
+        "ohos.permission.APPROXIMATELY_LOCATION",
+        "ohos.permission.MICROPHONE",
+        "ohos.permission.READ_CALENDAR",
+        "ohos.permission.WRITE_CALENDAR",
+        "ohos.permission.READ_HEALTH_DATA",
+        "ohos.permission.ACCESS_NEARLINK",
+        "ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY",
+        "ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY",
+        "ohos.permission.CUSTOM_SCREEN_CAPTURE",
+        "ohos.permission.READ_CONTACTS",
+        "ohos.permission.WRITE_CONTACTS",
+        "ohos.permission.READ_AUDIO",
+        "ohos.permission.WRITE_AUDIO",
+        "ohos.permission.READ_IMAGEVIDEO",
+        "ohos.permission.WRITE_IMAGEVIDEO",
+        "ohos.permission.READ_WRITE_DESKTOP_DIRECTORY",
+        "ohos.permission.READ_PASTEBOARD",
+        "ohos.permission.READ_WHOLE_CALENDAR",
+        "ohos.permission.WRITE_WHOLE_CALENDAR",
+        "ohos.permission.FLOAT_VIEW",
+        "ohos.permission.GET_ALL_BUNDLE_INFO",
+        "ohos.permission.DIRECT_CALL"
+      ],
+      "title": "按应用已声明的权限组下发策略",
+      "description": "接口以权限组为单位，需要同时传入目标应用在module.json5已声明的同组全部权限。不是要求把该组所有可能权限都补进应用声明。策略目标仅是user_grant，不应套用于manual_settings或替代权限开放资格、Profile和声明。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-enterprise-securitymanager/",
+      "confidence": "documented"
+    },
+    {
+      "id": "mdm-policy-instance",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.ENTERPRISE_MANAGE_USER_GRANT_PERMISSION"
+      ],
+      "title": "策略作用于具体应用实例",
+      "description": "目标由appIdentifier或appId、accountId、appIndex确定；同一应用不同本地账号和分身须区分。多MDM对同一实例同一权限存在策略冲突规则，不能把一个设备策略视为所有实例通用。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-enterprise-securitymanager/",
+      "confidence": "documented"
+    },
+    {
+      "id": "mdm-policy-location-special",
+      "type": "conditional",
+      "permissions": [
+        "ohos.permission.ENTERPRISE_MANAGE_USER_GRANT_PERMISSION",
+        "ohos.permission.LOCATION_IN_BACKGROUND",
+        "ohos.permission.LOCATION",
+        "ohos.permission.APPROXIMATELY_LOCATION"
+      ],
+      "title": "后台定位仍有特殊前置条件",
+      "description": "定位权限组包含前台和后台位置权限。管理接口泛称支持user_grant，但未找到明确条文保证GRANTED可替代后台定位指南的前台授权及设置流程；网站应保留该特殊步骤并提示按目标版本实测，不宣称已自动绕过。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-enterprise-securitymanager/",
+      "confidence": "api-specific"
+    },
+    {
+      "id": "mdm-disallowed-exception",
+      "type": "conditional",
+      "permissions": [
+        "ohos.permission.ENTERPRISE_MANAGE_SECURITY",
+        "ohos.permission.ENTERPRISE_MANAGE_USER_GRANT_PERMISSION"
+      ],
+      "title": "权限禁用例外名单不等于授权",
+      "description": "API26的setDisallowedPermission先禁止某权限，addAllowedPermissionBundle仅让指定已申请该权限的应用不受该禁用策略限制。它不是GRANTED授权接口；解除禁用会清理相应例外名单。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-enterprise-securitymanager/",
+      "confidence": "api-specific"
+    },
+    {
+      "id": "mdm-delegation-keeps-permission",
+      "type": "conditional",
+      "permissions": [
+        "ohos.permission.ENTERPRISE_MANAGE_DELEGATED_POLICY"
+      ],
+      "title": "委托策略仍需被委托应用的对应权限",
+      "description": "setDelegatedPolicies由有效管理员调用；被委托应用需为enterprise_normal或enterprise_mdm，并申请委托策略对应接口所需权限。拥有委托权限不能代替所有目标接口权限，也不应把委托权限自动加到被委托App。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-enterprise-adminmanager/",
+      "confidence": "api-specific"
+    },
+    {
+      "id": "mdm-administrator-state",
+      "type": "conditional",
+      "permissions": [
+        "ohos.permission.ENTERPRISE_GET_DEVICE_INFO",
+        "ohos.permission.ENTERPRISE_GET_NETWORK_INFO",
+        "ohos.permission.ENTERPRISE_INSTALL_BUNDLE",
+        "ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY",
+        "ohos.permission.ENTERPRISE_RESET_DEVICE",
+        "ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY",
+        "ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY",
+        "ohos.permission.ENTERPRISE_SET_DATETIME",
+        "ohos.permission.ENTERPRISE_SET_NETWORK",
+        "ohos.permission.ENTERPRISE_SET_WIFI",
+        "ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT",
+        "ohos.permission.ENTERPRISE_RESTRICT_POLICY",
+        "ohos.permission.ENTERPRISE_SET_SCREENOFF_TIME",
+        "ohos.permission.ENTERPRISE_MANAGE_USB",
+        "ohos.permission.ENTERPRISE_MANAGE_NETWORK",
+        "ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE",
+        "ohos.permission.ENTERPRISE_GET_SETTINGS",
+        "ohos.permission.ENTERPRISE_SET_BROWSER_POLICY",
+        "ohos.permission.SET_ENTERPRISE_INFO",
+        "ohos.permission.ENTERPRISE_MANAGE_SECURITY",
+        "ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH",
+        "ohos.permission.ENTERPRISE_MANAGE_SYSTEM",
+        "ohos.permission.ENTERPRISE_MANAGE_WIFI",
+        "ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS",
+        "ohos.permission.ENTERPRISE_MANAGE_APPLICATION",
+        "ohos.permission.ENTERPRISE_MANAGE_LOCATION",
+        "ohos.permission.ENTERPRISE_REBOOT",
+        "ohos.permission.ENTERPRISE_LOCK_DEVICE",
+        "ohos.permission.ENTERPRISE_MANAGE_SETTINGS",
+        "ohos.permission.ENTERPRISE_OPERATE_DEVICE",
+        "ohos.permission.ENTERPRISE_ADMIN_MANAGE",
+        "ohos.permission.ENTERPRISE_RECOVERY_KEY",
+        "ohos.permission.ENTERPRISE_MANAGE_DELEGATED_POLICY",
+        "ohos.permission.ENTERPRISE_GET_ALL_BUNDLE_INFO",
+        "ohos.permission.ENTERPRISE_SET_USER_RESTRICTION",
+        "ohos.permission.ENTERPRISE_MANAGE_APN",
+        "ohos.permission.ENTERPRISE_MANAGE_TELEPHONY",
+        "ohos.permission.ENTERPRISE_SET_KIOSK",
+        "ohos.permission.ENTERPRISE_MANAGE_LOCAL_PUBLICSPACES",
+        "ohos.permission.ENTERPRISE_FILE_TRANSFER_AUDIT_POLICY_MANAGEMENT",
+        "ohos.permission.ENTERPRISE_SET_WALLPAPER",
+        "ohos.permission.MANAGE_PREINSTALLED_ANTIVIRUS",
+        "ohos.permission.ENTERPRISE_MANAGE_USER_GRANT_PERMISSION",
+        "ohos.permission.ENTERPRISE_DATA_IDENTIFY_FILE",
+        "ohos.permission.ENTERPRISE_ACCESS_DLP_FILE",
+        "ohos.permission.ENTERPRISE_MANAGE_DEVICE_ADMIN",
+        "ohos.permission.ENTERPRISE_START_ABILITIES",
+        "ohos.permission.ENTERPRISE_READ_LOG",
+        "ohos.permission.ENTERPRISE_DEACTIVATE_DEVICE_ADMIN",
+        "ohos.permission.ENTERPRISE_ACTIVATE_DEVICE_ADMIN",
+        "ohos.permission.ENTERPRISE_MANAGE_LOCAL_ACCOUNTS",
+        "ohos.permission.ENTERPRISE_INTERACT_ACROSS_LOCAL_ACCOUNTS",
+        "ohos.permission.ENTERPRISE_VPN",
+        "ohos.permission.ENTERPRISE_REQUEST_PUBLISH_FORM",
+        "ohos.permission.ENTERPRISE_EXTERNAL_READ",
+        "ohos.permission.ENTERPRISE_ENCRYPT_BLOCK_DEVICE"
+      ],
+      "title": "MDM权限声明与管理员激活是不同步骤",
+      "description": "MDM权限列表面向企业设备管理场景；大量MDM接口还校验有效设备管理员及管理范围。签名声明并不自动变成已激活管理员。HEM部署、管理员类型、权限和接口所需系统能力需分别满足；不自动为所有MDM能力添加某个激活权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-enterprise-adminmanager/",
+      "confidence": "api-specific"
+    },
+    {
+      "id": "mdm-activation-paths",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.ENTERPRISE_ADMIN_MANAGE",
+        "ohos.permission.ENTERPRISE_MANAGE_DEVICE_ADMIN",
+        "ohos.permission.ENTERPRISE_ACTIVATE_DEVICE_ADMIN",
+        "ohos.permission.ENTERPRISE_DEACTIVATE_DEVICE_ADMIN"
+      ],
+      "title": "管理员激活和取消激活按调用方角色区分",
+      "description": "enableDeviceAdmin由SDA激活其他DA，当前接口仅PC/2in1；enableSelfDeviceAdmin用于HEM商用部署企业设备上的自身激活，需凭证，接口从API26.0.0起且当前仅PC/2in1。权限条目起始版本不等于某个接口起始版本；自激活权限不代表已激活。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-enterprise-adminmanager/",
+      "confidence": "api-specific"
+    },
+    {
+      "id": "uad-provisioning-versus-policy",
+      "type": "conditional",
+      "permissions": [
+        "ohos.permission.PERSONAL_MANAGE_RESTRICTIONS",
+        "ohos.permission.START_PROVISIONING_MESSAGE"
+      ],
+      "title": "UAD部署与个人设备策略相互区分",
+      "description": "两项均要求UAD场景。START_PROVISIONING_MESSAGE用于启动部署/激活流程，PERSONAL_MANAGE_RESTRICTIONS用于管理个人设备限制策略。startAdminProvision当前API描述为BYOD管理员页面且Phone/Tablet可用，不能把通用MDM/企业应用混同为UAD。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-enterprise-adminmanager/",
+      "confidence": "api-specific"
+    },
+    {
+      "id": "enterprise-signing-boundary",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.SET_FILE_GUARD_POLICY",
+        "ohos.permission.FILE_GUARD_MANAGER",
+        "ohos.permission.FILE_GUARD_FILE_WRITE",
+        "ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS",
+        "ohos.permission.GET_LOCAL_ACCOUNT_IDENTIFIERS",
+        "ohos.permission.GET_DOMAIN_ACCOUNTS",
+        "ohos.permission.QUERY_AUDIT_EVENT",
+        "ohos.permission.ACCESS_ENTERPRISE_USER_TRUSTED_CERT",
+        "ohos.permission.GET_DOMAIN_ACCOUNT_SERVER_CONFIGS",
+        "ohos.permission.MANAGE_DOMAIN_ACCOUNT_SERVER_CONFIGS",
+        "ohos.permission.MANAGE_DOMAIN_ACCOUNTS",
+        "ohos.permission.GET_SIGNATURE_INFO",
+        "ohos.permission.kernel.AUTH_AUDIT_EVENT",
+        "ohos.permission.MANAGE_ANTIVIRUS",
+        "ohos.permission.REGISTER_ANTIVIRUS",
+        "ohos.permission.CALL_TPM_CMD",
+        "ohos.permission.SCAN_REMEDIATE_VIRUS",
+        "ohos.permission.sec.ACCESS_UDID",
+        "ohos.permission.DLP_POLICY_MANAGER",
+        "ohos.permission.ENTERPRISE_GET_DEVICE_INFO",
+        "ohos.permission.ENTERPRISE_GET_NETWORK_INFO",
+        "ohos.permission.ENTERPRISE_INSTALL_BUNDLE",
+        "ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY",
+        "ohos.permission.ENTERPRISE_RESET_DEVICE",
+        "ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY",
+        "ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY",
+        "ohos.permission.ENTERPRISE_SET_DATETIME",
+        "ohos.permission.ENTERPRISE_SET_NETWORK",
+        "ohos.permission.ENTERPRISE_SET_WIFI",
+        "ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT",
+        "ohos.permission.ENTERPRISE_RESTRICT_POLICY",
+        "ohos.permission.ENTERPRISE_SET_SCREENOFF_TIME",
+        "ohos.permission.ENTERPRISE_MANAGE_USB",
+        "ohos.permission.ENTERPRISE_MANAGE_NETWORK",
+        "ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE",
+        "ohos.permission.ENTERPRISE_GET_SETTINGS",
+        "ohos.permission.ENTERPRISE_SET_BROWSER_POLICY",
+        "ohos.permission.SET_ENTERPRISE_INFO",
+        "ohos.permission.ENTERPRISE_MANAGE_SECURITY",
+        "ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH",
+        "ohos.permission.ENTERPRISE_MANAGE_SYSTEM",
+        "ohos.permission.ENTERPRISE_MANAGE_WIFI",
+        "ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS",
+        "ohos.permission.ENTERPRISE_MANAGE_APPLICATION",
+        "ohos.permission.ENTERPRISE_MANAGE_LOCATION",
+        "ohos.permission.ENTERPRISE_REBOOT",
+        "ohos.permission.ENTERPRISE_LOCK_DEVICE",
+        "ohos.permission.ENTERPRISE_MANAGE_SETTINGS",
+        "ohos.permission.ENTERPRISE_OPERATE_DEVICE",
+        "ohos.permission.ENTERPRISE_ADMIN_MANAGE",
+        "ohos.permission.ENTERPRISE_RECOVERY_KEY",
+        "ohos.permission.ENTERPRISE_MANAGE_DELEGATED_POLICY",
+        "ohos.permission.ENTERPRISE_GET_ALL_BUNDLE_INFO",
+        "ohos.permission.ENTERPRISE_SET_USER_RESTRICTION",
+        "ohos.permission.ENTERPRISE_MANAGE_APN",
+        "ohos.permission.ENTERPRISE_MANAGE_TELEPHONY",
+        "ohos.permission.ENTERPRISE_SET_KIOSK",
+        "ohos.permission.ENTERPRISE_MANAGE_LOCAL_PUBLICSPACES",
+        "ohos.permission.ENTERPRISE_FILE_TRANSFER_AUDIT_POLICY_MANAGEMENT",
+        "ohos.permission.ENTERPRISE_SET_WALLPAPER",
+        "ohos.permission.MANAGE_PREINSTALLED_ANTIVIRUS",
+        "ohos.permission.ENTERPRISE_MANAGE_USER_GRANT_PERMISSION",
+        "ohos.permission.ENTERPRISE_DATA_IDENTIFY_FILE",
+        "ohos.permission.ENTERPRISE_ACCESS_DLP_FILE",
+        "ohos.permission.ENTERPRISE_MANAGE_DEVICE_ADMIN",
+        "ohos.permission.ENTERPRISE_START_ABILITIES",
+        "ohos.permission.ENTERPRISE_READ_LOG",
+        "ohos.permission.ENTERPRISE_DEACTIVATE_DEVICE_ADMIN",
+        "ohos.permission.ENTERPRISE_ACTIVATE_DEVICE_ADMIN",
+        "ohos.permission.ENTERPRISE_MANAGE_LOCAL_ACCOUNTS",
+        "ohos.permission.ENTERPRISE_INTERACT_ACROSS_LOCAL_ACCOUNTS",
+        "ohos.permission.ENTERPRISE_VPN",
+        "ohos.permission.ENTERPRISE_REQUEST_PUBLISH_FORM",
+        "ohos.permission.ENTERPRISE_EXTERNAL_READ",
+        "ohos.permission.ENTERPRISE_ENCRYPT_BLOCK_DEVICE"
+      ],
+      "title": "企业分发资格不等于运行时授权",
+      "description": "企业普通和MDM应用需对应分发资格、证书及Profile，企业权限指南要求手动签名。业务App是否被MDM管理与它自身申请何种开放范围权限是两个判断，静默用户授权不能推导出免除受限权限审批或配置。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps",
+      "confidence": "documented"
+    },
+    {
+      "id": "dlp-capabilities-separated",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.ACCESS_DLP_SERVICE",
+        "ohos.permission.DLP_GET_HIDE_STATUS",
+        "ohos.permission.DLP_POLICY_MANAGER",
+        "ohos.permission.ENTERPRISE_ACCESS_DLP_FILE",
+        "ohos.permission.ENTERPRISE_DATA_IDENTIFY_FILE"
+      ],
+      "title": "DLP各能力不是一个总开关",
+      "description": "连云插件注册、屏幕窥视隐藏状态、透明加解密策略、DLP文件生成解密、文件敏感内容识别分别由不同权限保护；前两项可受限开放、策略属于企业普通、后两项仅MDM。没有依据把它们互相替代或一选全部附加。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions",
+      "confidence": "documented"
+    },
+    {
+      "id": "file-guard-separated",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.SET_FILE_GUARD_POLICY",
+        "ohos.permission.FILE_GUARD_MANAGER",
+        "ohos.permission.FILE_GUARD_FILE_WRITE"
+      ],
+      "title": "文件管控策略、标签扫描与文件写入分别选择",
+      "description": "下发文件管控策略、扫描公共目录及设置密级标签、获取指定文件写权限是不同操作。列表没有定义三者必须同时声明，按实际接口分别选择；标签/策略权限不代表已有任意文件写权。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps",
+      "confidence": "documented"
+    },
+    {
+      "id": "audit-query-versus-block",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.QUERY_AUDIT_EVENT",
+        "ohos.permission.kernel.AUTH_AUDIT_EVENT"
+      ],
+      "title": "审计查询不等于阻断权限",
+      "description": "QUERY_AUDIT_EVENT用于查询安全审计事件；kernel.AUTH_AUDIT_EVENT用于对文件创建、打开、删除等安全事件阻断。它们不应互相推导或默认联选。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps",
+      "confidence": "documented"
+    },
+    {
+      "id": "antivirus-separate-actors",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.MANAGE_ANTIVIRUS",
+        "ohos.permission.REGISTER_ANTIVIRUS",
+        "ohos.permission.SCAN_REMEDIATE_VIRUS",
+        "ohos.permission.MANAGE_PREINSTALLED_ANTIVIRUS"
+      ],
+      "title": "防病毒管理、注册、扫描和预装管理分开",
+      "description": "企业管理者、防病毒软件自身注册、杀毒扫描处置、MDM管理预装杀毒软件分别是不同角色与能力。不因选择杀毒功能而给普通应用附加全部企业/MDM权限。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps",
+      "confidence": "documented"
+    },
+    {
+      "id": "enterprise-vpn-consent",
+      "type": "authorization",
+      "permissions": [
+        "ohos.permission.ENTERPRISE_VPN"
+      ],
+      "title": "MDM的VPN接入授权例外",
+      "description": "该权限允许设备管理应用无需用户确认默认接入VPN，仅当前条目的PC/2in1企业MDM场景。它不是所有用户授权权限的总免确认开关，也不替代网络、VPN接口自身配置要求。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/permissions-for-mdm-apps/",
+      "confidence": "documented"
+    },
+    {
+      "id": "tracking-system-switch",
+      "type": "authorization",
+      "permissions": [
+        "ohos.permission.APP_TRACKING_CONSENT"
+      ],
+      "title": "关联开关影响是否弹窗",
+      "description": "该权限仍属于user_grant，但系统跨应用关联开关关闭时请求可不弹窗并默认授予，开启时需用户确认。这是该权限自身授权例外，不是由其他普通权限自动授予。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-permission-group-list/",
+      "confidence": "documented"
+    },
+    {
+      "id": "local-authorization-interaction",
+      "type": "conditional",
+      "permissions": [
+        "ohos.permission.REQUEST_LOCAL_ACCOUNT_AUTHORIZATION",
+        "ohos.permission.kernel.NET_RAW",
+        "ohos.permission.kernel.USB_CAPTURE"
+      ],
+      "title": "系统授权类也可能有身份认证交互",
+      "description": "REQUEST_LOCAL_ACCOUNT_AUTHORIZATION提供本地账号授权入口，在用户通过系统身份认证后授予目标特权。网络/USB抓包条目也要求用户认证；仅系统安装授予权限并不保证实际敏感操作无弹窗。具体是否联用此入口依实际API，不自动附加。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all",
+      "confidence": "documented"
+    },
+    {
+      "id": "biometric-no-camera-dependency",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.ACCESS_BIOMETRIC",
+        "ohos.permission.CAMERA",
+        "ohos.permission.MICROPHONE"
+      ],
+      "title": "系统身份认证与相机麦克风采集区分",
+      "description": "ACCESS_BIOMETRIC允许调用系统生物特征身份认证能力，权限列表没有规定因此必须申请CAMERA或MICROPHONE。只有应用自己采集相机/麦克风数据时才另按相应场景选择。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all",
+      "confidence": "documented"
+    },
+    {
+      "id": "certificate-distinct-access",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.ACCESS_CERT_MANAGER",
+        "ohos.permission.ACCESS_ENTERPRISE_USER_TRUSTED_CERT",
+        "ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE",
+        "ohos.permission.CRYPTO_EXTENSION_REGISTER",
+        "ohos.permission.ACCESS_SE_KEY"
+      ],
+      "title": "证书查询、企业CA、MDM证书策略和密码扩展不同",
+      "description": "这些权限分别保护证书/凭据查询、企业用户CA管理、MDM证书管理、crypto扩展注册及安全芯片密钥。不得因都涉及证书或密钥而视作继承权限或全部联选；硬件与厂商资质仍按条目核对。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps",
+      "confidence": "documented"
+    },
+    {
+      "id": "account-distinct-operations",
+      "type": "scope",
+      "permissions": [
+        "ohos.permission.GET_LOCAL_ACCOUNT_IDENTIFIERS",
+        "ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS",
+        "ohos.permission.GET_DOMAIN_ACCOUNTS",
+        "ohos.permission.GET_DOMAIN_ACCOUNT_SERVER_CONFIGS",
+        "ohos.permission.MANAGE_DOMAIN_ACCOUNT_SERVER_CONFIGS",
+        "ohos.permission.MANAGE_DOMAIN_ACCOUNTS",
+        "ohos.permission.ENTERPRISE_MANAGE_LOCAL_ACCOUNTS",
+        "ohos.permission.ENTERPRISE_INTERACT_ACROSS_LOCAL_ACCOUNTS"
+      ],
+      "title": "账号发现、跨用户交互与账号管理分开",
+      "description": "查询账号标识、跨本地账号交互、域账号查询/管理、MDM本地账号管理和多用户操作是不同权限。读取标识不等于已获管理权限；企业普通与MDM的相似名称不能互换。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-enterprise-apps",
+      "confidence": "documented"
+    },
+    {
+      "id": "digital-identity-issuer",
+      "type": "conditional",
+      "permissions": [
+        "ohos.permission.ACCESS_DIGITAL_IDENTITY",
+        "ohos.permission.ACCESS_SE_KEY",
+        "ohos.permission.ACCESS_FIDO2_ONLINEAUTH"
+      ],
+      "title": "数字凭证、数字盾和通行密钥不是等价授权",
+      "description": "数字凭证导入需企业主体和颁发/授权资格，安全芯片密钥受数字盾场景及硬件支持限制，FIDO2权限保护通行密钥NDK。选择一种身份认证不能推导另两项必需或已授权。",
+      "source": "https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/restricted-permissions",
+      "confidence": "documented"
+    }
+  ],
+  "permissionGroups": [
+    {
+      "id": "location",
+      "title": "位置",
+      "permissions": [
+        "ohos.permission.LOCATION_IN_BACKGROUND",
+        "ohos.permission.LOCATION",
+        "ohos.permission.APPROXIMATELY_LOCATION"
+      ],
+      "since": null,
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-permission-group-list/"
+    },
+    {
+      "id": "camera",
+      "title": "相机",
+      "permissions": [
+        "ohos.permission.CAMERA"
+      ],
+      "since": null,
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-permission-group-list/"
+    },
+    {
+      "id": "microphone",
+      "title": "麦克风",
+      "permissions": [
+        "ohos.permission.MICROPHONE"
+      ],
+      "since": null,
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-permission-group-list/"
+    },
+    {
+      "id": "contacts",
+      "title": "通讯录",
+      "permissions": [
+        "ohos.permission.READ_CONTACTS",
+        "ohos.permission.WRITE_CONTACTS"
+      ],
+      "since": null,
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-permission-group-list/"
+    },
+    {
+      "id": "calendar",
+      "title": "日历",
+      "permissions": [
+        "ohos.permission.READ_CALENDAR",
+        "ohos.permission.WRITE_CALENDAR",
+        "ohos.permission.READ_WHOLE_CALENDAR",
+        "ohos.permission.WRITE_WHOLE_CALENDAR"
+      ],
+      "since": null,
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-permission-group-list/"
+    },
+    {
+      "id": "motion",
+      "title": "运动数据",
+      "permissions": [
+        "ohos.permission.ACTIVITY_MOTION"
+      ],
+      "since": null,
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-permission-group-list/"
+    },
+    {
+      "id": "health",
+      "title": "身体传感器",
+      "permissions": [
+        "ohos.permission.READ_HEALTH_DATA"
+      ],
+      "since": null,
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-permission-group-list/"
+    },
+    {
+      "id": "imagevideo",
+      "title": "图片和视频",
+      "permissions": [
+        "ohos.permission.WRITE_IMAGEVIDEO",
+        "ohos.permission.READ_IMAGEVIDEO",
+        "ohos.permission.MEDIA_LOCATION"
+      ],
+      "since": null,
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-permission-group-list/"
+    },
+    {
+      "id": "audio",
+      "title": "音乐和音频",
+      "permissions": [
+        "ohos.permission.WRITE_AUDIO",
+        "ohos.permission.READ_AUDIO"
+      ],
+      "since": null,
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-permission-group-list/"
+    },
+    {
+      "id": "tracking",
+      "title": "跨应用关联",
+      "permissions": [
+        "ohos.permission.APP_TRACKING_CONSENT"
+      ],
+      "since": null,
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-permission-group-list/"
+    },
+    {
+      "id": "discovery",
+      "title": "设备发现和连接",
+      "permissions": [
+        "ohos.permission.ACCESS_BLUETOOTH",
+        "ohos.permission.ACCESS_NEARLINK",
+        "ohos.permission.DISTRIBUTED_DATASYNC"
+      ],
+      "since": "13",
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-permission-group-list/"
+    },
+    {
+      "id": "pasteboard",
+      "title": "剪贴板",
+      "permissions": [
+        "ohos.permission.READ_PASTEBOARD"
+      ],
+      "since": null,
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-permission-group-list/"
+    },
+    {
+      "id": "screenshot",
+      "title": "截屏",
+      "permissions": [
+        "ohos.permission.CUSTOM_SCREEN_CAPTURE"
+      ],
+      "since": null,
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-permission-group-list/"
+    },
+    {
+      "id": "folders",
+      "title": "文件夹",
+      "permissions": [
+        "ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY",
+        "ohos.permission.READ_WRITE_DESKTOP_DIRECTORY",
+        "ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY"
+      ],
+      "since": null,
+      "source": "https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/app-permission-group-list/"
+    }
+  ],
+  "unmappedUserGrantPermissions": [
+    "ohos.permission.FLOAT_VIEW",
+    "ohos.permission.GET_ALL_BUNDLE_INFO",
+    "ohos.permission.DIRECT_CALL"
+  ],
+  "groupCautions": [
+    "权限组列表当前明确覆盖27个未废弃user_grant权限；FLOAT_VIEW、GET_ALL_BUNDLE_INFO、DIRECT_CALL未在该组页列出，不能虚构分组。",
+    "设备发现和连接合组从API13起，较早版本应分开处理。",
+    "位置、通讯录、日历组不适用同意后整组一律授予的简单假设。",
+    "权限组页的设备说明与更新的个别权限条目有出入，支持范围优先按目标API与设备核对；不要根据组页旧说明覆盖权限列表的最新设备元数据。"
+  ],
+  "limitations": [
+    "管理API没有给出保证所有user_grant在所有设备版本可静默的白名单；结果展示应为策略计划或可管理路径，实际以设备管理员状态、资格、分组和接口返回结果为准。",
+    "后台定位的前台及设置前置没有找到明确MDM覆盖条文，应保留特殊流程和验证提示。"
+  ]
+}
