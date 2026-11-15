@@ -183,3 +183,11 @@ test('推导版本包含设备及开放版本例外，资格不匹配仍单独�
  assert.equal(guard.compatibility.minimumApi,'15');
  assert.match(guard.permissions[0].minimumApiReason,/API14开放边界不明确/);
 });
+
+test('未单列设备字段不产生额外警告，官方明确设备限制仍保留',()=>{
+ const result=run(['internet','network','privacy']);
+ for(const permission of result.permissions) assert.ok(!permission.warnings.some(note=>note.includes('未明确设备范围')));
+ const restricted=run(['vibrate'],{device:'Car'});
+ assert.equal(restricted.permissions[0].eligible,false);
+ assert.ok(restricted.permissions[0].blocks.some(note=>note.includes('支持设备')));
+});
