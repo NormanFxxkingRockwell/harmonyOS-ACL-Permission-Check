@@ -6,7 +6,7 @@ import { domains, domainFor } from '../src/domains.js';
 import { renderCoverage } from '../src/coverage.js';
 import { renderResultsPanel } from '../src/results.js';
 const catalog=JSON.parse(await readFile(new URL('../data/permissions.json',import.meta.url),'utf8')).permissions;
-const run=(selected,extra={})=>evaluate({...initialState(),selected,...extra},catalog);
+const run=(selected,extra={})=>evaluate({...initialState(),device:'Phone',selected,...extra},catalog);
 const names=result=>result.permissions.map(p=>p.name.replace('ohos.permission.','')).sort();
 test('仅访问互联网不会额外索取网络信息或Wi-Fi权限',()=>assert.deepEqual(names(run(['internet'])),['INTERNET']));
 test('拍照、静音录像与有声录像区分麦克风，重复来源去重',()=>{

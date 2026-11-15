@@ -9,7 +9,7 @@ import { domainFor } from '../src/domains.js';
 
 const catalog = JSON.parse(await readFile(new URL('../data/permissions.json', import.meta.url), 'utf8')).permissions;
 const full = name => `ohos.permission.${name}`;
-const run = (selected = [], overrides = {}) => evaluate({ ...initialState(), selected, ...overrides }, catalog);
+const run = (selected = [], overrides = {}) => evaluate({ ...initialState(), device: 'Phone', selected, ...overrides }, catalog);
 const extra = (shortNames, overrides = {}) => {
   const names = shortNames.map(full);
   return run([], { extraPermissions: names, confirmedQualifications: names, ...overrides });
