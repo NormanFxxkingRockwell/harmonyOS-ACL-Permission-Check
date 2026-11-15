@@ -4,13 +4,13 @@ import { expandRequirements } from './relations.js';
 import { minimumPermissionVersion } from './constraints.js';
 const s = (id, step, title, description, permissions, extra = {}) => ({ id, step, title, description, permissions, ...extra });
 export const steps = [
-  { title: '应用概况', subtitle: '先了解应用的基本情况', description: '选择应用类型和运行设备。权限清单根据后面的功能选择整理。' },
-  { title: '网络与连接', subtitle: '应用需要联网或连接设备吗？', description: '按实际功能选择，例如加载网页、连接蓝牙耳机。' },
-  { title: '相机与媒体', subtitle: '应用需要拍照、录音或使用照片吗？', description: '选择用户会做的操作。拍照、录音、手选照片和自动备份图库分别判断。' },
-  { title: '数据与系统', subtitle: '应用需要读取哪些数据？', description: '按实际操作选择，例如查看位置、读取日历、打开文件。用户手选文件与应用自动读取会分开判断。' },
-  { title: '企业与设备', subtitle: '应用需要保护文件或管理设备吗？', description: '这里是企业文件保护、远程控制等功能。不需要可以继续下一步。' },
-  { title: '完整能力核对', subtitle: '还有其他功能需要权限吗？', description: '按13个分类检查剩余功能，补上前面没有选到的需求。' },
-  { title: '权限清单', subtitle: '所选功能涉及的权限', description: '查看权限用途、直接声明或官网申请方式，以及官方提供的其他实现方案。' }
+  { title: '应用概况', subtitle: '先了解应用的基本情况' },
+  { title: '网络与连接', subtitle: '应用需要联网或连接设备吗？' },
+  { title: '相机与媒体', subtitle: '应用需要拍照、录音或使用照片吗？' },
+  { title: '数据与系统', subtitle: '应用需要读取哪些数据？' },
+  { title: '企业与设备', subtitle: '应用需要保护文件或管理设备吗？' },
+  { title: '完整能力核对', subtitle: '还有其他功能需要权限吗？' },
+  { title: '权限清单', subtitle: '所选功能涉及的权限' }
 ];
 export const scenes = [
   s('internet',1,'是否需要访问互联网？','例如：登录账号、加载网页、上传照片或下载文件。',['INTERNET'],{ icon:'↗', tag:'常用' }),
