@@ -15,10 +15,32 @@ test('拍照、静音录像与有声录像区分麦克风，重复来源去重',
  assert.equal(run(['photo','video'],{videoAudio:true}).permissions.find(p=>p.name.endsWith('.CAMERA')).sceneIds.length,2);
  assert.deepEqual(names(run(['record'],{videoAudio:false})),['MICROPHONE']);
 });
-test('Picker、播放、保存控件、粘贴控件和自身通知不增加批量权限',()=>{
- const result=run(['photo-picker','audio-picker','photo-save','contacts-picker','paste-control','notification','files-picker']);
- assert.equal(result.permissions.length,0);assert.equal(result.alternatives.length,7);
+test('选择功能保留对应权限，系统替代方案不自动删除权限',()=>{
+ const selected=['photo-picker','audio-picker','photo-save','contacts-picker','paste-control'];
+ const result=run(selected);
+ assert.deepEqual(names(result),['READ_AUDIO','READ_CONTACTS','READ_IMAGEVIDEO','READ_PASTEBOARD','WRITE_IMAGEVIDEO']);
+ assert.equal(result.alternatives.length,0);
+ assert.ok(makeConfig(result).moduleFragment.module.requestPermissions.some(p=>p.name==='ohos.permission.WRITE_IMAGEVIDEO'));
+ const html=renderResultsPanel(result,{state:{...initialState(),selected},deviceNames:{Phone:'手机','PC/2in1':'电脑'},categoryNames:{'受限开放权限':'受限开放'},routeNames:{acl:'官网申请'},grantLabel:()=>'',sceneCount:scenes.length,catalogCount:290,domainCount:13});
+ for(const permission of result.permissions) assert.ok(html.includes(permission.name));
+ assert.match(html,/也可不申请此权限/);
+ assert.match(html,/photoaccesshelper-savebutton/);
+ assert.match(html,/photoaccesshelper-photoviewpicker/);
+ assert.match(html,/contacts-intro/);
+ assert.match(html,/pastebutton/);
+ const deselected=run(['photo-picker']);
+ assert.ok(!names(deselected).includes('WRITE_IMAGEVIDEO'));
+ const shared=run(['photo-picker','photo-bulk']);
+ assert.equal(shared.permissions.length,1);
+ assert.equal(shared.permissions[0].sceneIds.length,2);
 });
+
+test('单纯播放、自身通知和手选文档不凭空关联无关权限',()=>{
+ const result=run(['audio-play','notification','files-picker']);
+ assert.equal(result.permissions.length,0);
+ assert.equal(result.alternatives.length,3);
+});
+
 test('精确定位必须包含模糊定位，长时任务和后台权限分别处理',()=>{
  assert.deepEqual(names(run(['location'])),['APPROXIMATELY_LOCATION']);
  assert.deepEqual(names(run(['location'],{accuracy:'precise',background:'permission'})),['APPROXIMATELY_LOCATION','LOCATION','LOCATION_IN_BACKGROUND']);

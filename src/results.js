@@ -1,3 +1,4 @@
+import { alternativeFor } from './permission-alternatives.js';
 import { permissionCopy } from './scenario-copy.js';
 import { makeConfig } from './rules.js';
 
@@ -15,6 +16,7 @@ const groupDescriptions = {
 
 function permissionRow(permission, context) {
   const { routeNames, grantLabel } = context;
+  const alternative = alternativeFor(permission);
   const notes = [...permission.blocks, ...permission.sceneNotes, ...permission.warnings];
   if (permission.name.endsWith('.LOCATION_IN_BACKGROUND')) {
     notes.push('先取得前台位置权限，再引导用户在系统设置中授予后台位置权限。');
@@ -25,6 +27,7 @@ function permissionRow(permission, context) {
       <p>${escape(permissionCopy(permission).question.replace(/^是否需要/,'用于').replace(/？$/,''))}</p>
       ${permission.autoAdded?`<div class="inferred-permission">自动补齐 · ${permission.requiredBy.map(name=>escape(name.replace('ohos.permission.',''))).join('、')} 的必需权限</div>`:''}
       ${permission.blocks.length ? `<div class="block-reason">暂不能加入配置：${escape(permission.blocks.join(' '))}</div>` : ''}
+      ${alternative?`<div class="permission-alternative"><strong>也可不申请此权限</strong><p>${escape(alternative.text)}</p><a href="${escape(alternative.url)}" target="_blank" rel="noopener noreferrer">官方替代方案 ↗</a></div>`:''}
       ${notes.length ? `<details class="row-notes"><summary>限制与说明 <span>${notes.length}</span></summary><ul>${notes.map(note => `<li>${escape(note)}</li>`).join('')}</ul></details>` : ''}
     </td>
     <td data-label="申请与授权"><span class="tag ${permission.route === 'direct' ? 'neutral' : 'red'}">${routeNames[permission.route]}</span><span class="grant-line">${grantLabel(permission)}</span></td>
@@ -54,7 +57,7 @@ export function renderResultsPanel(result, context) {
   </div>
   <div class="result-overview"><span>涉及权限 <b>${result.permissions.length}</b></span><span>可直接声明 <b>${direct}</b></span><span>需官网申请 <b>${apply}</b></span><span class="${blocked ? 'has-blocks' : ''}">条件待满足 <b>${blocked}</b></span></div>
   <div class="result-regions">${sections || (!result.alternatives.length ? '<div class="result-empty">尚未选择场景，返回向导选择需要的功能即可生成清单。</div>' : '')}</div>
-  ${result.alternatives.length ? `<section class="result-region alternatives-region"><div class="region-header"><div><h2>无需额外声明的场景<span class="region-count">${result.alternatives.length}</span></h2><p>使用系统选择器、控件或专门授权流程完成接入。</p></div></div><div class="alternatives-grid">${result.alternatives.map(scene => `<article><h3>${scene.title}</h3><p>${scene.note}</p></article>`).join('')}</div></section>` : ''}
+  ${result.alternatives.length ? `<section class="result-region alternatives-region"><div class="region-header"><div><h2>无需权限声明的操作<span class="region-count">${result.alternatives.length}</span></h2><p>以下操作本身不对应额外声明权限，具体接入方式见说明。</p></div></div><div class="alternatives-grid">${result.alternatives.map(scene => `<article><h3>${scene.title}</h3><p>${scene.note}</p></article>`).join('')}</div></section>` : ''}
   <details class="config-panel"><summary><span><strong>声明配置</strong><small>按需展开并复制 module.json5 片段</small></span><span class="expand-label">展开</span></summary><div class="config-content">
     <div class="config-heading"><h3>module.json5</h3><button class="copy-button" data-copy="module">复制配置</button></div>
     <pre>${escape(JSON.stringify(config.moduleFragment, null, 2))}</pre>

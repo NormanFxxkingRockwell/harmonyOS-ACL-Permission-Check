@@ -12,7 +12,7 @@ test('所有在用权限都有功能提问和最小例子，没有遗留或虚�
     assert.match(copy.example, /^例如[：:]/, permission.name);
     assert.ok(copy.question.length < 100, permission.name);
   }
-  assert.equal(scenes.length, 40);
+  assert.equal(scenes.length, 41);
   for (const scene of scenes) assert.match(scene.title, /^是否.+？$/);
 });
 test('配置里的用途说明不会把向导问句原样拼进去', () => {

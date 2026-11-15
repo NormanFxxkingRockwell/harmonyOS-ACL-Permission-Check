@@ -466,3 +466,8 @@ dialog h2 { font: 600 16px/1.8 Consolas,monospace; overflow-wrap: anywhere; }
 
 .scene-notes-panel { background:#fff; border-style:dashed; }
 .scene-notes-panel>h3 { color:#787883; font-weight:500; }
+
+.permission-alternative { padding:10px 12px; margin-top:10px; border-left:2px solid #d5d5dc; background:#f7f7f9; font-size:11px; line-height:1.8; }
+.permission-alternative strong { color:#61616c; font-weight:600; }
+.permission-alternative p { color:#858591; margin:4px 0; }
+.permission-alternative a { color:#a35c66; }
