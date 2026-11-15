@@ -153,3 +153,33 @@ test('完整能力核对页不展示额外申请条件确认入口',()=>{
  assert.ok(!html.includes('申请条件确认'));
  assert.match(html,/直接声明/);
 });
+
+test('自动取所选权限的版本上限，取消权限后重新降低',()=>{
+ const full=n=>'ohos.permission.'+n;
+ const auto=(names,overrides={})=>evaluate({...initialState(),extraPermissions:names.map(full),...overrides},catalog);
+ assert.equal(auto(['INTERNET']).compatibility.minimumApi,'9');
+ assert.equal(auto(['INTERNET','USE_FLOAT_BALL']).compatibility.minimumApi,'26.0.0');
+ assert.equal(auto(['INTERNET','USE_FLOAT_BALL']).permissions.find(p=>p.name===full('USE_FLOAT_BALL')).eligible,true);
+ assert.equal(auto(['INTERNET']).compatibility.minimumApi,'9');
+ assert.equal(auto(['EXEC_PUBLIC_CLI_TOOL','USE_FLOAT_BALL']).compatibility.minimumApi,'26.0.1');
+ assert.deepEqual(auto(['EXEC_PUBLIC_CLI_TOOL','USE_FLOAT_BALL']).compatibility.determinedBy,[full('EXEC_PUBLIC_CLI_TOOL')]);
+ assert.equal(auto([]).compatibility.minimumApi,null);
+});
+
+test('推导版本包含设备及开放版本例外，资格不匹配仍单独提示',()=>{
+ const auto=(name,overrides={})=>evaluate({...initialState(),extraPermissions:['ohos.permission.'+name],...overrides},catalog);
+ for(const [name,device,expected] of [
+  ['SET_WINDOW_TRANSPARENT','Tablet','23'],['CUSTOM_SCREEN_CAPTURE','Phone','21'],
+  ['PRIVACY_WINDOW','Phone','11'],['GET_WIFI_LOCAL_MAC','PC/2in1','16'],
+  ['ENTERPRISE_ACCESS_DLP_FILE','PC/2in1','21']
+ ]) assert.equal(auto(name,{device}).compatibility.minimumApi,expected,name);
+ const restricted=auto('ENTERPRISE_ACCESS_DLP_FILE');
+ assert.equal(restricted.permissions[0].eligible,false);
+ assert.equal(restricted.compatibility.conditionsUnmet.length,1);
+ const precise=auto('LOCATION');
+ assert.deepEqual(names(precise),['APPROXIMATELY_LOCATION','LOCATION']);
+ assert.equal(precise.compatibility.minimumApi,'9');
+ const guard=auto('FILE_GUARD_MANAGER',{type:'enterprise'});
+ assert.equal(guard.compatibility.minimumApi,'15');
+ assert.match(guard.permissions[0].minimumApiReason,/API14开放边界不明确/);
+});

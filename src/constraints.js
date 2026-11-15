@@ -19,6 +19,18 @@ const deviceVersions = {
   CUSTOM_SCREEN_RECORDING:{TV:'26.0.0'}
 };
 
+// Reuse the reviewed eligibility boundaries when deriving a permission version floor.
+export function minimumPermissionVersion(permission, state, compareVersions) {
+  const name = permission.name.replace('ohos.permission.','');
+  const requirements = [{version:permission.since, reason:'权限起始版本'}];
+  if (openingVersions[name]) requirements.push({version:openingVersions[name],reason:'面向当前应用开放的版本'});
+  if (deviceVersions[name]?.[state.device]) requirements.push({version:deviceVersions[name][state.device],reason:'所选设备开始支持的版本'});
+  if (name==='PRIVACY_WINDOW') requirements.push({version:'11',reason:'面向普通应用开放的版本'});
+  if (['GET_WIFI_LOCAL_MAC','GET_ETHERNET_LOCAL_MAC'].includes(name)&&state.device==='PC/2in1') requirements.push({version:'16',reason:'电脑端面向普通应用开放的版本'});
+  if (['SET_FILE_GUARD_POLICY','FILE_GUARD_MANAGER'].includes(name)) requirements.push({version:'15',reason:'API14开放边界不明确，本工具从API15计算'});
+  return requirements.reduce((highest,item)=>compareVersions(item.version,highest.version)>0?item:highest);
+}
+
 export function extraConstraints(permission, state, compareVersions) {
   const name = permission.name.replace('ohos.permission.','');
   const blocks = [], warnings = [];

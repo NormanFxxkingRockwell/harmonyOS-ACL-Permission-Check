@@ -1,6 +1,6 @@
 import { permissionCopy, purposeFromQuestion } from './scenario-copy.js';
 import { expandRequirements, applyRelationships, requirementEdges } from './relations.js';
-import { extraConstraints } from './constraints.js';
+import { extraConstraints, minimumPermissionVersion } from './constraints.js';
 const s = (id, step, title, description, permissions, extra = {}) => ({ id, step, title, description, permissions, ...extra });
 export const steps = [
   { title: '应用概况', subtitle: '先了解应用的基本情况', description: '选择应用如何分发、在哪些设备上运行，帮你排除不能申请的权限。' },
@@ -54,7 +54,7 @@ export const scenes = [
   s('mdm-apps',4,'是否需要替管理员安装或卸载应用？','例如：企业设备管理应用给办公设备统一安装业务应用。',['ENTERPRISE_INSTALL_BUNDLE'],{icon:'▦',tag:'MDM'}),
   s('mdm-usb',4,'是否需要由管理员管控设备的 USB 使用？','例如：企业设备管理应用按公司规则设置 USB 使用策略。',['ENTERPRISE_MANAGE_USB'],{icon:'⇄',tag:'MDM'})
 ];
-export const initialState = () => ({ step:0, type:'normal', developerType:'unknown', form:'app', device:'PC/2in1', api:'26.0.0', selected:[], extraPermissions:[], managedByMdm:false, mdmGroupPolicies:{}, videoAudio:false, accuracy:'approximate', background:'none', contactsWrite:false });
+export const initialState = () => ({ step:0, type:'normal', developerType:'unknown', form:'app', device:'PC/2in1', selected:[], extraPermissions:[], managedByMdm:false, mdmGroupPolicies:{}, videoAudio:false, accuracy:'approximate', background:'none', contactsWrite:false });
 export function compareVersions(a,b) { const x=String(a).split('.').map(Number),y=String(b).split('.').map(Number); for(let i=0;i<Math.max(x.length,y.length);i++){const d=(x[i]||0)-(y[i]||0);if(d)return Math.sign(d);}return 0; }
 export function routeFor(p) {
   if(p.category==='仅MDM应用可用权限')return 'mdm';
@@ -79,6 +79,14 @@ export function evaluate(state, catalog) {
     }
   }
   expandRequirements(wanted);
+  const requiredVersions = new Map([...wanted.keys()].map(name=>{
+    const permission=catalog.find(p=>p.name===name);
+    if(!permission)throw new Error('Missing permission: '+name);
+    return [name,minimumPermissionVersion(permission,state,compareVersions)];
+  }));
+  const minimumApi = [...requiredVersions.values()].reduce((highest,item)=>!highest||compareVersions(item.version,highest)>0?item.version:highest,null);
+  // Explicit API remains available for historical rule tests; the UI always derives it.
+  state={...state,api:state.api||minimumApi||'26.0.1'};
   const permissions=[...wanted].map(([name,why])=>{
     const p=catalog.find(p=>p.name===name);if(!p)throw new Error('Missing permission: '+name);
     const route=routeFor(p),blocks=[],warnings=[];
@@ -97,7 +105,7 @@ export function evaluate(state, catalog) {
     if(!p.devices)warnings.push('权限列表未明确设备范围，需再核对实际 API 的设备支持。');
     const additional=extraConstraints(p,state,compareVersions);blocks.push(...additional.blocks);warnings.push(...additional.warnings);
     const sceneNotes=[...new Set(why.sceneIds.map(id=>scenes.find(s=>s.id===id)?.note).filter(Boolean))];
-    return {...p,...why,route,blocks:[...new Set(blocks)],warnings,sceneNotes,eligible:blocks.length===0};
+    return {...p,...why,minimumApi:requiredVersions.get(name).version,minimumApiReason:requiredVersions.get(name).reason,route,blocks:[...new Set(blocks)],warnings,sceneNotes,eligible:blocks.length===0};
   });
   // A derived prerequisite should not leak into configuration when every
   // requesting capability is currently blocked. Explicit selections remain.
@@ -115,7 +123,10 @@ export function evaluate(state, catalog) {
     if(!changed)break;
   }
   const relationshipResult=applyRelationships(state,permissions,compareVersions);
-  return {permissions,alternatives,...relationshipResult};
+  return {permissions,alternatives,compatibility:{minimumApi,
+    determinedBy:permissions.filter(p=>minimumApi&&compareVersions(p.minimumApi,minimumApi)===0).map(p=>p.name),
+    conditionsUnmet:permissions.filter(p=>!p.eligible).map(p=>p.name)
+  },...relationshipResult};
 }
 export function makeConfig(result) {
   const strings=[];

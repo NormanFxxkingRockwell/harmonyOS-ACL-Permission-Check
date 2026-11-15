@@ -32,7 +32,7 @@ function permissionRow(permission, context) {
     </td>
     <td data-label="申请与授权"><span class="tag ${permission.route === 'direct' ? 'neutral' : 'red'}">${routeNames[permission.route]}</span><span class="grant-line">${grantLabel(permission)}</span></td>
     <td data-label="触发场景" class="row-source">${escape(permission.reasons.join('、'))}</td>
-    <td class="row-version" data-label="等级 / 版本"><span>${permission.level}</span><small>API ${permission.since}+</small></td>
+    <td class="row-version" data-label="等级 / 所需 API"><span>${permission.level}</span><small title="${escape(permission.minimumApiReason||'权限起始版本')}">API ${permission.minimumApi||permission.since}+</small></td>
   </tr>`;
 }
 
@@ -47,15 +47,16 @@ export function renderResultsPanel(result, context) {
     if (!rows.length) return '';
     return `<section class="result-region">
       <div class="region-header"><div><h2><span class="region-index">0${index + 1}</span>${title}<span class="region-count">${rows.length}</span></h2><p>${groupDescriptions[category]}</p></div></div>
-      <table class="permission-table"><thead><tr><th scope="col">权限 / 用途</th><th scope="col">申请与授权</th><th scope="col">触发场景</th><th scope="col">等级 / 版本</th></tr></thead><tbody>${rows.map(p => permissionRow(p, context)).join('')}</tbody></table>
+      <table class="permission-table"><thead><tr><th scope="col">权限 / 用途</th><th scope="col">申请与授权</th><th scope="col">触发场景</th><th scope="col">等级 / 所需 API</th></tr></thead><tbody>${rows.map(p => permissionRow(p, context)).join('')}</tbody></table>
     </section>`;
   }).join('');
 
   return `<div class="result-toolbar">
-    <div><h2>当前方案</h2><p>${deviceNames[state.device]} · 最低 API ${escape(state.api)} · ${state.selected.length} 个常见场景 · ${(state.extraPermissions||[]).length} 项补充能力</p></div>
+    <div><h2>当前方案</h2><p>${deviceNames[state.device]} · ${state.selected.length} 个常见场景 · ${(state.extraPermissions||[]).length} 项补充能力</p></div>
     <div class="result-toolbar-actions"><button class="button secondary" data-step="1">修改场景</button><button class="button primary" data-action="download">导出清单 ↓</button></div>
   </div>
   <div class="result-overview"><span>涉及权限 <b>${result.permissions.length}</b></span><span>可直接声明 <b>${direct}</b></span><span>需官网申请 <b>${apply}</b></span><span class="${blocked ? 'has-blocks' : ''}">条件待满足 <b>${blocked}</b></span></div>
+  <div class="compatibility-summary">${result.compatibility?.minimumApi?`<strong>这套权限至少需要 API ${escape(result.compatibility.minimumApi)}</strong><p>由 ${result.compatibility.determinedBy.map(name=>`<code>${escape(name.replace('ohos.permission.',''))}</code>`).join('、')} 决定，已计入所选设备及权限开放版本的要求。${result.permissions.some(p=>p.minimumApiReason?.includes('边界不明确'))?'文件保护权限的 API14 开放边界不明确，本工具保守按 API15 计算。':''}${result.compatibility.conditionsUnmet.length?'另有权限的设备或申请资格条件尚未满足，请查看下方提示。':''}</p><small>这是权限的版本下限；应用实际支持的系统还取决于所用接口和设备。</small>`:'<p>当前没有需要声明的权限，暂无可计算的最低 API。</p>'}</div>
   <div class="result-regions">${sections || (!result.alternatives.length ? '<div class="result-empty">尚未选择场景，返回向导选择需要的功能即可生成清单。</div>' : '')}</div>
   ${result.alternatives.length ? `<section class="result-region alternatives-region"><div class="region-header"><div><h2>无需权限声明的操作<span class="region-count">${result.alternatives.length}</span></h2><p>以下操作本身不对应额外声明权限，具体接入方式见说明。</p></div></div><div class="alternatives-grid">${result.alternatives.map(scene => `<article><h3>${scene.title}</h3><p>${scene.note}</p></article>`).join('')}</div></section>` : ''}
   <details class="config-panel"><summary><span><strong>声明配置</strong><small>按需展开并复制 module.json5 片段</small></span><span class="expand-label">展开</span></summary><div class="config-content">

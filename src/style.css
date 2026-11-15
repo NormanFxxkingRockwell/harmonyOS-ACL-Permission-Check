@@ -471,3 +471,10 @@ dialog h2 { font: 600 16px/1.8 Consolas,monospace; overflow-wrap: anywhere; }
 .permission-alternative strong { color:#61616c; font-weight:600; }
 .permission-alternative p { color:#858591; margin:4px 0; }
 .permission-alternative a { color:#a35c66; }
+
+.profile-row.device-only { grid-template-columns:1fr; }
+.compatibility-summary { margin:16px 0; padding:15px 18px; background:#f7f7f9; border:1px solid #e4e4e9; border-radius:6px; line-height:1.8; }
+.compatibility-summary strong { color:#454550; font-size:14px; }
+.compatibility-summary p { color:#787884; font-size:11px; margin-top:5px; }
+.compatibility-summary code { overflow-wrap:anywhere; }
+.compatibility-summary small { display:block; color:#92929c; font-size:10px; margin-top:4px; }
