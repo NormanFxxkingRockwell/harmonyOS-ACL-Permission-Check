@@ -105,8 +105,8 @@ export const copyB = {
     "example": "例如：在通话设置页展示当前呼叫转移状态。"
   },
   "ohos.permission.MANAGE_SKILL": {
-    "question": "是否需要使用系统 skill 技能能力？",
-    "example": "例如：接入 skill 接口提供的技能功能，具体用途需核对接口说明。"
+    "question": "是否需要查询 skill 技能包、监听变更或访问其文件？",
+    "example": "例如：智能体应用查询已安装的 skill 包，监听其更新并访问包内文件。"
   },
   "ohos.permission.kernel.AS_LDK_DRIVER": {
     "question": "是否需要为 PCIe 硬件安装驱动？",
@@ -526,7 +526,7 @@ export const copyB = {
   },
   "ohos.permission.ENTERPRISE_MANAGE_USER_GRANT_PERMISSION": {
     "question": "是否需要由管理员统一允许或拒绝应用的部分权限？",
-    "example": "例如：在受管设备上统一允许相机权限，免去对应权限的用户授权弹窗；仍需满足管理条件。"
+    "example": "例如：在受管设备上统一允许相机权限，免去对应权限的用户授权弹窗。"
   },
   "ohos.permission.ENTERPRISE_DATA_IDENTIFY_FILE": {
     "question": "是否需要识别文件里的敏感内容？",

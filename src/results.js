@@ -1,70 +1,47 @@
 import { alternativeFor } from './permission-alternatives.js';
-import { permissionCopy } from './scenario-copy.js';
 import { makeConfig } from './rules.js';
 
-const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({
-  '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-}[char]));
-
-const groupDescriptions = {
-  '开放权限（系统授权）': '在配置文件中声明，安装时由系统授予。',
-  '开放权限（用户授权）': '声明后，在对应业务使用前获取用户授权。',
-  '受限开放权限': '先核对申请条件，再到官网申请；用户授权要求单独完成。',
-  '企业类应用可用权限': '仅符合条件的企业应用可申请；申请通过后，还要下载授权文件（Profile）并完成签名。',
-  '仅MDM应用可用权限': '仅企业 MDM 应用可申请，需符合设备管理场景。'
+const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+const officialText = value => escape(value).replace(/\[([^\]]+)\]\((https:\/\/[^)\s]+)\)/g,'<a href="$2" target="_blank" rel="noopener noreferrer">$1 ↗</a>').replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
+const sourceUrl = permission => permission.source.replace(/\.md$/,'');
+const categoryDescriptions = {
+  '开放权限（系统授权）':'直接在项目中声明，安装时由系统授予。',
+  '开放权限（用户授权）':'直接在项目中声明；授权方式为用户授权。',
+  '受限开放权限':'通过官网申请，具体申请方式见官方条目。',
+  '企业类应用可用权限':'官方面向企业应用和企业MDM应用开放的权限。',
+  '仅MDM应用可用权限':'官方面向企业MDM应用开放的权限。'
 };
-
 function permissionRow(permission, context) {
-  const { routeNames, grantLabel } = context;
-  const alternative = alternativeFor(permission);
-  const notes = [...permission.blocks, ...permission.sceneNotes, ...permission.warnings];
-  if (permission.name.endsWith('.LOCATION_IN_BACKGROUND')) {
-    notes.push('先取得前台位置权限，再引导用户在系统设置中授予后台位置权限。');
-  }
-  return `<tr class="permission-row ${permission.eligible ? '' : 'blocked'}">
-    <td class="permission-info">
-      <button class="permission-name" data-detail="${permission.name}">${escape(permission.name)}</button>
-      <p>${escape(permissionCopy(permission).question.replace(/^是否需要/,'用于').replace(/？$/,''))}</p>
-      ${permission.autoAdded?`<div class="inferred-permission">自动补齐 · ${permission.requiredBy.map(name=>escape(name.replace('ohos.permission.',''))).join('、')} 的必需权限</div>`:''}
-      ${permission.blocks.length ? `<div class="block-reason">暂不能加入配置：${escape(permission.blocks.join(' '))}</div>` : ''}
-      ${alternative?`<div class="permission-alternative"><strong>也可不申请此权限</strong><p>${escape(alternative.text)}</p><a href="${escape(alternative.url)}" target="_blank" rel="noopener noreferrer">官方替代方案 ↗</a></div>`:''}
-      ${notes.length ? `<details class="row-notes"><summary>限制与说明 <span>${notes.length}</span></summary><ul>${notes.map(note => `<li>${escape(note)}</li>`).join('')}</ul></details>` : ''}
-    </td>
-    <td data-label="申请与授权"><span class="tag ${permission.route === 'direct' ? 'neutral' : 'red'}">${routeNames[permission.route]}</span><span class="grant-line">${grantLabel(permission)}</span></td>
-    <td data-label="触发场景" class="row-source">${escape(permission.reasons.join('、'))}</td>
-    <td class="row-version" data-label="等级 / 所需 API"><span>${permission.level}</span><small title="${escape(permission.minimumApiReason||'权限起始版本')}">API ${permission.minimumApi||permission.since}+</small></td>
-  </tr>`;
+  const alternative=alternativeFor(permission);
+  const facts=permission.officialFacts||[];
+  return `<tr class="permission-row"><td class="permission-info">
+    <button class="permission-name" data-detail="${permission.name}">${escape(permission.name)}</button>
+    <p>${escape(permission.description)}</p>
+    ${permission.autoAdded?`<div class="inferred-permission">配套声明：${permission.requiredBy.map(name=>escape(name.replace('ohos.permission.',''))).join('、')} → ${escape(permission.name.replace('ohos.permission.',''))}</div>`:''}
+    ${permission.configKind==='binary'?'<p class="declaration-kind">官方适用范围：二进制程序</p>':permission.configKind==='value'?'<p class="declaration-kind">官方声明格式：包含额外 value 数据</p>':''}
+    ${alternative?`<div class="permission-alternative"><strong>官方提供的其他实现方式</strong><p>${escape(alternative.text)}</p><a href="${escape(alternative.url)}" target="_blank" rel="noopener noreferrer">官方实现说明 ↗</a></div>`:''}
+    ${facts.length?`<details class="row-notes"><summary>官方条目说明</summary>${facts.map(fact=>`<div class="official-fact"><strong>${escape(fact.label)}</strong><p>${officialText(fact.text)}</p></div>`).join('')}</details>`:''}
+  </td><td data-label="申请与授权"><span class="tag ${permission.route==='direct'?'neutral':'red'}">${permission.route==='direct'?'直接声明':'官网申请'}</span><span class="grant-line">${escape(context.grantLabel(permission))}</span><a class="official-entry-link" href="${escape(sourceUrl(permission))}" target="_blank" rel="noopener noreferrer">官方条目 ↗</a></td>
+  <td class="row-source" data-label="所选功能">${escape(permission.reasons.join('、'))}</td>
+  <td class="row-version" data-label="等级 / 所需 API"><span>${escape(permission.level)}</span><small title="${escape(permission.minimumApiReason||'权限起始版本')}">API ${escape(permission.minimumApi||permission.since)}+</small></td></tr>`;
 }
-
 export function renderResultsPanel(result, context) {
-  const { state, deviceNames, categoryNames, sceneCount, catalogCount, domainCount } = context;
-  const direct = result.permissions.filter(p => p.route === 'direct' && p.eligible).length;
-  const apply = result.permissions.filter(p => p.route !== 'direct' && p.eligible).length;
-  const blocked = result.permissions.filter(p => !p.eligible).length;
-  const config = makeConfig(result);
-  const sections = Object.entries(categoryNames).map(([category, title], index) => {
-    const rows = result.permissions.filter(p => p.category === category);
-    if (!rows.length) return '';
-    return `<section class="result-region">
-      <div class="region-header"><div><h2><span class="region-index">0${index + 1}</span>${title}<span class="region-count">${rows.length}</span></h2><p>${groupDescriptions[category]}</p></div></div>
-      <table class="permission-table"><thead><tr><th scope="col">权限 / 用途</th><th scope="col">申请与授权</th><th scope="col">触发场景</th><th scope="col">等级 / 所需 API</th></tr></thead><tbody>${rows.map(p => permissionRow(p, context)).join('')}</tbody></table>
-    </section>`;
+  const {state,deviceNames,categoryNames,sceneCount,catalogCount,domainCount}=context;
+  const direct=result.permissions.filter(p=>p.route==='direct').length;
+  const apply=result.permissions.length-direct;
+  const config=makeConfig(result);
+  const sections=Object.entries(categoryNames).map(([category,title],index)=>{
+    const rows=result.permissions.filter(p=>p.category===category);
+    return rows.length?`<section class="result-region"><div class="region-header"><div><h2><span class="region-index">0${index+1}</span>${title}<span class="region-count">${rows.length}</span></h2><p>${categoryDescriptions[category]}</p></div></div><table class="permission-table"><thead><tr><th scope="col">权限 / 官方用途</th><th scope="col">申请与授权</th><th scope="col">所选功能</th><th scope="col">等级 / 所需 API</th></tr></thead><tbody>${rows.map(p=>permissionRow(p,context)).join('')}</tbody></table></section>`:'';
   }).join('');
-
-  return `<div class="result-toolbar">
-    <div><h2>当前方案</h2><p>${deviceNames[state.device]} · ${state.selected.length} 个常见场景 · ${(state.extraPermissions||[]).length} 项补充能力</p></div>
-    <div class="result-toolbar-actions"><button class="button secondary" data-step="1">修改场景</button><button class="button primary" data-action="download">导出清单 ↓</button></div>
-  </div>
-  <div class="result-overview"><span>涉及权限 <b>${result.permissions.length}</b></span><span>可直接声明 <b>${direct}</b></span><span>需官网申请 <b>${apply}</b></span><span class="${blocked ? 'has-blocks' : ''}">条件待满足 <b>${blocked}</b></span></div>
-  <div class="compatibility-summary">${result.compatibility?.minimumApi?`<strong>这套权限至少需要 API ${escape(result.compatibility.minimumApi)}</strong><p>由 ${result.compatibility.determinedBy.map(name=>`<code>${escape(name.replace('ohos.permission.',''))}</code>`).join('、')} 决定，已计入所选设备及权限开放版本的要求。${result.permissions.some(p=>p.minimumApiReason?.includes('边界不明确'))?'文件保护权限的 API14 开放边界不明确，本工具保守按 API15 计算。':''}${result.compatibility.conditionsUnmet.length?'另有权限的设备或申请资格条件尚未满足，请查看下方提示。':''}</p><small>这是权限的版本下限；应用实际支持的系统还取决于所用接口和设备。</small>`:'<p>当前没有需要声明的权限，暂无可计算的最低 API。</p>'}</div>
-  <div class="result-regions">${sections || (!result.alternatives.length ? '<div class="result-empty">尚未选择场景，返回向导选择需要的功能即可生成清单。</div>' : '')}</div>
-  ${result.alternatives.length ? `<section class="result-region alternatives-region"><div class="region-header"><div><h2>无需权限声明的操作<span class="region-count">${result.alternatives.length}</span></h2><p>以下操作本身不对应额外声明权限，具体接入方式见说明。</p></div></div><div class="alternatives-grid">${result.alternatives.map(scene => `<article><h3>${scene.title}</h3><p>${scene.note}</p></article>`).join('')}</div></section>` : ''}
-  <details class="config-panel"><summary><span><strong>声明配置</strong><small>按需展开并复制 module.json5 片段</small></span><span class="expand-label">展开</span></summary><div class="config-content">
-    <div class="config-heading"><h3>module.json5</h3><button class="copy-button" data-copy="module">复制配置</button></div>
-    <pre>${escape(JSON.stringify(config.moduleFragment, null, 2))}</pre>
-    <p class="config-hint">仅包含条件检查通过的权限。官网申请类仍需审批、签名；请将 EntryAbility 替换成实际使用权限的 Ability。</p>
-    ${config.stringFragment.string.length ? `<details class="resource-panel"><summary>权限用途文案 <span>当前配置使用了 $string 引用</span></summary><div class="resource-content"><p>这是用户授权时的用途说明。可以复用项目已有字符串资源；使用上方新生成的引用时，请将以下内容合并到 resources/base/element/string.json。</p><div class="config-heading"><h3>字符串资源片段</h3><button class="copy-button" data-copy="strings">复制用途文案</button></div><pre>${escape(JSON.stringify(config.stringFragment, null, 2))}</pre></div></details>` : ''}
-  </div></details>
-  <div class="result-footnote"><p>权限声明、官网申请和用户授权是不同步骤。具体可用性仍需结合接口和目标设备确认。</p><a target="_blank" rel="noopener noreferrer" href="https://developer.huawei.com/consumer/cn/doc/app/agc-help-apply-acl-0000002394212138/">官网 ACL 申请指南 ↗</a></div>
-  <p class="scope-note">覆盖 ${catalogCount} 项未废弃权限、${domainCount} 个能力领域及 ${sceneCount} 个常见场景。第三方 SDK 和具体 API 的附加要求需结合项目核对。</p>`;
+  return `<div class="result-toolbar"><div><h2>当前清单</h2><p>${deviceNames[state.device]||state.device} · ${state.selected.length} 个场景 · ${(state.extraPermissions||[]).length} 项补充能力</p></div><div class="result-toolbar-actions"><button class="button secondary" data-step="1">修改场景</button><button class="button primary" data-action="download">导出清单 ↓</button></div></div>
+  <div class="result-overview"><span>涉及权限 <b>${result.permissions.length}</b></span><span>直接声明 <b>${direct}</b></span><span>官网申请 <b>${apply}</b></span></div>
+  <div class="compatibility-summary">${result.compatibility?.minimumApi?`<strong>所选权限的最低 API：${escape(result.compatibility.minimumApi)}</strong><p>版本依据：${result.compatibility.determinedBy.map(name=>`<code>${escape(name.replace('ohos.permission.',''))}</code>`).join('、')}</p><small>按官方权限起始版本、开放版本及设备版本计算。</small>`:'<p>当前未选择需要声明的权限。</p>'}</div>
+  <div class="result-regions">${sections}</div>
+  ${result.alternatives.length?`<section class="result-region alternatives-region"><div class="region-header"><div><h2>不涉及额外声明的操作</h2></div></div><div class="alternatives-grid">${result.alternatives.map(scene=>`<article><h3>${escape(scene.title)}</h3><p>${escape(scene.note)}</p></article>`).join('')}</div></section>`:''}
+  <details class="config-panel"><summary><span><strong>声明配置</strong><small>所选权限的配置片段</small></span><span class="expand-label">展开</span></summary><div class="config-content"><div class="config-heading"><h3>module.json5</h3><button class="copy-button" data-copy="module">复制配置</button></div><pre>${escape(JSON.stringify(config.moduleFragment,null,2))}</pre><p class="config-hint">EntryAbility 为组件名称占位，用途说明取自所选功能。</p>
+  ${config.stringFragment.string.length?`<details class="resource-panel"><summary>权限用途文案</summary><div class="resource-content"><p>对应上方配置中的 $string 引用。</p><div class="config-heading"><h3>resources/base/element/string.json</h3><button class="copy-button" data-copy="strings">复制用途文案</button></div><pre>${escape(JSON.stringify(config.stringFragment,null,2))}</pre></div></details>`:''}
+  ${config.binaryPermissions.length?`<section class="special-config"><h3>二进制程序权限</h3><p>官方注明适用于二进制程序，单独列于此处。</p><pre>${escape(JSON.stringify(config.binaryPermissions,null,2))}</pre></section>`:''}
+  ${config.valuePermissions.length?`<section class="special-config"><h3>包含 value 的声明</h3>${config.valuePermissions.map(p=>`<button class="text-button" data-detail="${p.name}">${escape(p.name)} · 官方声明格式 ↗</button>`).join('')}</section>`:''}</div></details>
+  <p class="scope-note">${catalogCount} 项未废弃权限 · ${domainCount} 个能力分类 · ${sceneCount} 个场景</p>`;
 }

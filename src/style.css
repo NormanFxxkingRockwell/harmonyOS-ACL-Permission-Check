@@ -484,3 +484,12 @@ html.detail-open body { position:fixed; top:var(--detail-scroll-top); left:0; ri
 #detail { overflow-y:auto; overscroll-behavior:contain; }
 #detail .dialog-top { position:sticky; top:0; z-index:2; background:#fdfdfe; min-height:44px; gap:16px; padding:6px 0; }
 #detail .dialog-close { min-width:80px; min-height:44px; flex-shrink:0; display:inline-flex; align-items:center; justify-content:center; line-height:1; padding:12px 20px; }
+
+.official-fact { padding:8px 0; }
+.official-fact>strong { color:#72727e; font-size:11px; }
+.official-fact p { white-space:pre-wrap; font-size:11px; line-height:1.85; color:#878792; }
+.official-entry-link { display:block; font-size:10px; margin-top:6px; color:#aa6570; }
+.declaration-kind { font-size:10px; color:#777783; }
+.special-config { margin-top:18px; padding-top:14px; border-top:1px solid #e5e5eb; }
+.special-config h3 { font-size:13px; margin-bottom:8px; }
+.special-config p { font-size:11px; color:#888894; line-height:1.8; }
