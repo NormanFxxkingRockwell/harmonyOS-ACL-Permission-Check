@@ -1,6 +1,5 @@
 import { permissionCopy } from './scenario-copy.js';
 import { makeConfig } from './rules.js';
-import { renderAuthorizationHint } from './relations-view.js';
 
 const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
@@ -54,7 +53,6 @@ export function renderResultsPanel(result, context) {
     <div class="result-toolbar-actions"><button class="button secondary" data-step="1">修改场景</button><button class="button primary" data-action="download">导出清单 ↓</button></div>
   </div>
   <div class="result-overview"><span>涉及权限 <b>${result.permissions.length}</b></span><span>可直接声明 <b>${direct}</b></span><span>需官网申请 <b>${apply}</b></span><span class="${blocked ? 'has-blocks' : ''}">条件待满足 <b>${blocked}</b></span></div>
-  ${renderAuthorizationHint(result)}
   <div class="result-regions">${sections || (!result.alternatives.length ? '<div class="result-empty">尚未选择场景，返回向导选择需要的功能即可生成清单。</div>' : '')}</div>
   ${result.alternatives.length ? `<section class="result-region alternatives-region"><div class="region-header"><div><h2>无需额外声明的场景<span class="region-count">${result.alternatives.length}</span></h2><p>使用系统选择器、控件或专门授权流程完成接入。</p></div></div><div class="alternatives-grid">${result.alternatives.map(scene => `<article><h3>${scene.title}</h3><p>${scene.note}</p></article>`).join('')}</div></section>` : ''}
   <details class="config-panel"><summary><span><strong>声明配置</strong><small>按需展开并复制 module.json5 片段</small></span><span class="expand-label">展开</span></summary><div class="config-content">

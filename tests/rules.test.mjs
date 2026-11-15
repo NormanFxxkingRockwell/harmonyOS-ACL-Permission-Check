@@ -113,7 +113,7 @@ test('结果按分类区域展示，配置及资源文案默认折叠',()=>{
  assert.match(html,/<details class="config-panel">/);
  assert.match(html,/<details class="resource-panel">/);
  assert.ok(!html.includes('result-side'));
- assert.match(html,/企业设备提示：/);
+ assert.ok(!html.includes('企业设备提示：'));
  assert.ok(!html.includes('data-mdm-group'));
  assert.ok(!html.includes('免弹窗授权方案'));
  assert.ok(!html.includes('权限之间的关联'));
