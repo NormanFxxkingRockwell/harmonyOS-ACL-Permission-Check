@@ -463,3 +463,6 @@ dialog h2 { font: 600 16px/1.8 Consolas,monospace; overflow-wrap: anywhere; }
 
 .mdm-controller-note summary { cursor:pointer; font-weight:600; color:#50505c; }
 .mdm-controller-note[open] code { margin-top:10px; }
+
+.scene-notes-panel { background:#fff; border-style:dashed; }
+.scene-notes-panel>h3 { color:#787883; font-weight:500; }
