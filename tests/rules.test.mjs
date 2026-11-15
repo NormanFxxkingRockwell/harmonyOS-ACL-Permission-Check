@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { scenes, initialState, evaluate, makeConfig, compareVersions, routeFor } from '../src/rules.js';
 import { domains, domainFor } from '../src/domains.js';
+import { renderCoverage } from '../src/coverage.js';
 import { renderResultsPanel } from '../src/results.js';
 const catalog=JSON.parse(await readFile(new URL('../data/permissions.json',import.meta.url),'utf8')).permissions;
 const run=(selected,extra={})=>evaluate({...initialState(),selected,...extra},catalog);
@@ -68,13 +69,17 @@ test('290项未废弃权限逐项归属13个能力领域，未知权限需人工
  for(const permission of catalog)assert.ok(domains.some(domain=>domain.id===domainFor(permission)),permission.name);
  assert.throws(()=>domainFor('ohos.permission.UNKNOWN_NEW_PERMISSION'),/reviewed business domain/);
 });
-test('补充能力未确认官方条件前排除配置，确认后仍检查资格',()=>{
- const extraPermissions=['ohos.permission.PRINT'];
- const pending=run([],{extraPermissions});assert.equal(pending.permissions[0].eligible,false);
- assert.equal(makeConfig(pending).moduleFragment.module.requestPermissions.length,0);
- const confirmed=run([],{extraPermissions,confirmedQualifications:extraPermissions});assert.equal(confirmed.permissions[0].eligible,true);
+test('补充开放能力无需额外确认，仍按官方条件检查资格',()=>{
+ for(const name of ['GET_NETWORK_INFO','PRINT','CAMERA']){
+  const full='ohos.permission.'+name;
+  const result=run([],{extraPermissions:[full]});
+  assert.equal(result.permissions[0].eligible,true,name);
+  assert.ok(makeConfig(result).moduleFragment.module.requestPermissions.some(p=>p.name===full));
+ }
  const restricted=['ohos.permission.ENTERPRISE_INSTALL_BUNDLE'];
- assert.equal(run([],{extraPermissions:restricted,confirmedQualifications:restricted}).permissions[0].eligible,false);
+ assert.equal(run([],{extraPermissions:restricted}).permissions[0].eligible,false);
+ const deviceRestricted=run([],{extraPermissions:['ohos.permission.PRINT'],device:'Car'});
+ assert.equal(deviceRestricted.permissions[0].eligible,false);
 });
 test('全量入口的精确与后台定位自动补齐前台模糊权限',()=>{
  assert.deepEqual(names(run([],{extraPermissions:['ohos.permission.LOCATION']})),['APPROXIMATELY_LOCATION','LOCATION']);
@@ -118,4 +123,11 @@ test('结果按分类区域展示，配置及资源文案默认折叠',()=>{
  assert.ok(!html.includes('免弹窗授权方案'));
  assert.ok(!html.includes('权限之间的关联'));
  assert.ok(!html.includes('关联 1 条'));
+});
+
+test('完整能力核对页不展示额外申请条件确认入口',()=>{
+ const html=renderCoverage({...initialState(),extraPermissions:['ohos.permission.GET_NETWORK_INFO']},catalog,{domain:'network',search:'GET_NETWORK_INFO',mode:'all'});
+ assert.ok(!html.includes('data-qualification'));
+ assert.ok(!html.includes('申请条件确认'));
+ assert.match(html,/直接声明/);
 });

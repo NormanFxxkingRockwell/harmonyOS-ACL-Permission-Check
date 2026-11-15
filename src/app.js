@@ -14,11 +14,11 @@ try {
    step: !v2 && saved.step === 5 ? 6 : Math.max(0, Math.min(6, Number(saved.step) || 0)),
    selected: saved.selected.filter(id => scenes.some(scene => scene.id === id)),
    extraPermissions: Array.isArray(saved.extraPermissions) ? saved.extraPermissions : [],
-   confirmedQualifications: Array.isArray(saved.confirmedQualifications) ? saved.confirmedQualifications : [],
    managedByMdm:false, mdmGroupPolicies:{}
  };
 } catch {}
 delete state.name; // Drop names saved by earlier versions.
+delete state.confirmedQualifications; // Retire the extra acknowledgement gate.
 const routeNames={direct:'直接声明',acl:'官网申请',enterprise:'企业权限申请',mdm:'MDM 权限申请'};
 const deviceNames={Phone:'手机',Tablet:'平板','PC/2in1':'鸿蒙电脑',Wearable:'手表',TV:'智慧屏',Car:'车机'};
 const categoryNames={'开放权限（系统授权）':'开放 · 系统授权','开放权限（用户授权）':'开放 · 用户授权','受限开放权限':'受限开放','企业类应用可用权限':'企业应用','仅MDM应用可用权限':'仅 MDM'};
@@ -57,9 +57,8 @@ $('#app').addEventListener('click',async e=>{const button=e.target.closest('butt
 $('#app').addEventListener('change', e => {
  const el = e.target;
  const scrollTop = window.scrollY;
- const focusSelector = el.dataset.permission ? `[data-permission="${el.dataset.permission}"]` : el.dataset.qualification ? `[data-qualification="${el.dataset.qualification}"]` : el.dataset.scene ? `[data-scene="${el.dataset.scene}"]` : el.id ? `#${el.id}` : el.name === 'type' ? `input[name="type"][value="${el.value}"]` : null;
+ const focusSelector = el.dataset.permission ? `[data-permission="${el.dataset.permission}"]` : el.dataset.scene ? `[data-scene="${el.dataset.scene}"]` : el.id ? `#${el.id}` : el.name === 'type' ? `input[name="type"][value="${el.value}"]` : null;
  if (el.dataset.permission) state.extraPermissions = el.checked ? [...new Set([...state.extraPermissions,el.dataset.permission])] : state.extraPermissions.filter(name=>name!==el.dataset.permission);
- else if (el.dataset.qualification) state.confirmedQualifications = el.checked ? [...new Set([...state.confirmedQualifications,el.dataset.qualification])] : state.confirmedQualifications.filter(name=>name!==el.dataset.qualification);
  else if (el.id==='capability-mode') coverageUI.mode=el.value;
  else if (el.dataset.scene) state.selected = el.checked ? [...new Set([...state.selected, el.dataset.scene])] : state.selected.filter(id => id !== el.dataset.scene);
  else if (el.name === 'type') state.type = el.value;

@@ -53,7 +53,7 @@ export const scenes = [
   s('mdm-apps',4,'是否需要替管理员安装或卸载应用？','例如：企业设备管理应用给办公设备统一安装业务应用。',['ENTERPRISE_INSTALL_BUNDLE'],{icon:'▦',tag:'MDM'}),
   s('mdm-usb',4,'是否需要由管理员管控设备的 USB 使用？','例如：企业设备管理应用按公司规则设置 USB 使用策略。',['ENTERPRISE_MANAGE_USB'],{icon:'⇄',tag:'MDM'})
 ];
-export const initialState = () => ({ step:0, type:'normal', developerType:'unknown', form:'app', device:'Phone', api:'26.0.0', selected:[], extraPermissions:[], confirmedQualifications:[], managedByMdm:false, mdmGroupPolicies:{}, videoAudio:false, accuracy:'approximate', background:'none', contactsWrite:false });
+export const initialState = () => ({ step:0, type:'normal', developerType:'unknown', form:'app', device:'Phone', api:'26.0.0', selected:[], extraPermissions:[], managedByMdm:false, mdmGroupPolicies:{}, videoAudio:false, accuracy:'approximate', background:'none', contactsWrite:false });
 export function compareVersions(a,b) { const x=String(a).split('.').map(Number),y=String(b).split('.').map(Number); for(let i=0;i<Math.max(x.length,y.length);i++){const d=(x[i]||0)-(y[i]||0);if(d)return Math.sign(d);}return 0; }
 export function routeFor(p) {
   if(p.category==='仅MDM应用可用权限')return 'mdm';
@@ -94,7 +94,6 @@ export function evaluate(state, catalog) {
     if(name.endsWith('.FILE_GUARD_MANAGER')&&compareVersions(state.api,'15')<0)warnings.push('官网 API14 开放范围描述重叠，需向官方确认目标版本资格。');
     if(route!=='direct')warnings.push('需核对业务场景、开发者资格及审核结果，选择场景不代表已获批。');
     if(!p.devices)warnings.push('权限列表未明确设备范围，需再核对实际 API 的设备支持。');
-    if((state.extraPermissions||[]).includes(name)&&!why.sceneIds.some(id=>!id.startsWith('permission:'))&&!(state.confirmedQualifications||[]).includes(name))blocks.push('尚未确认官方申请条件，请在完整能力核对页阅读条件并确认。');
     const additional=extraConstraints(p,state,compareVersions);blocks.push(...additional.blocks);warnings.push(...additional.warnings);
     const sceneNotes=[...new Set(why.sceneIds.map(id=>scenes.find(s=>s.id===id)?.note).filter(Boolean))];
     return {...p,...why,route,blocks:[...new Set(blocks)],warnings,sceneNotes,eligible:blocks.length===0};

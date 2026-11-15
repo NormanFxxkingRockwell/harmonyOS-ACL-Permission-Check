@@ -182,20 +182,19 @@ test('明确共同声明依赖分别补齐，其他同类权限不自动打包',
 });
 
 test('来源权限被阻塞时派生权限不泄漏配置，独立明确选择的权限仍保留', () => {
-  const unconfirmed = run([], { extraPermissions: [full('LOCATION')] });
-  assert.equal(permission(unconfirmed, 'LOCATION').eligible, false);
-  assert.equal(permission(unconfirmed, 'APPROXIMATELY_LOCATION').eligible, false);
-  assert.deepEqual(declared(unconfirmed), []);
+  const tooOld = run([], { extraPermissions: [full('PERSISTENT_BLUETOOTH_PEERS_MAC')], api:'15' });
+  assert.equal(permission(tooOld, 'PERSISTENT_BLUETOOTH_PEERS_MAC').eligible, false);
+  assert.equal(permission(tooOld, 'ACCESS_BLUETOOTH').eligible, false);
+  assert.deepEqual(declared(tooOld), []);
   const wrongDevice = extra(['AUTO_RESTORE_MAIN_WINDOW'], { device: 'TV' });
   assert.ok(wrongDevice.permissions.every(permission => !permission.eligible));
   assert.deepEqual(declared(wrongDevice), []);
   const explicit = run([], {
-    extraPermissions: [full('LOCATION'), full('APPROXIMATELY_LOCATION')],
-    confirmedQualifications: [full('APPROXIMATELY_LOCATION')]
+    extraPermissions: [full('PERSISTENT_BLUETOOTH_PEERS_MAC'), full('ACCESS_BLUETOOTH')], api:'15'
   });
-  assert.equal(permission(explicit, 'LOCATION').eligible, false);
-  assert.equal(permission(explicit, 'APPROXIMATELY_LOCATION').eligible, true);
-  assert.deepEqual(declared(explicit), [full('APPROXIMATELY_LOCATION')]);
+  assert.equal(permission(explicit, 'PERSISTENT_BLUETOOTH_PEERS_MAC').eligible, false);
+  assert.equal(permission(explicit, 'ACCESS_BLUETOOTH').eligible, true);
+  assert.deepEqual(declared(explicit), [full('ACCESS_BLUETOOTH')]);
 });
 
 test('图库读取与媒体位置同申时合并图库用途文案，但不附加设备定位', () => {
