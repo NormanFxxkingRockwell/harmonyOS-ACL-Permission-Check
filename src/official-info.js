@@ -40,3 +40,10 @@ export function configKind(permission) {
   if (permission.name === 'ohos.permission.ACCESS_DDK_DRIVERS') return 'value';
   return 'hap';
 }
+
+export function officialPermissionUrl(permission) {
+  const url = new URL(permission.source);
+  url.pathname = url.pathname.replace(/\.md$/, '').replace(/\/$/, '');
+  url.hash = permission.name.toLowerCase().replace(/\./g, '');
+  return url.href;
+}

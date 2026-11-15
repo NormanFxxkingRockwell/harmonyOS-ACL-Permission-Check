@@ -1,9 +1,9 @@
+import { officialPermissionUrl } from './official-info.js';
 import { alternativeFor } from './permission-alternatives.js';
 import { makeConfig } from './rules.js';
 
 const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const officialText = value => escape(value).replace(/\[([^\]]+)\]\((https:\/\/[^)\s]+)\)/g,'<a href="$2" target="_blank" rel="noopener noreferrer">$1 ↗</a>').replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
-const sourceUrl = permission => permission.source.replace(/\.md$/,'');
 const categoryDescriptions = {
   '开放权限（系统授权）':'直接在项目中声明，安装时由系统授予。',
   '开放权限（用户授权）':'直接在项目中声明；授权方式为用户授权。',
@@ -21,7 +21,7 @@ function permissionRow(permission, context) {
     ${permission.configKind==='binary'?'<p class="declaration-kind">官方适用范围：二进制程序</p>':permission.configKind==='value'?'<p class="declaration-kind">官方声明格式：包含额外 value 数据</p>':''}
     ${alternative?`<div class="permission-alternative"><strong>官方提供的其他实现方式</strong><p>${escape(alternative.text)}</p><a href="${escape(alternative.url)}" target="_blank" rel="noopener noreferrer">官方实现说明 ↗</a></div>`:''}
     ${facts.length?`<details class="row-notes"><summary>官方条目说明</summary>${facts.map(fact=>`<div class="official-fact"><strong>${escape(fact.label)}</strong><p>${officialText(fact.text)}</p></div>`).join('')}</details>`:''}
-  </td><td data-label="申请与授权"><span class="tag ${permission.route==='direct'?'neutral':'red'}">${permission.route==='direct'?'直接声明':'官网申请'}</span><span class="grant-line">${escape(context.grantLabel(permission))}</span><a class="official-entry-link" href="${escape(sourceUrl(permission))}" target="_blank" rel="noopener noreferrer">官方条目 ↗</a></td>
+  </td><td data-label="申请与授权"><span class="tag ${permission.route==='direct'?'neutral':'red'}">${permission.route==='direct'?'直接声明':'官网申请'}</span><span class="grant-line">${escape(context.grantLabel(permission))}</span><a class="official-entry-link" href="${escape(officialPermissionUrl(permission))}" target="_blank" rel="noopener noreferrer">官方条目 ↗</a></td>
   <td class="row-source" data-label="所选功能">${escape(permission.reasons.join('、'))}</td>
   <td class="row-version" data-label="等级 / 所需 API"><span>${escape(permission.level)}</span><small title="${escape(permission.minimumApiReason||'权限起始版本')}">API ${escape(permission.minimumApi||permission.since)}+</small></td></tr>`;
 }

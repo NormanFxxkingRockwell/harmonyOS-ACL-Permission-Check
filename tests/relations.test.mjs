@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {initialState,evaluate} from '../src/rules.js';
 import {requirementEdges,normalAuthorization} from '../src/relations.js';
-import {officialFacts,configKind} from '../src/official-info.js';
+import {officialFacts,configKind,officialPermissionUrl} from '../src/official-info.js';
 const catalog=JSON.parse(await readFile(new URL('../data/permissions.json',import.meta.url),'utf8')).permissions;
 const full=n=>'ohos.permission.'+n;
 const extra=names=>evaluate({...initialState(),extraPermissions:names.map(full)},catalog);
@@ -37,4 +37,17 @@ test('生物认证权限查询不被描述为必须先验证身份',()=>{
  const p=catalog.find(p=>p.name===full('ACCESS_BIOMETRIC'));
  assert.equal(normalAuthorization(p,initialState()),'系统安装时授予');
  assert.match(normalAuthorization(catalog.find(p=>p.name===full('kernel.NET_RAW')),initialState()),/身份验证/);
+});
+
+test('官方链接定位到对应权限，命名空间保留在锚点中',()=>{
+ const p=catalog.find(p=>p.name===full('ACCESS_BIOMETRIC'));
+ assert.equal(officialPermissionUrl(p),'https://developer.huawei.com/consumer/cn/doc/doccenter-capabilities/permissions-for-all#ohospermissionaccess_biometric');
+ const kernel=catalog.find(p=>p.name===full('kernel.NET_RAW'));
+ assert.ok(officialPermissionUrl(kernel).endsWith('#ohospermissionkernelnet_raw'));
+ for(const permission of catalog){
+  const url=new URL(officialPermissionUrl(permission));
+  assert.equal(url.hash,'#'+permission.name.toLowerCase().replace(/\./g,''));
+  assert.ok(!url.pathname.endsWith('.md'));
+ }
+ assert.equal(new Set(catalog.map(officialPermissionUrl)).size,290);
 });
