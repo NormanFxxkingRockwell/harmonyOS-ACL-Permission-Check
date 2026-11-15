@@ -101,7 +101,6 @@ export function evaluate(state, catalog) {
     if(name.endsWith('.PRIVACY_WINDOW')&&compareVersions(state.api,'11')<0)blocks.push('API9–10 为 system_basic，本版不生成旧版本的申请配置。');
     if(name.endsWith('.ENTERPRISE_ACCESS_DLP_FILE')&&compareVersions(state.api,'21')<0)blocks.push('此权限从 API21 起才面向 MDM 应用开放。');
     if(name.endsWith('.FILE_GUARD_MANAGER')&&compareVersions(state.api,'15')<0)warnings.push('官网 API14 开放范围描述重叠，需向官方确认目标版本资格。');
-    if(route!=='direct')warnings.push('需核对业务场景、开发者资格及审核结果，选择场景不代表已获批。');
     const additional=extraConstraints(p,state,compareVersions);blocks.push(...additional.blocks);warnings.push(...additional.warnings);
     const sceneNotes=[...new Set(why.sceneIds.map(id=>scenes.find(s=>s.id===id)?.note).filter(Boolean))];
     return {...p,...why,minimumApi:requiredVersions.get(name).version,minimumApiReason:requiredVersions.get(name).reason,route,blocks:[...new Set(blocks)],warnings,sceneNotes,eligible:blocks.length===0};
