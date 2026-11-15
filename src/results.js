@@ -1,6 +1,6 @@
 import { permissionCopy } from './scenario-copy.js';
 import { makeConfig } from './rules.js';
-import { renderRelationships, renderMdmPlan } from './relations-view.js';
+import { renderAuthorizationHint } from './relations-view.js';
 
 const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
@@ -25,7 +25,6 @@ function permissionRow(permission, context) {
       <button class="permission-name" data-detail="${permission.name}">${escape(permission.name)}</button>
       <p>${escape(permissionCopy(permission).question.replace(/^是否需要/,'用于').replace(/？$/,''))}</p>
       ${permission.autoAdded?`<div class="inferred-permission">自动补齐 · ${permission.requiredBy.map(name=>escape(name.replace('ohos.permission.',''))).join('、')} 的必需权限</div>`:''}
-      ${permission.relationIds?.length?`<button class="row-relation-link" data-detail="${permission.name}">关联 ${permission.relationIds.length} 条 ↗</button>`:''}
       ${permission.blocks.length ? `<div class="block-reason">暂不能加入配置：${escape(permission.blocks.join(' '))}</div>` : ''}
       ${notes.length ? `<details class="row-notes"><summary>限制与说明 <span>${notes.length}</span></summary><ul>${notes.map(note => `<li>${escape(note)}</li>`).join('')}</ul></details>` : ''}
     </td>
@@ -45,7 +44,7 @@ export function renderResultsPanel(result, context) {
     const rows = result.permissions.filter(p => p.category === category);
     if (!rows.length) return '';
     return `<section class="result-region">
-      <div class="region-header"><div><h2><span class="region-index">0${index + 1}</span>${title}<span class="region-count">${rows.length}</span></h2><p>${category==='开放权限（用户授权）'&&result.authorizationPlan?.enabled?'通常需要用户同意。如果交给企业管理员统一授权，请查看上方的免弹窗授权方案。':groupDescriptions[category]}</p></div></div>
+      <div class="region-header"><div><h2><span class="region-index">0${index + 1}</span>${title}<span class="region-count">${rows.length}</span></h2><p>${groupDescriptions[category]}</p></div></div>
       <table class="permission-table"><thead><tr><th scope="col">权限 / 用途</th><th scope="col">申请与授权</th><th scope="col">触发场景</th><th scope="col">等级 / 版本</th></tr></thead><tbody>${rows.map(p => permissionRow(p, context)).join('')}</tbody></table>
     </section>`;
   }).join('');
@@ -55,10 +54,9 @@ export function renderResultsPanel(result, context) {
     <div class="result-toolbar-actions"><button class="button secondary" data-step="1">修改场景</button><button class="button primary" data-action="download">导出清单 ↓</button></div>
   </div>
   <div class="result-overview"><span>涉及权限 <b>${result.permissions.length}</b></span><span>可直接声明 <b>${direct}</b></span><span>需官网申请 <b>${apply}</b></span><span class="${blocked ? 'has-blocks' : ''}">条件待满足 <b>${blocked}</b></span></div>
-  ${renderMdmPlan(result)}
+  ${renderAuthorizationHint(result)}
   <div class="result-regions">${sections || (!result.alternatives.length ? '<div class="result-empty">尚未选择场景，返回向导选择需要的功能即可生成清单。</div>' : '')}</div>
   ${result.alternatives.length ? `<section class="result-region alternatives-region"><div class="region-header"><div><h2>无需额外声明的场景<span class="region-count">${result.alternatives.length}</span></h2><p>使用系统选择器、控件或专门授权流程完成接入。</p></div></div><div class="alternatives-grid">${result.alternatives.map(scene => `<article><h3>${scene.title}</h3><p>${scene.note}</p></article>`).join('')}</div></section>` : ''}
-  ${renderRelationships(result)}
   <details class="config-panel"><summary><span><strong>声明配置</strong><small>按需展开并复制 module.json5 片段</small></span><span class="expand-label">展开</span></summary><div class="config-content">
     <div class="config-heading"><h3>module.json5</h3><button class="copy-button" data-copy="module">复制配置</button></div>
     <pre>${escape(JSON.stringify(config.moduleFragment, null, 2))}</pre>
