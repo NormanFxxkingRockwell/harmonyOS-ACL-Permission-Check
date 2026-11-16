@@ -1,3 +1,5 @@
+import { renderLibrary, renderLibraryResults } from './library.js';
+import { bindSearchInputs } from './search-input.js';
 import { officialPermissionUrl } from './official-info.js';
 import { normalAuthorization } from './relations.js';
 import { renderCoverage } from './coverage.js';
@@ -5,7 +7,7 @@ import { renderResultsPanel } from './results.js';
 import { steps, scenes, initialState, evaluate, makeConfig, routeFor } from './rules.js';
 const $=s=>document.querySelector(s);
 const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let state=initialState(),catalog=[],checkedOn='2026-11-13',view='wizard',search='',filter='all';
+let state=initialState(),catalog=[],checkedOn='2026-11-13',view='wizard',search='',filter='all',topic='';
 let detailScrollY = 0;
 const coverageUI = {domain:'network',search:'',mode:'all'};
 try {
@@ -30,7 +32,7 @@ function grantLabel(p){return normalAuthorization(p,state);}
 function render(){
  const result=evaluate(state,catalog),count=result.permissions.length;
  $('#app').innerHTML=`<aside class="sidebar"><a class="brand" href="./" aria-label="鸿蒙权限向导首页"><span class="brand-icon">H<span>·</span></span><span>鸿蒙权限向导<small>HarmonyOS Permission Guide</small></span></a><nav class="main-nav"><button class="nav-item ${view==='wizard'?'active':''}" data-view="wizard"><span>◈</span> 场景向导 <b>→</b></button><button class="nav-item ${view==='catalog'?'active':''}" data-view="catalog"><span>▦</span> 权限资料库 <small>${catalog.length}</small></button></nav><div class="sidebar-rule"></div><ol class="steps">${steps.map((s,i)=>`<li><button class="step ${state.step===i&&view==='wizard'?'current':''} ${i<state.step?'done':''}" data-step="${i}"><span>${i<state.step?'✓':String(i+1).padStart(2,'0')}</span>${s.title}</button></li>`).join('')}</ol><div class="sidebar-bottom"><small>数据采集自${escape(checkedOn)}</small></div></aside>
- <div class="workspace"><header class="topbar"><div><span class="breadcrumb">开发工具</span><span class="slash">/</span>${view==='catalog'?'权限资料库':'场景向导'}</div></header><main id="main">${view==='catalog'?renderCatalog():renderWizard(result)}</main></div>`;
+ <div class="workspace"><header class="topbar"><div><span class="breadcrumb">开发工具</span><span class="slash">/</span>${view==='catalog'?'权限资料库':'场景向导'}</div></header><main id="main" class="${view==='catalog'?'library-view':''}">${view==='catalog'?renderCatalog():renderWizard(result)}</main></div>`;
 }
 function renderWizard(result){
  const step=steps[state.step];
@@ -55,9 +57,33 @@ function renderSummary(result){const direct=result.permissions.filter(p=>p.route
 function renderResults(result) {
  return renderResultsPanel(result, { state, deviceNames, categoryNames, routeNames, grantLabel, sceneCount: scenes.length, catalogCount:catalog.length, domainCount:13 });
 }
-function renderCatalog(){const matches=catalog.filter(p=>(filter==='all'||p.category===filter)&&(`${p.name} ${p.description} ${p.details}`).toLowerCase().includes(search.toLowerCase()));return `<div class="page-heading"><div class="eyebrow">PERMISSION LIBRARY <span> / ${catalog.length} RECORDS</span></div><h1>权限资料库</h1></div><div class="library-controls"><label class="search-box"><span>⌕</span><input id="search" placeholder="搜索权限名称或场景，例如 相机、DLP、网络" value="${escape(search)}"/></label><select id="category" class="input"><option value="all">全部分类</option>${Object.entries(categoryNames).map(([v,n])=>`<option value="${v}" ${filter===v?'selected':''}>${n}</option>`).join('')}</select></div><div class="library-meta">找到 ${matches.length} 项权限 <span>数据采集自${escape(checkedOn)}</span></div><div class="library-list">${matches.length?matches.map(p=>`<button class="library-card" data-detail="${p.name}"><span class="library-card-top"><b>${escape(p.name)}</b><span class="tag ${p.deprecated?'amber':''}">${p.deprecated?`API ${p.deprecated} 废弃`:categoryNames[p.category]}</span></span><span class="library-description">${escape(p.description)}</span><span class="library-card-bottom">${p.level} <i>·</i> ${grantLabel(p)} <i>·</i> API ${p.since}+ <span>查看详情 ↗</span></span></button>`).join(''):'<div class="no-results">没有找到匹配权限。试试更短的关键词或切换分类。</div>'}</div>`;}
+function libraryUI(){return {search,filter,topic,checkedOn,categoryNames,grantLabel};}
+function renderCatalog(){return renderLibrary(catalog,libraryUI());}
+function updateLibraryResults(){
+ $('#library-results').innerHTML=renderLibraryResults(catalog,libraryUI());
+ const currentTopic=$('.library-topics .extra-topic');
+ currentTopic?.remove();
+ let found=false;
+ document.querySelectorAll('.library-topics [data-topic]').forEach(button=>{
+  const active=button.dataset.topic===topic;
+  button.classList.toggle('is-active',active);
+  if(active)found=true;
+ });
+ if(topic&&!found){
+  const button=document.createElement('button');button.className='keyword-chip is-active extra-topic';
+  button.dataset.topic=topic;button.textContent=topic;$('.library-topics').append(button);
+ }
+}
+function updateCoverageSearch(){
+ const template=document.createElement('template');
+ template.innerHTML=renderCoverage(state,catalog,coverageUI);
+ for(const selector of ['.capabilities-count','.capabilities-list']){
+  document.querySelector(selector)?.replaceWith(template.content.querySelector(selector));
+ }
+}
+
 function showDetail(name){const p=catalog.find(p=>p.name===name);if(!p)return;$('#detail-content').innerHTML=`<div class="dialog-top"><span>官方权限资料</span><button class="button primary dialog-close" type="button" data-action="close" aria-label="关闭详情">关闭</button></div><h2 id="detail-title">${escape(p.name)}</h2><div class="tags"><span class="tag">${categoryNames[p.category]}</span><span class="tag">${p.level}</span><span class="tag">${routeNames[routeFor(p)]}</span></div><p class="detail-hint">官方条目原文</p><pre class="official-text">${escape(p.details)}</pre><a class="button primary" target="_blank" rel="noopener noreferrer" href="${escape(officialPermissionUrl(p))}">查看官方原文 ↗</a>`;detailScrollY=window.scrollY;document.documentElement.style.setProperty('--detail-scroll-top',`-${detailScrollY}px`);document.documentElement.classList.add('detail-open');$('#detail').showModal();}
-$('#app').addEventListener('click',async e=>{const button=e.target.closest('button');if(!button)return;if(button.dataset.domain){coverageUI.domain=button.dataset.domain;coverageUI.search='';render();return;}if(button.dataset.detail){showDetail(button.dataset.detail);return;}if(button.dataset.view){view=button.dataset.view;render();return;}if(button.dataset.step!==undefined){state.step=Number(button.dataset.step);view='wizard';save();render();window.scrollTo(0,0);return;}if(button.dataset.copy){const config=makeConfig(evaluate(state,catalog));const text=JSON.stringify(button.dataset.copy==='module'?config.moduleFragment:config.stringFragment,null,2);try{await navigator.clipboard.writeText(text);toast('已复制配置片段');}catch{toast('复制失败，请手动选择代码复制');}return;}switch(button.dataset.action){case 'prev':state.step=Math.max(0,state.step-1);break;case 'next':state.step=Math.min(6,state.step+1);break;case 'result':state.step=6;break;case 'reset':state=initialState();break;case 'download':{const result=evaluate(state,catalog);const report={generatedAt:new Date().toISOString(),sourceCheckedOn:checkedOn,profile:state,result,configuration:makeConfig(result)};const url=URL.createObjectURL(new Blob([JSON.stringify(report,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='harmonyos-permissions.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('已导出权限清单');return;}default:return;}save();render();window.scrollTo({top:0,behavior:'smooth'});});
+$('#app').addEventListener('click',async e=>{const button=e.target.closest('button');if(!button)return;if(button.dataset.topic!==undefined){topic=button.dataset.topic;search='';$('#search').value='';updateLibraryResults();return;}if(button.dataset.action==='clear-library'){search='';filter='all';topic='';$('#search').value='';$('#category').value='all';updateLibraryResults();return;}if(button.dataset.domain){coverageUI.domain=button.dataset.domain;coverageUI.search='';render();return;}if(button.dataset.detail){showDetail(button.dataset.detail);return;}if(button.dataset.view){view=button.dataset.view;render();return;}if(button.dataset.step!==undefined){state.step=Number(button.dataset.step);view='wizard';save();render();window.scrollTo(0,0);return;}if(button.dataset.copy){const config=makeConfig(evaluate(state,catalog));const text=JSON.stringify(button.dataset.copy==='module'?config.moduleFragment:config.stringFragment,null,2);try{await navigator.clipboard.writeText(text);toast('已复制配置片段');}catch{toast('复制失败，请手动选择代码复制');}return;}switch(button.dataset.action){case 'prev':state.step=Math.max(0,state.step-1);break;case 'next':state.step=Math.min(6,state.step+1);break;case 'result':state.step=6;break;case 'reset':state=initialState();break;case 'download':{const result=evaluate(state,catalog);const report={generatedAt:new Date().toISOString(),sourceCheckedOn:checkedOn,profile:state,result,configuration:makeConfig(result)};const url=URL.createObjectURL(new Blob([JSON.stringify(report,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='harmonyos-permissions.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('已导出权限清单');return;}default:return;}save();render();window.scrollTo({top:0,behavior:'smooth'});});
 $('#app').addEventListener('change', e => {
  const el = e.target;
  const scrollTop = window.scrollY;
@@ -68,13 +94,16 @@ $('#app').addEventListener('change', e => {
  else if (el.name === 'type') state.type = el.value;
  else if (['device','accuracy','background'].includes(el.id)) state[el.id] = el.value;
  else if (['videoAudio','contactsWrite'].includes(el.id)) state[el.id] = el.checked;
- else if (el.id === 'category') filter = el.value;
+ else if (el.id === 'category') {filter=el.value;updateLibraryResults();return;}
  else return;
  save(); render();
  if (focusSelector) document.querySelector(focusSelector)?.focus({preventScroll:true});
  window.scrollTo({top:scrollTop,behavior:'instant'});
 });
-$('#app').addEventListener('input',e=>{if(e.target.id==='capability-search'){const pos=e.target.selectionStart;coverageUI.search=e.target.value;render();$('#capability-search').focus();$('#capability-search').setSelectionRange(pos,pos);}if(e.target.id==='search'){const pos=e.target.selectionStart;search=e.target.value;render();$('#search').focus();$('#search').setSelectionRange(pos,pos);}});
+bindSearchInputs($('#app'),{
+ search:value=>{search=value;updateLibraryResults();},
+ 'capability-search':value=>{coverageUI.search=value;updateCoverageSearch();}
+});
 $('#detail').addEventListener('click',e=>{if(e.target.closest('[data-action="close"]'))$('#detail').close();});
 $('#detail').addEventListener('cancel',e=>e.preventDefault());
 $('#detail').addEventListener('close',()=>{
@@ -82,4 +111,28 @@ $('#detail').addEventListener('close',()=>{
  document.documentElement.style.removeProperty('--detail-scroll-top');
  window.scrollTo({top:detailScrollY,behavior:'instant'});
 });
-try{const response=await fetch(new URL('../data/permissions.json',import.meta.url));if(!response.ok)throw new Error('权限资料加载失败');const data=await response.json();checkedOn=data.checkedOn;catalog=data.permissions.filter(p=>!p.deprecated);render();}catch(error){$('#app').innerHTML=`<div class="load-error"><h1>权限资料暂时无法加载</h1><p>${escape(error.message)}</p><p>请通过 npm run dev 启动本地服务后打开页面。</p><button onclick="location.reload()">重新加载</button></div>`;}
+async function finishStartup() {
+ const loader=$('#startup-loader');
+ const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const remaining=reducedMotion?0:Math.max(0,650-performance.now());
+ if(remaining)await new Promise(resolve=>setTimeout(resolve,remaining));
+ $('#app').removeAttribute('aria-busy');
+ if(loader){
+  loader.classList.add('is-leaving');
+  if(!reducedMotion)await new Promise(resolve=>setTimeout(resolve,260));
+  loader.remove();
+ }
+ $('#app').inert=false;
+ document.body.classList.remove('startup-active');
+}
+try {
+ const response=await fetch(new URL('../data/permissions.json',import.meta.url));
+ if(!response.ok)throw new Error('权限资料加载失败');
+ const data=await response.json();
+ checkedOn=data.checkedOn;catalog=data.permissions.filter(p=>!p.deprecated);
+ render();
+} catch(error) {
+ $('#app').innerHTML=`<div class="load-error" role="alert"><h1>权限资料暂时无法加载</h1><button class="button primary" onclick="location.reload()">重新加载</button></div>`;
+} finally {
+ await finishStartup();
+}

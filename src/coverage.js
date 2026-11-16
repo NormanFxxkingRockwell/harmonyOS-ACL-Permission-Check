@@ -1,3 +1,4 @@
+import { searchPermissions } from './search-index.js';
 import { permissionCopy } from './scenario-copy.js';
 import { domains, domainFor } from './domains.js';
 import { evaluate, routeFor } from './rules.js';
@@ -8,9 +9,7 @@ export function renderCoverage(state, catalog, ui) {
   const result = evaluate(state,catalog);
   const byName = new Map(result.permissions.map(p=>[p.name,p]));
   const current = domains.find(d=>d.id===ui.domain) || domains[0];
-  const matches = catalog.filter(p => (ui.domain==='all'||domainFor(p)===current.id) &&
-    `${p.name} ${p.description} ${p.details} ${permissionCopy(p).question} ${permissionCopy(p).example}`.toLowerCase().includes(ui.search.toLowerCase()) &&
-    (ui.mode!=='selected'||byName.has(p.name)));
+  const matches=searchPermissions(catalog,ui.search).filter(p=>(ui.domain==='all'||domainFor(p)===current.id)&&(ui.mode!=='selected'||byName.has(p.name)));
   const selectedInDomain = id => catalog.filter(p=>domainFor(p)===id&&byName.has(p.name)).length;
 
   return `  <div class="coverage-layout"><nav class="domain-nav" aria-label="能力领域"><button class="domain-button ${ui.domain==='all'?'active':''}" data-domain="all"><span>▦</span><strong>全部能力</strong><small>${catalog.length}</small></button>${domains.map(domain=>`<button class="domain-button ${current.id===domain.id&&ui.domain!=='all'?'active':''}" data-domain="${domain.id}"><span>${domain.icon}</span><strong>${domain.title}</strong><small>${selectedInDomain(domain.id)?`${selectedInDomain(domain.id)} / `:''}${catalog.filter(p=>domainFor(p)===domain.id).length}</small></button>`).join('')}</nav>
