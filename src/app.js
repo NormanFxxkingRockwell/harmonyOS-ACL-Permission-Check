@@ -1,3 +1,4 @@
+import {newSelectionNotices} from './selection-notices.js';
 import { appTemplates, selectTemplate, renderTemplateChoices } from './templates.js';
 import { renderLibrary, renderLibraryResults } from './library.js';
 import { bindSearchInputs } from './search-input.js';
@@ -87,9 +88,20 @@ function updateCoverageSearch(){
 }
 
 function showDetail(name){const p=catalog.find(p=>p.name===name);if(!p)return;$('#detail-content').innerHTML=`<div class="dialog-top"><span>官方权限资料</span><button class="button primary dialog-close" type="button" data-action="close" aria-label="关闭详情">关闭</button></div><h2 id="detail-title">${escape(p.name)}</h2><div class="tags"><span class="tag">${categoryNames[p.category]}</span><span class="tag">${p.level}</span><span class="tag">${routeNames[routeFor(p)]}</span></div><p class="detail-hint">官方条目原文</p><pre class="official-text">${escape(p.details)}</pre><a class="button primary" target="_blank" rel="noopener noreferrer" href="${escape(officialPermissionUrl(p))}">查看官方原文 ↗</a>`;detailScrollY=window.scrollY;document.documentElement.style.setProperty('--detail-scroll-top',`-${detailScrollY}px`);document.documentElement.classList.add('detail-open');$('#detail').showModal();}
+function showSelectionNotice(items){
+ if(!items.length)return;
+ try{if(localStorage.getItem('harmony-guide-hide-selection-notices')==='1')return;}catch{}
+ $('#detail-content').innerHTML=`<div class="dialog-top"><h2 id="detail-title">权限适用范围提醒</h2><button class="button primary dialog-close" type="button" data-action="close" aria-label="关闭提醒">关闭</button></div><div class="selection-notices">${items.map(({permission,notices})=>`<section><strong>${escape(permission.name)}</strong>${notices.map(notice=>`<p>${escape(notice.text)}</p>`).join('')}<a target="_blank" rel="noopener noreferrer" href="${escape(officialPermissionUrl(permission))}">查看官方条目 ↗</a></section>`).join('')}</div><label class="notice-preference"><input type="checkbox" id="hide-selection-notices"/> 不再提示</label>`;
+ detailScrollY=window.scrollY;
+ document.documentElement.style.setProperty('--detail-scroll-top',`-${detailScrollY}px`);
+ document.documentElement.classList.add('detail-open');
+ $('#detail').showModal();
+}
 $('#app').addEventListener('click',async e=>{const button=e.target.closest('button');if(!button)return;if(button.dataset.topic!==undefined){topic=button.dataset.topic;search='';$('#search').value='';updateLibraryResults();return;}if(button.dataset.action==='clear-library'){search='';filter='all';topic='';$('#search').value='';$('#category').value='all';updateLibraryResults();return;}if(button.dataset.domain){coverageUI.domain=button.dataset.domain;coverageUI.search='';render();return;}if(button.dataset.detail){showDetail(button.dataset.detail);return;}if(button.dataset.view){view=button.dataset.view;render();return;}if(button.dataset.step!==undefined){state.step=Number(button.dataset.step);view='wizard';save();render();window.scrollTo(0,0);return;}if(button.dataset.copy){const config=makeConfig(evaluate(state,catalog));const text=JSON.stringify(button.dataset.copy==='module'?config.moduleFragment:config.stringFragment,null,2);try{await navigator.clipboard.writeText(text);toast('已复制配置片段');}catch{toast('复制失败，请手动选择代码复制');}return;}switch(button.dataset.action){case 'prev':state.step=Math.max(0,state.step-1);break;case 'next':state.step=Math.min(6,state.step+1);break;case 'result':state.step=6;break;case 'reset':state=initialState();break;case 'download':{const result=evaluate(state,catalog);const report={generatedAt:new Date().toISOString(),sourceCheckedOn:checkedOn,profile:state,result,configuration:makeConfig(result)};const url=URL.createObjectURL(new Blob([JSON.stringify(report,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='harmonyos-permissions.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('已导出权限清单');return;}default:return;}save();render();window.scrollTo({top:0,behavior:'smooth'});});
 $('#app').addEventListener('change', e => {
  const el = e.target;
+ const previousPermissions=evaluate(state,catalog).permissions;
+ const previousState={...state};
  const scrollTop = window.scrollY;
  const focusSelector = el.dataset.permission ? `[data-permission="${el.dataset.permission}"]` : el.dataset.scene ? `[data-scene="${el.dataset.scene}"]` : el.id ? `#${el.id}` : ['type','template'].includes(el.name) ? `input[name="${el.name}"][value="${el.value}"]` : null;
  if (el.dataset.permission) {
@@ -110,12 +122,16 @@ $('#app').addEventListener('change', e => {
  save(); render();
  if (focusSelector) document.querySelector(focusSelector)?.focus({preventScroll:true});
  window.scrollTo({top:scrollTop,behavior:'instant'});
+ showSelectionNotice(newSelectionNotices(previousState,state,previousPermissions,evaluate(state,catalog).permissions));
 });
 bindSearchInputs($('#app'),{
  search:value=>{search=value;updateLibraryResults();},
  'capability-search':value=>{coverageUI.search=value;updateCoverageSearch();}
 });
-$('#detail').addEventListener('click',e=>{if(e.target.closest('[data-action="close"]'))$('#detail').close();});
+$('#detail').addEventListener('click',e=>{if(e.target.closest('[data-action="close"]')){
+ if($('#hide-selection-notices')?.checked){try{localStorage.setItem('harmony-guide-hide-selection-notices','1');}catch{}}
+ $('#detail').close();
+ }});
 $('#detail').addEventListener('cancel',e=>e.preventDefault());
 $('#detail').addEventListener('close',()=>{
  document.documentElement.classList.remove('detail-open');

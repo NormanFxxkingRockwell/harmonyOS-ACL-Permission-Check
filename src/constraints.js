@@ -9,7 +9,7 @@ const openingVersions = {
   GET_RUNNING_INFO:'14', RUNNING_STATE_OBSERVER:'14', GET_BUNDLE_INFO_PRIVILEGED:'14',
   GET_DOMAIN_ACCOUNTS:'14', QUERY_AUDIT_EVENT:'14', KILL_APP_PROCESSES:'14', 'sec.ACCESS_UDID':'20'
 };
-const deviceVersions = {
+export const deviceVersions = {
   SET_WINDOW_TRANSPARENT:{Tablet:'23'}, PRELOAD_FILE:{Tablet:'26.0.0'},
   WEB_NATIVE_MESSAGING:{Phone:'24',Tablet:'24'}, USE_FLOAT_BALL:{'PC/2in1':'26.0.0'},
   CRYPTO_EXTENSION_REGISTER:{Tablet:'24',Phone:'26.0.0'}, CUSTOM_SCREEN_CAPTURE:{Phone:'21'},

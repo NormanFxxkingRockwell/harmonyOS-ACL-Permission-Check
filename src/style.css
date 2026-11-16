@@ -518,6 +518,11 @@ body.startup-active { overflow:hidden; }
 
 main.library-view { max-width:1800px; }
 .template-field { border:0; padding:0; margin:24px 0 0; min-width:0; }
+.selection-notices section { border-bottom:1px solid #e5e5eb; padding:14px 0; }
+.selection-notices strong { font:600 12px/1.8 Consolas,monospace; overflow-wrap:anywhere; }
+.selection-notices p { margin:7px 0; font-size:13px; line-height:1.8; }
+.selection-notices a { font-size:11px; color:#b6000b; }
+.notice-preference { display:flex; align-items:center; gap:8px; margin-top:20px; font-size:13px; cursor:pointer; }
 .template-field .field-label { margin:0 0 10px; padding:0; }
 .template-options { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
 .template-option { display:flex; align-items:flex-start; gap:10px; min-height:110px; padding:20px 16px; border:1px solid #dedee5; border-radius:7px; cursor:pointer; background:#fff; }
