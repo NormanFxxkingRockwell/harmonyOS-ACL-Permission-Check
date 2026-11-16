@@ -1,3 +1,4 @@
+import { appTemplates, selectTemplate, renderTemplateChoices } from './templates.js';
 import { renderLibrary, renderLibraryResults } from './library.js';
 import { bindSearchInputs } from './search-input.js';
 import { officialPermissionUrl } from './official-info.js';
@@ -16,7 +17,9 @@ try {
  if (saved && Array.isArray(saved.selected)) state = { ...state, ...saved,
    step: !v2 && saved.step === 5 ? 6 : Math.max(0, Math.min(6, Number(saved.step) || 0)),
    selected: saved.selected.filter(id => scenes.some(scene => scene.id === id)),
-   extraPermissions: Array.isArray(saved.extraPermissions) ? saved.extraPermissions : []
+   extraPermissions: Array.isArray(saved.extraPermissions) ? saved.extraPermissions : [],
+   template: appTemplates.some(item=>item.id===saved.template)?saved.template:'none',
+   templateScenes: Array.isArray(saved.templateScenes)?saved.templateScenes.filter(id=>id==='dlp-policy'):[]
  };
 } catch {}
 delete state.name; // Drop fields from retired planning and eligibility forms.
@@ -38,7 +41,7 @@ function renderWizard(result){
  const step=steps[state.step];
  return `<div class="page-heading"><div class="eyebrow">PERMISSION PLANNER <span> / ${String(state.step+1).padStart(2,'0')}</span></div><div class="heading-row"><h1>${step.subtitle}</h1><button class="text-button" data-action="reset">↻ 重新开始</button></div></div><div class="progress-track">${steps.map((_,i)=>`<span class="${i<=state.step?'filled':''}"></span>`).join('')}</div>${state.step===6?renderResults(result):state.step===5?renderCoverage(state,catalog,coverageUI):`<div class="planner-grid"><section class="question-panel">${state.step===0?renderProfile():renderScenes()}<div class="wizard-actions"><button class="button secondary" data-action="prev" ${state.step===0?'disabled':''}>← 上一步</button><button class="button primary" data-action="next">${state.step===4?'核对完整能力':'下一步'} <span>→</span></button></div></section>${renderSummary(result)}</div>`}`;
 }
-function renderProfile(){return `<div class="section-title"><span class="section-icon">◈</span><div><h2>应用的基本信息</h2></div></div><div class="field-label">应用分发类型</div><div class="type-options">${[['normal','普通应用','通过华为应用市场分发'],['enterprise','企业普通应用','企业内部分发'],['mdm','企业 MDM 应用','企业设备管理应用']].map(([value,title,desc])=>`<label class="type-option ${state.type===value?'selected':''}"><input type="radio" name="type" value="${value}" ${state.type===value?'checked':''}/><span><strong>${title}</strong><small>${desc}</small></span></label>`).join('')}</div><div class="profile-row device-only"><div><label class="field-label" for="device">主要运行设备</label><select id="device" class="input">${Object.entries(deviceNames).map(([v,n])=>`<option value="${v}" ${state.device===v?'selected':''}>${n} · ${v}</option>`).join('')}</select></div></div><div class="intro-stats"><div><b>${catalog.length}</b><span>官方权限条目</span></div><div><b>${scenes.length}</b><span>常见场景向导</span></div><div><b>5</b><span>权限开放分类</span></div></div>`;}
+function renderProfile(){return `<div class="section-title"><span class="section-icon">◈</span><div><h2>应用的基本信息</h2></div></div><div class="field-label">应用分发类型</div><div class="type-options">${[['normal','普通应用','通过华为应用市场分发'],['enterprise','企业普通应用','企业内部分发'],['mdm','企业 MDM 应用','企业设备管理应用']].map(([value,title,desc])=>`<label class="type-option ${state.type===value?'selected':''}"><input type="radio" name="type" value="${value}" ${state.type===value?'checked':''}/><span><strong>${title}</strong><small>${desc}</small></span></label>`).join('')}</div><div class="profile-row device-only"><div><label class="field-label" for="device">主要运行设备</label><select id="device" class="input">${Object.entries(deviceNames).map(([v,n])=>`<option value="${v}" ${state.device===v?'selected':''}>${n} · ${v}</option>`).join('')}</select></div></div>${renderTemplateChoices(state)}<div class="intro-stats"><div><b>${catalog.length}</b><span>官方权限条目</span></div><div><b>${scenes.length}</b><span>常见场景向导</span></div><div><b>5</b><span>权限开放分类</span></div></div>`;}
 function renderScenes() {
  const list = scenes.filter(scene => scene.step === state.step);
  const selected = list.filter(scene => state.selected.includes(scene.id));
@@ -87,10 +90,14 @@ $('#app').addEventListener('click',async e=>{const button=e.target.closest('butt
 $('#app').addEventListener('change', e => {
  const el = e.target;
  const scrollTop = window.scrollY;
- const focusSelector = el.dataset.permission ? `[data-permission="${el.dataset.permission}"]` : el.dataset.scene ? `[data-scene="${el.dataset.scene}"]` : el.id ? `#${el.id}` : el.name === 'type' ? `input[name="type"][value="${el.value}"]` : null;
+ const focusSelector = el.dataset.permission ? `[data-permission="${el.dataset.permission}"]` : el.dataset.scene ? `[data-scene="${el.dataset.scene}"]` : el.id ? `#${el.id}` : ['type','template'].includes(el.name) ? `input[name="${el.name}"][value="${el.value}"]` : null;
  if (el.dataset.permission) state.extraPermissions = el.checked ? [...new Set([...state.extraPermissions,el.dataset.permission])] : state.extraPermissions.filter(name=>name!==el.dataset.permission);
  else if (el.id==='capability-mode') coverageUI.mode=el.value;
- else if (el.dataset.scene) state.selected = el.checked ? [...new Set([...state.selected, el.dataset.scene])] : state.selected.filter(id => id !== el.dataset.scene);
+ else if (el.dataset.scene) {
+  state.selected = el.checked ? [...new Set([...state.selected, el.dataset.scene])] : state.selected.filter(id => id !== el.dataset.scene);
+  state.templateScenes=state.templateScenes.filter(id=>id!==el.dataset.scene);
+ }
+ else if (el.name === 'template') state=selectTemplate(state,el.value);
  else if (el.name === 'type') state.type = el.value;
  else if (['device','accuracy','background'].includes(el.id)) state[el.id] = el.value;
  else if (['videoAudio','contactsWrite'].includes(el.id)) state[el.id] = el.checked;
