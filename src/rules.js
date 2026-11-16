@@ -55,7 +55,7 @@ export const scenes = [
   s('mdm-apps',4,'是否需要替管理员安装或卸载应用？','例如：企业设备管理应用给办公设备统一安装业务应用。',['ENTERPRISE_INSTALL_BUNDLE'],{icon:'▦',tag:'MDM'}),
   s('mdm-usb',4,'是否需要由管理员管控设备的 USB 使用？','例如：企业设备管理应用按公司规则设置 USB 使用策略。',['ENTERPRISE_MANAGE_USB'],{icon:'⇄',tag:'MDM'})
 ];
-export const initialState = () => ({ step:0, template:'none', templateScenes:[], type:'normal', device:'PC/2in1', selected:[], extraPermissions:[], videoAudio:false, accuracy:'approximate', background:'none', contactsWrite:false });
+export const initialState = () => ({ step:0, template:'none', templateScenes:[], templatePermissions:[], type:'normal', device:'PC/2in1', selected:[], extraPermissions:[], videoAudio:false, accuracy:'approximate', background:'none', contactsWrite:false });
 export function compareVersions(a,b) { const x=String(a).split('.').map(Number),y=String(b).split('.').map(Number); for(let i=0;i<Math.max(x.length,y.length);i++){const d=(x[i]||0)-(y[i]||0);if(d)return Math.sign(d);}return 0; }
 export function routeFor(p) {
   if(p.category==='仅MDM应用可用权限')return 'mdm';

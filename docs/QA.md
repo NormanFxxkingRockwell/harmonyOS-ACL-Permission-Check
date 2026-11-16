@@ -77,3 +77,9 @@
 - 首页新增方形单选卡片：默认不使用模板；企业DLP透明加解密模板预选dlp-policy场景，对应DLP_POLICY_MANAGER。
 - 模板复用场景选择，不修改应用分发类型或设备；后续允许取消和补充。切回无模板只撤销模板加入且未手动调整的场景，保留原有手动选择。
 - 32项测试与构建通过。浏览器验证默认选项、模板产生1项官网申请权限、企业场景取消后清单归零。
+
+## 2026-11-16 扩展DLP模板权限
+
+- 按用户确认将模板扩展为8项：DLP_POLICY_MANAGER、INTERNET、GET_NETWORK_INFO、READ_WRITE_DESKTOP_DIRECTORY、READ_WRITE_DOCUMENTS_DIRECTORY、READ_WRITE_DOWNLOAD_DIRECTORY、FILE_GUARD_MANAGER、SET_FILE_GUARD_POLICY。
+- 复用已有场景与完整能力选择，不增加附加功能卡片。模板场景和附加权限均记录来源，切换时保留手动选择。
+- 33项测试和构建通过，包含模板去重、取消、缓存保存及手动公共目录权限保留。

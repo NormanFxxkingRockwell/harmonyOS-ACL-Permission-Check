@@ -19,7 +19,8 @@ try {
    selected: saved.selected.filter(id => scenes.some(scene => scene.id === id)),
    extraPermissions: Array.isArray(saved.extraPermissions) ? saved.extraPermissions : [],
    template: appTemplates.some(item=>item.id===saved.template)?saved.template:'none',
-   templateScenes: Array.isArray(saved.templateScenes)?saved.templateScenes.filter(id=>id==='dlp-policy'):[]
+   templateScenes: Array.isArray(saved.templateScenes)?saved.templateScenes.filter(id=>appTemplates.some(item=>item.scenes.includes(id))):[],
+   templatePermissions: Array.isArray(saved.templatePermissions)?saved.templatePermissions.filter(name=>appTemplates.some(item=>item.permissions.includes(name))):[]
  };
 } catch {}
 delete state.name; // Drop fields from retired planning and eligibility forms.
@@ -91,7 +92,10 @@ $('#app').addEventListener('change', e => {
  const el = e.target;
  const scrollTop = window.scrollY;
  const focusSelector = el.dataset.permission ? `[data-permission="${el.dataset.permission}"]` : el.dataset.scene ? `[data-scene="${el.dataset.scene}"]` : el.id ? `#${el.id}` : ['type','template'].includes(el.name) ? `input[name="${el.name}"][value="${el.value}"]` : null;
- if (el.dataset.permission) state.extraPermissions = el.checked ? [...new Set([...state.extraPermissions,el.dataset.permission])] : state.extraPermissions.filter(name=>name!==el.dataset.permission);
+ if (el.dataset.permission) {
+  state.extraPermissions = el.checked ? [...new Set([...state.extraPermissions,el.dataset.permission])] : state.extraPermissions.filter(name=>name!==el.dataset.permission);
+  state.templatePermissions=state.templatePermissions.filter(name=>name!==el.dataset.permission);
+ }
  else if (el.id==='capability-mode') coverageUI.mode=el.value;
  else if (el.dataset.scene) {
   state.selected = el.checked ? [...new Set([...state.selected, el.dataset.scene])] : state.selected.filter(id => id !== el.dataset.scene);
